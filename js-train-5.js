@@ -144,8 +144,8 @@ function swapMinMax(array) {
       max = array[i];
       maxIndex = i;
     }
-    [array[minIndex]] = [array[maxIndex]];
   }
+  [array[minIndex], array[maxIndex]] = [array[maxIndex], array[minIndex]];
   return array;
 }
 
@@ -158,7 +158,7 @@ function getEvenNumbers(arr) {
   let evenArray = [];
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] % 2 === 0) {
-      evenArray[i] = arr[i];
+      evenArray = [...evenArray, arr[i]];
     }
   }
   return evenArray;
