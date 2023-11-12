@@ -1,15 +1,18 @@
 //Завдання 1.Cтворіть об'єкт person за допомогою конструктора з полями name: "John",age: 25
-let person = {};
+let person = Object({ name: "John", age: 25 });
 
 console.log("Завдання 1 ====================================");
-
 console.log("person", person); // Виведе {name: "John", age: 25}
 
 //Завдання 2. Cтворіть об'єкт personLarge який буде мати такі ж поля як person ,
 // та вкладений об'єкт address з полями  street: "123 Main St", city: "New York", country: "USA",
 let personLarge = {
-  //використовуємо деструктурізацію на об'єкті person
-  //створюємо об'єкт address
+  ...person,
+  address: {
+    street: "123 Main St",
+    city: "New York",
+    country: "USA",
+  },
 };
 
 console.log("Завдання 2 ====================================");
@@ -29,12 +32,10 @@ var animal = {
 
 // Функція для створення нового об'єкта з тими ж властивостями
 function copyObject(obj) {
-  // Використовуємо синтаксис деструктурізації {...person} для створення нового об'єкта з тими ж властивостями
-  // Повертаємо новий об'єкт
+  obj = { ...obj };
+  return obj;
 }
-
 console.log("Завдання 3 ====================================");
-
 console.log("copyObject(animal)", copyObject(animal)); // Виведе { type: 'Dog', breed: 'Labrador Retriever' }
 
 ////Завдання 4. Перевірте наявність властивості в об'єкті за допомогою оператора in.
@@ -44,9 +45,11 @@ let fruit = {
 };
 // Функція для перевірки наявності властивості в об'єкті
 function hasProperty(obj, property) {
-  // Використовуємо оператор "in" для перевірки наявності властивості
-  // Запишимо умову якщо властивість існує повертає текст Property ${property} exists,
-  // інашке повертаємо Property ${property} does not exist.
+  if (property in obj) {
+    return `Property ${property} exists.`;
+  } else {
+    return `Property ${property} does not exist.`;
+  }
 }
 
 console.log("Завдання 4 ====================================");
@@ -60,8 +63,10 @@ let country = {
 };
 // Функція для виведення всіх ключів і значень об'єкта
 function printKeysAndValues(obj) {
-  // Проходимося по всіх ключах об'єкту за допомогою циклу "for in"
-  // Виводимо ключ та значення на консоль
+  let str;
+  for (const key in obj) {
+    console.log(`Key: ${key}, Value: ${obj[key]}`);
+  }
 }
 
 console.log("Завдання 5 ====================================");
@@ -77,8 +82,8 @@ let movie = {
 };
 // Функція для видалення властивості з об'єкта
 function deleteProperty(obj, property) {
-  // Використовуємо оператор "delete" для видалення властивості
-  // Повертаємо об'єкт
+  delete obj[property];
+  return obj;
 }
 
 console.log("Завдання 6 ====================================");
@@ -89,14 +94,13 @@ console.log(deleteProperty(movie, "director")); // Виведе { title: 'Incept
 let user = {
   name: "John",
   age: 25,
-  // Створюємо метод introduce, який за допомогою ключового слова this має повернути такий рядок
-  // My name is John and I am 25 years old.
+  introduce: function () {
+    return `My name is ${this.name} and I am ${this.age} years old.`;
+  },
 };
 
 console.log("Завдання 7 ====================================");
-// Викликаємо метод introduce об'єкта user
-// Розкоментуйте рядок нижче після виконня завдання для перевірки
-// console.log(user.introduce());
+console.log(user.introduce());
 // Виведе My name is John and I am 25 years old.
 
 // Завдання 8: Створіть функцію, яка додає нове поле до об'єкту.
@@ -107,8 +111,8 @@ let book = {
 
 // Функція для додавання нового поля до об'єкту
 function addField(obj, newField, value) {
-  // Додаємо нове поле до об'єкту з допомогою квадратних дужок
-  // Повертаємо об'єкт
+  obj[newField] = value;
+  return obj;
 }
 
 console.log("Завдання 8 ====================================");
@@ -121,8 +125,8 @@ let laptop = {
 };
 // Функція для деструктуризації об'єкту
 function destructureObject(obj) {
-  // Використовуємо деструктуризацію для створення нових змінних з властивостей об'єкту і отримуємо з нього змінні brand та model
-  // Повертаємо нові змінні  в форматі 'Brand: ${brand}, Model: ${model}'
+  let { brand, model } = laptop;
+  return `Brand: ${brand}, Model: ${model}`;
 }
 
 console.log("Завдання 9 ====================================");
