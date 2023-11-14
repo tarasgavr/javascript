@@ -142,9 +142,10 @@ let userList = [
 ];
 // Функція для зміни ролі всіх осіб у масиві
 function changeRole(array, newRole) {
-  // Ітеруємося по масиву об'єктів за допомогою циклу "for of"
-  // Змінюємо роль кожного користувача на нове ім'я
-  // Виводимо об'єкт на консоль
+  for (const items of array) {
+    items.role = newRole;
+    console.log(items);
+  }
 }
 
 console.log("Завдання 10 ====================================");
@@ -165,8 +166,12 @@ let product = {
 };
 // Функція для виводу деталей людини
 function printProductDetails(obj) {
-  // Використовуємо деструктуризацію для отримання значень productName, price i також значень companyName, country вкладеного об'єкту manufacturer
-  // Виводимо productName, price, companyName та country на консоль
+  let {
+    productName,
+    price,
+    manufacturer: { companyName, country },
+  } = obj;
+  console.log(productName + " " + price + " " + companyName + " " + country);
 }
 
 console.log("Завдання 11 ====================================");
