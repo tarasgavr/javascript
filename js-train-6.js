@@ -185,9 +185,9 @@ let planet2 = { name: "Земля", radius: 6371 };
 
 // Функція для перевірки рівності об'єктів
 function compareObjects(obj1, obj2) {
-  // Виводимо результат порівняння об'єктів
-  // Присвоємо obj2 значення об'єкту obj1
-  // Виводимо результат порівняння об'єктів
+  console.log(obj1 === obj2);
+  obj1 = obj2;
+  console.log(obj1 === obj2);
 }
 
 console.log("Завдання 12 ====================================");
@@ -208,7 +208,7 @@ function showCarInfo({
   year = 0,
   country = "Unknown",
 } = {}) {
-  // Повертаємо об'єкт зі значеннями властивостей
+  return { brand, year, country };
 }
 
 console.log("Завдання 13 ====================================");
@@ -217,12 +217,12 @@ console.log(showCarInfo(car)); // Виведе { brand: 'BMW', year: 2022, count
 // Завдання 14: Додайте нову властивість до вбудованого об'єкту Array через літерал.
 // Створюємо функцію, яка буде додавати нову властивість до масиву
 function addProperty(array) {
-  // Додаємо нову властивість customProperty до прототипу Array зі значенням myProperty
-  // Повертаємо переданий масив з новою властивістю
+  Array.prototype.customProperty = "myProperty";
+  return array;
 }
 
 console.log("Завдання 14 ====================================");
-// Створимо масив newArr з новою властивістю за допомогої нашої функції в яку передамо [1, 2, 3, 4, 5]
+let newArr = addProperty([1, 2, 3, 4, 5]);
 
 // Розкоментуйте рядок нижче після виконня завдання для перевірки
-// console.log(newArr.customProperty); // Виведе myProperty
+console.log(newArr.customProperty); // Виведе myProperty
