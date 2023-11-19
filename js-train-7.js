@@ -129,7 +129,7 @@ console.log("Завдання 9 ====================================");
 console.log(useSymbolIterator(rangeObject)); //Виведе [ 1, 2, 3, 4, 5, 6 ]
 
 // Завдання 10: Використання Symbol.iterator
-
+let value;
 // Оголошення об'єкта "myObject" з властивістю "category"
 let myObject = {
   //Cтворюємо масив category
@@ -144,16 +144,32 @@ let myObject = {
   [Symbol.iterator]() {
     return this;
   },
-  next() {
+  /* next() {
     if (this.currentIndex < this.category.length) {
-      let value = this.category[this.currentIndex].name;
+      value = this.category[this.currentIndex].name;
       this.currentIndex++;
-      return { value, done: false };
+      return { value: value, done: false };
     } else {
       return { done: true };
     }
+  }, */
+  next() {
+    return this.currentIndex < this.category.length
+      ? {
+          done: false,
+          value: this.category[this.currentIndex++].name,
+        }
+      : { done: true };
   },
 };
-
+function useSymbolIterator1(obj) {
+  let res = [];
+  const iterator = obj[Symbol.iterator]();
+  do {
+    result = iterator.next();
+    res[obj.currentIndex - 1] = result.value;
+  } while (!result.done);
+  console.log(res);
+}
 console.log("Завдання 10 ====================================");
-console.log(useSymbolIterator(myObject)); //Виведе [ 'apple', 'banana', 'orange', 'grape', 'mango' ]
+useSymbolIterator1(myObject); //Виведе [ 'apple', 'banana', 'orange', 'grape', 'mango' ]
