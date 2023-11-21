@@ -7,9 +7,28 @@
  * Повертає: Масив користувачів.
  */
 function getUsersFromDatabase(array) {
-  // Використовуємо метод `Array.from` для створення масиву користувачів зі списку, елементи якого це об'єкти які міститять
-  // id який дорівнює id користувача,firstName який дорівнює firstName користувача в верхньому регістрі та years який дорівнює age користувача
-  // Повертаємо масив користувачів
+  let str;
+  return Array.from(
+    array,
+    function (elem, index) {
+      for (let key in elem) {
+        switch (key) {
+          case "name":
+            str = "firstName";
+            elem[str] = elem[key].toUpperCase();
+            delete elem[key];
+            break;
+          case "age":
+            str = "years";
+            elem[str] = elem[key];
+            delete elem[key];
+            break;
+        }
+      }
+      return elem;
+    },
+    array
+  );
 }
 
 // Приклад використання функції getUsersFromDatabase
@@ -37,9 +56,7 @@ console.log(getUsersFromDatabase(userRecords));
  * Повертає Видалений останній елемент або `undefined`, якщо масив порожній.
  */
 function removeLastElement(arr) {
-  // Перевіряємо, чи масив не є порожнім, якщо порожній повертаємо  undefined
-  // Використовуємо метод `pop` для видалення останнього елементу з масиву
-  // Повертаємо оновлений масив
+  return arr.length ? arr.pop() : "undefined";
 }
 
 // Приклад використання функції removeLastElement
@@ -56,8 +73,7 @@ console.log(removeLastElement([1, 2, 3, 4, 5])); // Виведе [1, 2, 3, 4]
  * Повертає: Новий масив, який містить елементи, що задовольняють умову.
  */
 function filterByCondition(arr, condition) {
-  // Використовуємо метод `filter` для фільтрації масиву
-  // Повертаємо відфільтрований масив
+  return arr.filter(condition);
 }
 
 // Приклад використання функції filterByCondition
