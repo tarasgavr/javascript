@@ -56,7 +56,12 @@ console.log(getUsersFromDatabase(userRecords));
  * Повертає Видалений останній елемент або `undefined`, якщо масив порожній.
  */
 function removeLastElement(arr) {
-  return arr.length ? arr.pop() : "undefined";
+  if (arr.length) {
+    arr.pop();
+    return arr;
+  } else {
+    return "undefined";
+  }
 }
 
 // Приклад використання функції removeLastElement
@@ -90,11 +95,13 @@ console.log(filterByCondition([1, 2, 3, 4, 5], condition)); // Виведе [2, 
  *Повертає: `true`, якщо об'єкт є масивом, `false` - у протилежному випадку.
  */
 function checkArray(obj) {
-  // Перевіряємо, чи є об'єкт не null і не undefined
-  // Використовуємо метод `Array.isArray` для перевірки, чи є об'єкт масивом
-  // Повертаємо результат перевірки
-  // Якщо об'єкт є null або undefined, виводимо повідомлення про помилку Помилка: Вхідний об'єкт є null або undefined.
-  //Повертаємо false
+  if (obj != null || obj != undefined) {
+    Array.isArray(obj);
+    return true;
+  } else {
+    console.log("Помилка: Вхідний об'єкт є null або undefined.");
+    return false;
+  }
 }
 
 // Приклад використання функції checkArray
@@ -109,6 +116,14 @@ console.log(checkArray([1, 2, 3, 4, 5])); // Виведе true
  * Повертає: Новий масив з переданих елементів.
  */
 function createArray(...elements) {
+  let array;
+  if (elements.length > 0) {
+    array = Array.of(elements);
+    return array;
+  } else {
+    console.log("Помилка: Вхідний об'єкт не має жодного елементу.");
+    return [];
+  }
   // Перевіряємо, чи кількість переданих елементів більше нуля
   // Використовуємо метод `Array.of` для створення нового масиву з переданих елементів
   // Повертаємо створений масив
@@ -129,6 +144,15 @@ console.log(createArray(1, 2, 3, 4, 5)); // Виведе [1, 2, 3, 4, 5]
  * Повертає Елемент з масиву за заданим індексом або `undefined`, якщо індекс виходить за межі масиву.
  */
 function getElementAtIndex(arr, index) {
+  let elem;
+  if (!arr.length) {
+    return undefined;
+  } else if (index < arr.length) {
+    elem = arr.indexOf(index);
+    return elem;
+  } else {
+    return undefined;
+  }
   // Перевіряємо, чи масив не є порожнім
   // Повертаємо undefined
   // Перевіряємо, чи індекс знаходиться в межах довжини масиву
