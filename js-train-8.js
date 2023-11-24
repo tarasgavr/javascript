@@ -116,13 +116,11 @@ console.log(checkArray([1, 2, 3, 4, 5])); // Виведе true
  * Повертає: Новий масив з переданих елементів.
  */
 function createArray(...elements) {
-  let array;
   if (elements.length > 0) {
-    array = Array.of(elements);
-    return array;
+    return Array.of(...elements);
   } else {
     console.log("Помилка: Вхідний об'єкт не має жодного елементу.");
-    return [];
+    return Array.of();
   }
   // Перевіряємо, чи кількість переданих елементів більше нуля
   // Використовуємо метод `Array.of` для створення нового масиву з переданих елементів
@@ -148,8 +146,7 @@ function getElementAtIndex(arr, index) {
   if (!arr.length) {
     return undefined;
   } else if (index < arr.length) {
-    elem = arr.indexOf(index);
-    return elem;
+    return arr.at(index);
   } else {
     return undefined;
   }
@@ -163,7 +160,6 @@ function getElementAtIndex(arr, index) {
 
 // Приклад використання функції getElementAtIndex
 console.log("Завдання:6 ==============================");
-
 console.log(getElementAtIndex([1, 2, 3, 4, 5], 2)); // Виведе 3
 
 // Завдання:7
@@ -175,6 +171,11 @@ console.log(getElementAtIndex([1, 2, 3, 4, 5], 2)); // Виведе 3
  * Повертає: Об'єднаний та обернутий масив.
  */
 function combineAndReverseArrays(arr1, arr2) {
+  if (!Array.isArray(arr1) && !Array.isArray(arr2)) {
+    return [];
+  } else {
+    return arr1.concat(arr2).reverse();
+  }
   // Перевіряємо, чи обидва аргументи є масивами
   //  Якщо ні повертаємо пустий масив
   // Об'єднуємо два масиви за допомогою методу `concat`
@@ -196,6 +197,21 @@ console.log(combineAndReverseArrays([1, 2, 3], [4, 5, 6])); //Виведе [ 6, 
  * Повертає: Масив індексів, де знайдено елемент, або пустий масив, якщо елемент не знайдено.
  */
 function findElementIndexes(arr, element) {
+  let index, lastIndex, indexArr;
+  if (!Array.isArray(arr)) {
+    return [];
+  } else {
+    index = arr.indexOf(element);
+    lastIndex = arr.lastIndexOf(element);
+    indexArr = [];
+    if (index != -1) {
+      indexArr.push(index);
+    }
+    if (lastIndex != index) {
+      indexArr.push(lastIndex);
+    }
+    return indexArr;
+  }
   // Перевіряємо, чи аргумент є масивом
   // якщо ні повертаємо пустий масив
   // Знаходимо індекс першого знайденого елементу за допомогою методу `indexOf`
@@ -208,7 +224,7 @@ function findElementIndexes(arr, element) {
 
 // Приклад використання функції findElementIndexes
 console.log("Завдання:8 ==============================");
-
+0;
 console.log(findElementIndexes([1, 2, 3, 4, 5, 2], 2)); //Виведе [ 1, 5 ]
 
 // Завдання:9
