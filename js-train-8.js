@@ -450,21 +450,18 @@ function customAt(arr, index) {
     return undefined;
   }
   let elem = arr.at(index);
-  switch (typeof elem) {
-    case "String":
-      console.log("Елемент є рядком");
-      break;
-    case "Number":
-      console.log("Елемент є числом");
-      break;
-    case "Object":
-      console.log("Елемент є об`єктом");
-      break;
+  if (typeof elem === "string") {
+    console.log("Елемент є рядком");
+  } else if (typeof elem === "number") {
+    console.log("Елемент є числом");
+  } else if (typeof elem === "object") {
+    console.log("Елемент є об`єктом");
   }
+  return elem;
   // Перевіряємо, чи вхідний параметр є масивом якщо ні повертаємо undefined
   // Перевіряємо, чи індекс виходить за межі масиву якщо ні повертаємо undefined
   // Отримуємо елемент масиву за заданим індексом
-  // перевіремо якого типу елемент ми отримали,якщо рядок виведом в консоль -Елемент є рядком,числом - Елемент є числом, об`єктом - Елемент є обєктом
+  // перевіремо якого типу елемент ми отримали,якщо рядок виведом в консоль -Елемент рядком,числом - Елемент є числом, об`єктом - Елемент є обєктом
 }
 
 console.log("Завдання: 16 ==============================");
@@ -488,11 +485,12 @@ function customIncludes(arr, element) {
   if (!Array.isArray(arr)) {
     return undefined;
   }
-  if (arr.includes(element)) {
-    const index = arr.filter((el) => {
-      console.log();
-    });
+  const includes = arr.includes(element);
+  if (includes) {
+    const result = arr.filter((el) => el === element);
+    console.log(result.length);
   }
+  return includes;
   // Перевіряємо, чи вхідний параметр є масивом
   // Використовуємо метод includes для перевірки наявності елемента в масиві
   // За допомогою методу filter перевіряємо скільки разів в масиві зустрічається елемент та виводимо число в консоль
