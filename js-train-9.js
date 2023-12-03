@@ -88,8 +88,7 @@ function getSubArrayAndConvertToString(arr, startIdx) {
   if (!Array.isArray(arr)) {
     return "Вхідний параметр має бути масивом";
   }
-  arr.slice(startIdx);
-  const subArrayString = arr.join(" ");
+  const subArrayString = arr.slice(startIdx).join(" ");
   return subArrayString;
 }
 
@@ -111,10 +110,11 @@ console.log(
  * Повертає - arrayKeys - масив ключів вхідного масиву.
  */
 function getArrayKeys(arr) {
-  // Перевіряємо, чи вхідний параметр є масивом, якщо ні повертаємо 'Вхідний параметр має бути масивом'
-  // За допомогою методу keys() отримуємо об'єкт ітератора, який містить ключі масиву.
-  // Конвертуємо ітератор в масив за допомогою методу from.
-  // Повертаємо масив ключів.
+  if (!Array.isArray(arr)) {
+    return "Вхідний параметр має бути масивом";
+  }
+  const arrayKeys = arr.keys();
+  return Array.from(arrayKeys);
 }
 
 console.log("Завдання: 5  ==============================");
@@ -129,11 +129,12 @@ console.log(getArrayKeys(["яблуко", "банан", "апельсин"])); /
  * Повертає - positiveArrayValues - масив додатніх значень вхідного масиву.
  */
 function getPositiveArrayValues(arr) {
-  // Перевіряємо, чи вхідний параметр є масивом, якщо ні повертаємо 'Вхідний параметр має бути масивом'
-  // За допомогою методу values() отримуємо об'єкт ітератора, який містить значення масиву.
-  // Конвертуємо ітератор в масив.
-  // За допомогою методу filter() отримуємо масив лише з додатніми значеннями.
-  // Повертаємо масив додатніх значень.
+  if (!Array.isArray(arr)) {
+    return "Вхідний параметр має бути масивом";
+  }
+  const arrayValues = Array.from(arr.values());
+  const positiveArrayValues = arrayValues.filter((el) => el > 0);
+  return positiveArrayValues;
 }
 
 console.log("Завдання: 6  ==============================");
@@ -149,10 +150,12 @@ console.log(getPositiveArrayValues([-2, -1, 0, 1, 2])); // Виведе [1, 2]
  * Повертає - doubledArray - масив подвоєних елементів після видалення.
  */
 function removeAndDouble(arr, startIdx) {
-  // Перевіряємо, чи вхідний параметр є масивом, якщо ні повертаємо 'Вхідний параметр має бути масивом'
-  // За допомогою методу splice() видаляємо елементи масиву починаючи з заданого індексу.
-  // За допомогою методу map() подвоюємо кожен елемент масиву.
-  // Повертаємо масив подвоєних елементів.
+  if (!Array.isArray(arr)) {
+    return "Вхідний параметр має бути масивом";
+  }
+  const removeArr = arr.splice(startIdx);
+  const doubledArray = removeArr.map((el) => el * 2);
+  return doubledArray;
 }
 
 console.log("Завдання: 7 ==============================");
@@ -167,10 +170,14 @@ console.log(removeAndDouble([1, 2, 3, 4, 5], 2)); // Виведе [ 2, 4 ]
  * Повертає - sum - сума елементів масиву.
  */
 function sumAndPrint(arr) {
-  // Перевіряємо, чи вхідний параметр є масивом, якщо ні повертаємо 'Вхідний параметр має бути масивом'
-  // За допомогою методу reduce() обчислюємо суму елементів масиву.
-  // За допомогою методу forEach() виводимо кожен елемент масиву в консоль.
-  // Повертаємо суму елементів масиву.
+  if (!Array.isArray(arr)) {
+    return "Вхідний параметр має бути масивом";
+  }
+  const sum = arr.reduce((acc, val) => acc + val, 0);
+  arr.forEach((el) => {
+    console.log(el);
+  });
+  return sum;
 }
 
 console.log("Завдання: 8  ==============================");
