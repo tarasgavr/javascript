@@ -349,8 +349,8 @@ function findLongestWord(arr) {
   if (!Array.isArray(arr)) {
     return "";
   }
-  const longestWord = arr.reduce((a, c) => {
-    return a.length > c.length ? a : c;
+  const longestWord = arr.reduce((acc, cur) => {
+    return acc.length > cur.length ? acc : cur;
   });
   return longestWord;
 }
@@ -367,10 +367,13 @@ console.log(findLongestWord(["apple", "banana", "pineapple", "watermelon"])); //
 Повертає - duplicateElements - новий масив, в якому лише дубльовані елементи.
 */
 function findDuplicateElements(arr) {
-  // Перевіряємо, чи вхідний параметр є масивом, якщо ні, повертаємо пустий масив
-  // Використовуємо метод filter() для вибірки лише дубльованих елементів
-  // Перевіряємо, чи є індекс поточного елемента відмінним від індексу першого входження елемента, та повертаємо результат
-  // Повертаємо новий масив з дубльованими елементами
+  if (!Array.isArray(arr)) {
+    return [];
+  }
+  const duplicateElements = arr.filter((item, index) => {
+    return arr.indexOf(item) !== index;
+  });
+  return duplicateElements;
 }
 console.log("Завдання: 16 ==============================");
 console.log(findDuplicateElements([1, 2, 3, 4, 2, 5, 6, 3, 5])); // Виведе [2, 3, 5]
@@ -385,11 +388,13 @@ console.log(findDuplicateElements([1, 2, 3, 4, 2, 5, 6, 3, 5])); // Виведе
 Повертає - capitalizedArray - новий масив, де кожне слово має першу літеру у верхньому регістрі.
 */
 function capitalizeWords(arr) {
-  // Перевіряємо, чи вхідний параметр є масивом, якщо ні, повертаємо пустий масив
-  // Використовуємо метод map() для перетворення кожного слова в рядку з першою великою літерою
-  // Перетворюємо першу літеру слова у верхній регістр да додамо до неї всі символи слова крім першого
-  //Повертаємо слово
-  // Повертаємо новий масив зі словами, у яких перша літера у верхньому регістрі
+  if (!Array.isArray(arr)) {
+    return [];
+  }
+  const capitalizedArray = arr.map(function (el) {
+    return elю();
+  });
+  return capitalizedArray;
 }
 console.log("Завдання: 17 ==============================");
 console.log(capitalizeWords(["apple", "banana", "orange"])); // Виведе ['Apple', 'Banana', 'Orange']
