@@ -392,7 +392,13 @@ function capitalizeWords(arr) {
     return [];
   }
   const capitalizedArray = arr.map(function (el) {
-    return elю();
+    const str = el.split("")[0].toUpperCase();
+    let word;
+    for (let i = 1; i < el.length; i++) {
+      word = str.concat(...el);
+      console.log(el[i]);
+    }
+    return word;
   });
   return capitalizedArray;
 }
