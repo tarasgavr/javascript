@@ -392,11 +392,9 @@ function capitalizeWords(arr) {
     return [];
   }
   const capitalizedArray = arr.map(function (el) {
-    const str = el.split("")[0].toUpperCase();
-    let word;
+    let word = el.split("")[0].toUpperCase();
     for (let i = 1; i < el.length; i++) {
-      word = str.concat(...el);
-      console.log(el[i]);
+      word = word + el[i];
     }
     return word;
   });
@@ -416,10 +414,14 @@ console.log(capitalizeWords(["apple", "banana", "orange"])); // Виведе ['A
   Повертає - totalPrice - загальна ціна всіх товарів.
   */
 function calculateTotalPrice(arr) {
-  // Перевіряємо, чи вхідний параметр є масивом, якщо ні, повертаємо 0
-  // Використовуємо метод reduce() для обчислення загальної ціни
-  // Додаємо ціну товару до загальної суми та повертаємо результат
-  // Повертаємо загальну ціну всіх товарів
+  if (!Array.isArray(arr)) {
+    return 0;
+  }
+  let totalPrice = arr.reduce((acc, cur) => {
+    acc += cur.price;
+    return acc;
+  }, 0);
+  return totalPrice;
 }
 console.log("Завдання: 18 ==============================");
 console.log(
@@ -441,9 +443,11 @@ console.log(
 Повертає - lastIndex - індекс останнього від'ємного числа.
 */
 function findLastNegativeNumberIndex(arr) {
-  // Перевіряємо, чи вхідний параметр є масивом, якщо ні, повертаємо -1
-  // Використовуємо метод findLastIndex() для знаходження індексу останнього входження від'ємного числа
-  // Повертаємо індекс останнього від'ємного числа
+  if (!Array.isArray(arr)) {
+    return -1;
+  }
+  const lastIndex = arr.findLastIndex((el) => el < 0);
+  return lastIndex;
 }
 console.log("Завдання: 19 ==============================");
 console.log(findLastNegativeNumberIndex([1, 2, -3, 4, -5, 6, -7])); // Виведе 6
