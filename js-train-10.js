@@ -13,7 +13,7 @@ function customAssign(...objects) {
   const returnedObj = Object.assign(objects[0], ...objects);
   for (const key in returnedObj) {
     if (typeof returnedObj[key] === "number") {
-      returnedObj[key].toString();
+      returnedObj[key] += "";
     }
   }
   return returnedObj;
@@ -34,9 +34,10 @@ console.log(customAssign({ a: 1, b: 2 }, { c: 3, d: 4 }, { e: 5, f: 6 }));
  * Повертаємо - Масив, що містить усі властивості та їх значення.
  */
 function customEntries(obj) {
-  // Перевірка, чи переданий аргумент є об'єктом, якщо ні повертаємо "Помилка: Аргумент не є об'єктом."
-  // Використання методу `entries` для отримання масиву з усіма властивостями та значеннями
-  // Повернення масиву властивостей та значень
+  if (!typeof obj === "object") {
+    return "Помилка: Аргумент не є об'єктом.";
+  }
+  return Object.entries(obj);
 }
 
 // Приклад використання функції customEntries
@@ -59,7 +60,19 @@ console.log(
  * Повертаємо - Об'єкт, створений з записів з обробленими значеннями.
  */
 function customObjectFromEntries(entries) {
-  // Перевірка, чи вхідний аргумент є масивом,якщо ні повертаєм "Помилка: Вхідний аргумент має бути масивом."
+  let numberedEntries;
+  if (!Array.isArray(entries)) {
+    return "Помилка: Вхідний аргумент має бути масивом.";
+  }
+  entries.map((el, index) => {
+    if (typeof el[0] === "number") {
+      const zam = el[0] + "";
+      entries[index][0] = el[0] + "";
+      entries[index][1] = zam;
+      console.log(el[0]);
+    }
+  });
+  return Object.fromEntries(entries);
   // Використання методу `map` для обробки значень властивостей
   // Перевірка, чи ключ  є числом
   // Перетворення числового значення на рядок
