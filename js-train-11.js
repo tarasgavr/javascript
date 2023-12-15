@@ -8,7 +8,7 @@ function customSet(arr) {
   let set = new Set(arr);
   for (const item of set) {
     if (typeof item === "number") {
-      delete item;
+      set.delete(item);
     }
   }
   return set;
