@@ -116,14 +116,15 @@ console.log(checkValueAndType(new Set([1, 2, 3, "a", "b", "c"]), "b"));
  * Повертаємо - Відсортований масив із рядковими елементами.
  */
 function setToArray(mySet) {
+  let arr1 = [];
   let arr = [...mySet];
-  arr.filter((el, i) => {
-    if (typeof el === "number") {
-      delete arr[i];
+  arr.filter((el) => {
+    if (typeof el === "string") {
+      arr1.push(el);
     }
   });
-  arr.sort();
-  return arr;
+  arr1.sort();
+  return arr1;
   // Конвертуємо множину в масив за допомогою деструктурізації.
   // Використовуємо метод filter для створення нового масиву, що містить лише рядкові елементи.
   // Використовуємо метод sort для сортування рядкових елементів в алфавітному порядку.
@@ -142,17 +143,17 @@ console.log(setToArray(new Set([1, 2, 3, "b", "a", "c"])));
  * arr - Масив, з якого потрібно видалити дублікати.
  */
 function removeDuplicatesInPlace(arr) {
-  // Створення множини для збереження унікальних елементів
-  // Перебір елементів масиву за допомогою циклу for від 0 до довжини масиву
-  // Перевірка, чи елемент вже присутній у множині
-  // Якщо елемент вже є унікальним, видаляємо його з масиву
-  // Зменшуємо лічильник, оскільки масив став коротшим
-  // Додаємо унікальний елемент до множини
-  // Повертаємо множину
+  let set = new Set();
+  for (let index = 0; index < arr.length; index++) {
+    if (!set.has(arr[index])) {
+      set.add(arr[index]);
+    }
+  }
+  return set;
 }
 
 // Приклад використання функції removeDuplicatesInPlace
-console.log("Завдання: 7 ==============================");
+console.log("Завданя: 7 ==============================");
 
 console.log(removeDuplicatesInPlace([1, 2, 2, 3, 3, 4, 5, 5]));
 // Виведе: Set(5) { 1, 2, 3, 4, 5 }
