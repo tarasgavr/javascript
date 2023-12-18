@@ -214,7 +214,7 @@ console.log(getDifference(new Set([1, 2, 3, 4]), new Set([2, 3])));
  * Повертаємо - Множина зі спільними елементами.
  */
 function getIntersection(arr1, arr2) {
-  const set = new Set(arr1.concatK(arr2));
+  const set = new Set(arr1.concat(arr2));
   let intersectionSet = new Set();
   for (const item of set) {
     if (!intersectionSet.has(item)) {
