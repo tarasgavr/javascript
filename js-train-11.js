@@ -167,7 +167,12 @@ console.log(removeDuplicatesInPlace([1, 2, 2, 3, 3, 4, 5, 5]));
  * Повертаємо - true, якщо множини не мають спільних елементів, інакше false.
  */
 function areDisjoint(set1, set2) {
-  // Перебираємо першу множину за допомогою оператору for of
+  for (const item of set1) {
+    if (!set2.has(item)) {
+      return true;
+    }
+  }
+  return false; // Перебираємо першу множину за допомогою оператору for of
   // Якщо знайдено спільний елемент з другою множиною,використовуємо метод has, повертаємо false
   //Якщо немає  спільних елементів повертаємо true
 }
@@ -186,10 +191,13 @@ console.log(areDisjoint(new Set([1, 2, 3]), new Set([3, 4, 5])));
  * Повертаємо - Множина з елементами, що належать set1, але не належать set2.
  */
 function getDifference(set1, set2) {
-  // Створення множини differenceSet
-  // Перебір елементів першої множини за допомогою оператору for of
-  // Якщо елемент не належить другій множині, додаємо його до differenceSet
-  // Повертаємо множину differenceSet з різницею елементів
+  let differenceSet = new Set();
+  for (const item of set1) {
+    if (!set2.has(item)) {
+      differenceSet.add(item);
+    }
+  }
+  return differenceSet;
 }
 
 // Приклад використання функції getDifference
@@ -206,12 +214,14 @@ console.log(getDifference(new Set([1, 2, 3, 4]), new Set([2, 3])));
  * Повертаємо - Множина зі спільними елементами.
  */
 function getIntersection(arr1, arr2) {
-  // Створення множин з двох масивів
-  // Створення множини intersectionSet
-  // Перебір елементів першої множини за допомогою оператору for of
-  // Перевірка, чи елемент є спільним у другій множині
-  // Додавання спільного елементу до множини intersectionSet
-  // Повертаємо множину intersectionSet
+  const set = new Set(arr1.concatK(arr2));
+  let intersectionSet = new Set();
+  for (const item of set) {
+    if (!intersectionSet.has(item)) {
+      intersectionSet.add(item);
+    }
+  }
+  return intersectionSet;
 }
 
 // Приклад використання функції getIntersection
@@ -226,15 +236,18 @@ console.log(getIntersection([1, 2, 3, 4], [3, 4, 5, 6]));
  * set - Множина, яку потрібно пройтись.
  */
 function iterateSet(set) {
-  // Використовуємо методу keys для отримання ітератора ключів
-  // Використовуємо for...of для кожного ключа з ітератора keys
-  // Виведення ключа у консоль
-  // Використовуємо методу values для отримання ітератора значень
-  // Використовуємо for...of для кожного значення з ітератора values
-  // Виведення значення у консоль
-  // Використовуємо методу entries для отримання ітератора записів
-  // Використовуємо for...of для кожного запису з ітератора entries
-  // Виведення запису у консоль
+  let iter = set.keys();
+  for (const item of iter) {
+    console.log(item);
+  }
+  iter = set.values();
+  for (const item of iter) {
+    console.log(item);
+  }
+  iter = set.entries();
+  for (const item of iter) {
+    console.log(item);
+  }
 }
 
 // Приклад використання функції iterateSet
@@ -259,11 +272,13 @@ iterateSet(new Set(["a", "b", "c"]));
  * Повертаємо - Суму числових елементів у множині.
  */
 function sumNumbers(set) {
-  // Використання методу forEach для перебору елементів множини
-  // Перевірка, чи є елемент числом
-  // Додавання числового елемента до суми
-  // Повертаємо суму
-  return;
+  let sum = 0;
+  set.forEach((el) => {
+    if (typeof el === "number") {
+      return (sum += el);
+    }
+  });
+  return sum;
 }
 
 // Приклад використання функції sumNumbers
