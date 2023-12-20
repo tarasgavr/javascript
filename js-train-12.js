@@ -140,10 +140,9 @@ console.log(
  */
 function getKeysStartingWith(dictionary, letter) {
   let arr = [];
-  for (const item of dictionary) {
-    if (item.split("")[0] === letter) {
-      arr.push(item);
-      console.log(item);
+  for (const [key, value] of dictionary) {
+    if (key.split("")[0] === letter) {
+      arr.push(key);
     }
   }
   return arr;
@@ -178,20 +177,14 @@ function addKeyValuePairs(dictionary, entries) {
   let added = 0;
   let rejected = 0;
   entries.forEach((value, key) => {
-    console.log(value, key);
-    if (key !== entries[0][key]) {
-      dictionary.set(entries[0], entries[1]);
+    if (!dictionary.has(value[0])) {
+      dictionary.set(value[0], value[1]);
       added += 1;
     } else {
       rejected += 1;
     }
   });
-  // return dictionary;
-  // Використовуємо метод forEach для перебору масиву пар ключ-значення
-  // Перевіряємо, чи словник вже містить такий ключ за допомогою методу has
-  // Якщо ключ є унікальним, додаємо його до словника за допомогою методу set та збільшимо added на 1
-  // Якщо ключ не є унікальним, збільшимо rejected на 1
-  // Повертаємо об'єкт з dictionary, added, rejected
+  return dictionary;
 }
 
 console.log("Завдання: 6 ==============================");
