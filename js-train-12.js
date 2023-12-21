@@ -185,6 +185,7 @@ function addKeyValuePairs(dictionary, entries) {
     }
   });
   return dictionary;
+  return `dictionary:${dictionary} ,added:${added},rejected:${rejected}`;
 }
 
 console.log("Завдання: 6 ==============================");
@@ -217,14 +218,19 @@ console.log(
  * Повертаємо - Об'єкт, який містить масиви ключів, значень і пар ключ-значення.
  */
 function transformDictionary(dictionary) {
-  // Створюємо порожні масиви для ключів (змінна keys), значень (змінна values) і пар ключ-значення (змінна entries)
-  // Використовуємо цикл for...of і метод keys для перебору ключів словника
-  // Додаємо кожен ключ до масиву keys за допомогою методу push
-  // Використовуємо цикл for...of і метод values для перебору значень словника
-  // Додаємо кожне значення до масиву values за допомогою методу push
-  // Використовуємо цикл for...of і метод entries для перебору пар ключ-значення словника
-  // Додаємо кожну пару ключ-значення до масиву entries за допомогою методу push
-  // Повертаємо об'єкт, який містить масиви ключів (властивість keys), значень (властивість values) і пар ключ-значення (властивість entries)
+  let keys = [];
+  let values = [];
+  let entries = [];
+  for (const [key, value] of dictionary) {
+    keys.push(key.toString());
+    values.push(value);
+    entries.push(key, value);
+  }
+  return `{
+    keys: ${keys},
+  values:${values}.
+  entries:${entries}
+  }`;
 }
 
 console.log("Завдання: 7 ==============================");
@@ -250,7 +256,7 @@ console.log(
 
 // Завдання: 8
 /**
- * Функція `checkPresence` перевіряє наявність заданих ключів у словнику.
+ * Функція `chckPresence` перевіряє наявність заданих ключів у словнику.
  * dictionary - Словник, в якому перевіряємо ключі.
  * keys - Масив ключів, які перевіряємо.
  * Повертаємо - Масив булевих значень: true, якщо ключ присутній у словнику, та false, якщо ключ відсутній.
