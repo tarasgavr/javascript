@@ -184,8 +184,11 @@ function addKeyValuePairs(dictionary, entries) {
       rejected += 1;
     }
   });
-  return dictionary;
-  return `dictionary:${dictionary} ,added:${added},rejected:${rejected}`;
+  return {
+    dictionary,
+    added,
+    rejected,
+  };
 }
 
 console.log("Завдання: 6 ==============================");
@@ -221,16 +224,20 @@ function transformDictionary(dictionary) {
   let keys = [];
   let values = [];
   let entries = [];
-  for (const [key, value] of dictionary) {
-    keys.push(key.toString());
+  for (const key of dictionary.keys()) {
+    keys.push(key);
+  }
+  for (const value of dictionary.values()) {
     values.push(value);
+  }
+  for (const [key, value] of dictionary.entries()) {
     entries.push(key, value);
   }
-  return `{
-    keys: ${keys},
-  values:${values}.
-  entries:${entries}
-  }`;
+  return {
+    keys,
+    values,
+    entries,
+  };
 }
 
 console.log("Завдання: 7 ==============================");
@@ -262,10 +269,15 @@ console.log(
  * Повертаємо - Масив булевих значень: true, якщо ключ присутній у словнику, та false, якщо ключ відсутній.
  */
 function checkPresence(dictionary, keys) {
-  // Створюємо порожній масив для збереження результатів перевірки
-  // Використовуємо цикл forEach для перебору масиву ключів
-  // Додаємо результат перевірки (true або false) до масиву presence при наявності ключа у словнику
-  // Повертаємо масив
+  let res = [];
+  keys.forEach((element) => {
+    if (dictionary.has(element)) {
+      res.push(true);
+    } else {
+      res.push(false);
+    }
+  });
+  return res;
 }
 
 console.log("Завдання: 8 ==============================");
@@ -290,10 +302,14 @@ console.log(
  * Повертаємо - Розмір фільтрованого словника.
  */
 function getFilteredDictionarySize(dictionary, filter) {
-  // Створюємо новий Map об'єкт для зберігання елементів, що відповідають фільтру
-  // Використовуємо for...of цикл разом з методом entries() для перебору пар [ключ, значення] словника
-  // Якщо пара [ключ, значення] відповідає фільтру, додаємо її до фільтрованого словника
-  // Повертаємо розмір фільтрованого словника, використовуючи властивість size
+  let newDictionary = new Map();
+  for (let [key, value] of dictionary.entries()) {
+    // Якщо пара [ключ, значення] відповідає фільтру, додаємо її до фільтрованого словника
+    if (filter(key, value)) {
+      newDictionary.set(key, value);
+    }
+  }
+  return newDictionary.size;
 }
 
 console.log("Завдання: 9 ==============================");
@@ -319,6 +335,12 @@ console.log(
  * Повертаємо - Відсортований словник.
  */
 function sortByValues(dictionary) {
+  let resA = [...dictionary];
+  resA.forEach((element) => {
+    console.log(element);
+  });
+  const resM = resA.entries();
+  return resM;
   // Конвертуємо словник в масив пар ключ-значення за допомогою оператора деструктурізації
   // Сортуємо масив пар ключ-значення за значеннями в порядку спадання
   // Конвертуємо відсортований масив пар ключ-значення назад у словник
