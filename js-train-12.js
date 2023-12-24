@@ -335,15 +335,11 @@ console.log(
  * Повертаємо - Відсортований словник.
  */
 function sortByValues(dictionary) {
-  let resA = [...dictionary];
-  resA.forEach((element) => {
-    console.log(element);
+  let arr = [...dictionary.entries()];
+  arr.sort((a, b) => {
+    return b[1] - a[1];
   });
-  const resM = resA.entries();
-  return resM;
-  // Конвертуємо словник в масив пар ключ-значення за допомогою оператора деструктурізації
-  // Сортуємо масив пар ключ-значення за значеннями в порядку спадання
-  // Конвертуємо відсортований масив пар ключ-значення назад у словник
+  return new Map(arr);
 }
 
 console.log("Завдання: 10 ==============================");
@@ -374,10 +370,12 @@ console.log(
  * Повертаємо - true, якщо словник був очищений, або false в іншому випадку.
  */
 function resetDictionary(dictionary, maxSize) {
-  // Використовуємо метод size для перевірки кількості елементів у словнику
-  // Якщо кількість елементів більша ніж максимально допустима, очищуємо словник за допомогою методу clear
-  // Повертаємо true, оскільки словник був очищений
-  // Повертаємо false, оскільки кількість елементів не перевищує максимально допустиму, тому словник не був очищений
+  if (dictionary.size > maxSize) {
+    dictionary.clear();
+    return true;
+  } else {
+    return false;
+  }
 }
 
 console.log("Завдання: 11 ==============================");
@@ -407,10 +405,18 @@ console.log(
  * Повертає - Множину, яка містить ключі словника в модифікованому вигляді.
  */
 function convertDictionaryToSet(dictionary) {
-  // Перебираємо ключі словника
-  // Якщо ключ є рядком, переводимо його в верхній регістр і додаємо до множини
-  // Якщо ключ є числом, збільшуємо його на 1 і додаємо до множини
-  // Повертаємо отриману множину
+  let set = new Set();
+  for (let key of dictionary.keys()) {
+    if (typeof key === "string") {
+      key.toUpperCase();
+      set.add(key);
+    }
+    if (typeof key === "number") {
+      key += 1;
+      set.add(key);
+    }
+  }
+  return set;
 }
 
 // Приклад використання функції convertDictionaryToSet
@@ -436,9 +442,11 @@ console.log(convertDictionaryToSet(mixedDictionary));
  * Повертає - Словник, який містить елементи множини як ключі та їх коди перших символів як значення.
  */
 function convertSetToDictionary(set) {
-  // Перебираємо елементи множини
-  // Додаємо елемент в словник з ключем, який дорівнює елементу, та значенням, яке дорівнює коду його першого символу
-  // Повертаємо отриманий словник
+  let dictionary = new Map();
+  for (const item of set) {
+    dictionary.set(item, item[0]);
+  }
+  return dictionary;
 }
 
 // Приклад використання функції convertSetToDictionary
