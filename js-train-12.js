@@ -408,8 +408,8 @@ function convertDictionaryToSet(dictionary) {
   let set = new Set();
   for (let key of dictionary.keys()) {
     if (typeof key === "string") {
-      key.toUpperCase();
-      set.add(key);
+      big = key.toUpperCase();
+      set.add(big);
     }
     if (typeof key === "number") {
       key += 1;
@@ -444,7 +444,7 @@ console.log(convertDictionaryToSet(mixedDictionary));
 function convertSetToDictionary(set) {
   let dictionary = new Map();
   for (const item of set) {
-    dictionary.set(item, item[0]);
+    dictionary.set(item, item.charCodeAt(0));
   }
   return dictionary;
 }
