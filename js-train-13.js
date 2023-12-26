@@ -6,6 +6,16 @@
  * Повертає - json дані в яких всі числові значення збільшено на 1.
  */
 function complexConvert(data) {
+  let res = {};
+  let tmp = JSON.parse(data);
+  for (const key of Object.keys(tmp)) {
+    if (typeof tmp[key] === "number") {
+      res[key] = tmp[key] + 1;
+    } else {
+      res[key] = tmp[key];
+    }
+  }
+  return res;
   // Створюємо новий порожній об'єкт для збереження результату.
   // Перетворюємо json дані в об'єкт та отримуємо всі ключі об'єкта.
   // Обходимо всі ключі та перевіряємо значення.
@@ -38,7 +48,7 @@ console.log(complexConvert(JSON.stringify(data)));
  *
  * Повертає об'єкт, що містить різні властивості URL.
  *  href: // Повний URL.
-    protocol: // Протокол URL.
+    protoco}l: // Протокол URL.
     host:  // Хост URL.
     pathname // Шлях URL.
     search // Рядок запиту URL.
