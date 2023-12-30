@@ -366,14 +366,20 @@ console.log(
  * Повертається - Новий URL з модифікованими пошуковими параметрами.
  */
 function manipulateQuery(url, options) {
-  // Створюємо новий об'єкт URL з вхідної URL-адреси.
-  // Якщо в словнику `options` є ключ `append`...
-  // ...перебираємо його ключі та значення за допомогою циклу for...of.
-  // Додаємо кожний ключ і значення до об'єкта `searchParams` в URL.
-  // Якщо в словнику `options` є ключ `delete`...
-  // ...перебираємо його значення за допомогою циклу for...of.
-  // Видаляємо кожний ключ з об'єкта `searchParams` в URL.
-  // Повертаємо новий URL як рядок.
+  const urlObj = new URL(url);
+  if (options.has("append")) {
+    const append = options.get("append");
+    for (const [key, value] of append) {
+      urlObj.searchParams.append(key, value);
+    }
+  }
+  if (options.has("delete")) {
+    const deleted = options.get("delete");
+    for (const key of deleted) {
+      urlObj.searchParams.delete(key);
+    }
+  }
+  return urlObj.toString();
 }
 
 console.log("Завдання: 12 ==============================");
@@ -412,8 +418,14 @@ console.log(
  * - 'password': пароль в URL.
  */
 function getUrlData(url) {
-  // Створюємо новий об'єкт URL з вхідної URL-адреси.
-  // Повертаємо об'єкт з відповідними даними.
+  const urlObj = new URL(url);
+  return {
+    origin: urlObj.origin,
+    hostname: urlObj.hostname,
+    port: urlObj.port,
+    username: urlObj.username,
+    password: urlObj.password,
+  };
 }
 
 // Приклад використання функції getUrlData
@@ -437,12 +449,23 @@ console.log(getUrlData("https://username:password@example.com:8080/path"));
  * Функція повертає новий URL з відсортованими пошуковими параметрами за ключами у порядку зростання.
  */
 function sortUrlParams(url) {
-  // Створюємо новий об'єкт URL з вхідної URL-адреси.
-  // Отримуємо масив з ключами і значеннями параметрів за допомогою методу 'entries'.
-  // Сортуємо масив за ключами у порядку зростання.
-  // Очищуємо пошукові параметри URL.
-  // Додаємо відсортовані параметри до URL.
-  // Повертаємо новий URL як рядок.
+  const urlObj = new URL(url);
+  let keys = [];
+  let values = [];
+  let entries = urlObj.searchParams.entries();
+  for (const [key, value] of entries) {
+    keys.push(key);
+    values.push(value);
+  }
+  for (const key of keys) {
+    urlObj.searchParams.delete(key);
+  }
+  keys.sort();
+  values.sort();
+  for (let i = 0; i < keys.length; i++) {
+    urlObj.searchParams.append(keys[i], values[i]);
+  }
+  return urlObj.toString();
 }
 
 // Приклад використання функції sortUrlParams
