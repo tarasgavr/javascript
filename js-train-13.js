@@ -483,14 +483,16 @@ console.log(
  * Повертаємо - Масив значень пошукових параметрів.
  */
 function getURLValues(url) {
-  // Створюємо новий об'єкт URL з вхідною URL-адресою.
-  // Отримуємо об'єкт `URLSearchParams` з пошуковими параметрами.
-  // Отримуємо масив ключів пошукових параметрів.
-  // Масив для збереження значень пошукових параметрів.
-  // Перебираємо ключі пошукових параметрів.
-  // Отримуємо всі значення для даного ключа за допомогою методу `getAll`.
-  // Додаємо значення до масиву.
-  // Повертаємо масив значень пошукових параметрів.
+  const urlObj = new URL(url);
+  let values = [];
+  let keys = urlObj.searchParams.keys();
+  for (const key of keys) {
+    const allValues = urlObj.searchParams.getAll(key);
+    for (const value of allValues) {
+      values.push(value);
+    }
+  }
+  return values;
 }
 
 // Приклад використання функції getURLValues
@@ -510,9 +512,12 @@ console.log(
  * Функція повертає масив, що містить усі ключі пошукових параметрів.
  */
 function getUrlKeys(url) {
-  // Створюємо новий об'єкт URL з вхідної URL-адреси.
-  // Отримуємо масив зі всіма ключами пошукових параметрів за допомогою методу 'keys'.
-  // Повертаємо масив з ключами.
+  const urlObj = new URL(url);
+  let keys = [];
+  for (const key of urlObj.searchParams.keys()) {
+    keys.push(key);
+  }
+  return keys;
 }
 
 // Приклад використання функції getUrlKeys
