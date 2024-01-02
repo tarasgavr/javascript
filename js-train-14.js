@@ -85,7 +85,13 @@ function setSpecificTime(date, hours, minutes, seconds, milliseconds) {
   if (typeof date.getTime !== "function") {
     return "Помилка: вхідне значення має бути об'єктом Date";
   } else {
-    return date.setHours(hours, minutes, seconds, milliseconds);
+    return typeof date === "NUMBER" &&
+      typeof hours === "NUMBER" &&
+      typeof minutes === "NUMBER" &&
+      typeof seconds === "NUMBER" &&
+      typeof milliseconds === "NUMBER"
+      ? date.setHours(hours, minutes, seconds, milliseconds)
+      : "Помилка: вхідні дані не вірні";
   }
 }
 
@@ -112,24 +118,16 @@ console.log(
  */
 function nextNewYear() {
   const date1 = new Date(now);
-  let date2 = date1;
-  let year, month, day, hours, minutes, seconds, milliseconds;
-  year = date1.getFullYear();
-  month = date1.getMonth();
-  day = date1.getDate();
-  date2.setFullYear(year + 1);
-  date2.setMonth(0);
-  date2.setDate(1);
-  // Створюєму змінну в яку записуємо поточну дату
-  // Визначення поточного року.
-  // Визначення дати наступного Нового року. Для цього створюємо новий об`єкт Date в якому збільшуємо поточний рік на 1, встановлюємо місяць на 0 а дату на 1
-  // Визначаємо кількість мілісекунд до наступного Нового року в змінну diff.
-  // Розраховуємо кількість повних днів, годин, хвилин і секунд.
-  // Дні:diff / (1000 * 60 * 60 * 24)
-  // Години:(diff / (1000 * 60 * 60)) % 24
-  // Хвилини: (diff / (1000 * 60)) % 60;
-  // Секунди:(diff / 1000) % 60;
-  // Мілісекунди:  diff % 1000;
+  const year = date1.getFullYear();
+  const date2 = new Date(year + 1, 0, 1);
+  let diff = date2 - date1;
+  return {
+    days: diff / (1000 * 60 * 60 * 24),
+    hours: (diff / (1000 * 60 * 60)) % 24,
+    minutes: (diff / (1000 * 60)) % 60,
+    seconds: (diff / 1000) % 60,
+    milliseconds: diff % 1000,
+  };
 }
 
 console.log("Завдання:5  ==============================");
@@ -150,10 +148,11 @@ console.log(nextNewYear());
  * }
  */
 function isLeapYear(year) {
-  // Перевірка, чи є вхідне значення числом якщо ні повертаємо рядок .
-  // Перевірка, чи є рік високосним.
-  // Високосним вважається рік, який ділиться націло на 4
-  // Повертаємо об'єкт з роком та інформацією про те, чи є він високосним.
+  if (typeof date.getTime !== "function") {
+    return "Помилка: вхідне значення має бути об'єктом Date";
+  } else if (year % 4 === 0) {
+    return { year, isLeap: true };
+  }
 }
 console.log("Завдання: 6 ==============================");
 
@@ -175,16 +174,26 @@ console.log(isLeapYear(2020));
  * }
  */
 function addDays(date, days) {
-  // Перевірка, чи є вхідне значення об'єктом Date,це можно зробити перевіривши чи є date.getTime по типу функція .
-  // Якщо date не є об'єктом Date, повертаємо рядок
-  // "Помилка: вхідне значення має бути об'єктом Date"
-  // Перевірка, чи є кількість днів числом.
-  // Якщо days не є числом, функція поверне рядок
-  // "Помилка: кількість днів має бути числом" та повертає undefined.
-  // Збереження початкової дати для виведення в форматі ISO.
-  // Додавання заданої кількості днів до дати.
-  // Збереження результуючої дати для виведення в форматі ISO.
-  // Повертаємо об'єкт з початковою датою, кількістю доданих днів та результуючою датою.
+  const InputDate = new Date(now);
+  const addedDays = days;
+  let resultDate;
+  if (typeof date.getTime !== "function") {
+    return "Помилка: вхідне значення має бути об'єктом Date";
+  } else if (typeof days !== "number") {
+    console.log("Помилка: кількість днів має бути числом");
+    return undefined;
+  } else {
+    resultDate = new Date(
+      InputDate.getFullYear(),
+      InputDate.getMonth(),
+      InputDate.getDate() + addedDays
+    );
+  }
+  return {
+    InputDate,
+    addedDays,
+    resultDate,
+  };
 }
 
 console.log("Завдання: 7 ==============================");
@@ -207,8 +216,8 @@ console.log(addDays(new Date("2023-01-01"), 7));
  * {
  *   inputDate: // Початкова дата в форматі 'гггг-мм-дд'.
  *   dayOfWeek: // День тижня українською мовою.
- * }
- */
+ *
+ 
 let daysOfWeek = [
   "неділя",
   "понеділок",
@@ -218,7 +227,6 @@ let daysOfWeek = [
   "п’ятниця",
   "субота",
 ];
-
 function getDayOfWeek(date) {
   // Перевірка, чи є вхідне значення об'єктом Date,це можно зробити перевіривши чи є date.getTime по типу функція .
   // Якщо date не є об'єктом Date, повертаємо рядок
