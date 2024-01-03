@@ -85,12 +85,12 @@ function setSpecificTime(date, hours, minutes, seconds, milliseconds) {
   if (typeof date.getTime !== "function") {
     return "Помилка: вхідне значення має бути об'єктом Date";
   } else {
-    return typeof date === "NUMBER" &&
-      typeof hours === "NUMBER" &&
-      typeof minutes === "NUMBER" &&
-      typeof seconds === "NUMBER" &&
-      typeof milliseconds === "NUMBER"
-      ? date.setHours(hours, minutes, seconds, milliseconds)
+    date.setHours(hours, minutes, seconds, milliseconds);
+    return typeof hours === "number" &&
+      typeof minutes === "number" &&
+      typeof seconds === "number" &&
+      typeof milliseconds === "number"
+      ? date
       : "Помилка: вхідні дані не вірні";
   }
 }
@@ -174,7 +174,7 @@ console.log(isLeapYear(2020));
  * }
  */
 function addDays(date, days) {
-  const InputDate = new Date(now);
+  const InputDate = date;
   const addedDays = days;
   let resultDate;
   if (typeof date.getTime !== "function") {
@@ -216,8 +216,8 @@ console.log(addDays(new Date("2023-01-01"), 7));
  * {
  *   inputDate: // Початкова дата в форматі 'гггг-мм-дд'.
  *   dayOfWeek: // День тижня українською мовою.
- *
- 
+ * }
+ */
 let daysOfWeek = [
   "неділя",
   "понеділок",
@@ -228,13 +228,12 @@ let daysOfWeek = [
   "субота",
 ];
 function getDayOfWeek(date) {
-  // Перевірка, чи є вхідне значення об'єктом Date,це можно зробити перевіривши чи є date.getTime по типу функція .
-  // Якщо date не є об'єктом Date, повертаємо рядок
-  // "Помилка: вхідне значення має бути об'єктом Date"
-  // Збереження початкової дати для виведення  в форматі ISO.
-  // Отримання дня тижня як числа (0 - неділя, 1 - понеділок, ..., 6 - субота).
-  // Отримання назви дня тижня з масиву daysOfWeek за індексом.
-  // Повертаємо об'єкт з початковою датою та днем тижня.
+  if (typeof date.getTime !== "function") {
+    return "Помилка: вхідне значення має бути об'єктом Date";
+  }
+  const inputDate = new Date(date);
+  const dayOfWeek = daysOfWeek[date.getDay()];
+  return { inputDate, dayOfWeek };
 }
 
 console.log("Завдання: 8 ==============================");
@@ -255,16 +254,15 @@ console.log(getDayOfWeek(new Date("2023-01-01")));
  * }
  */
 function getDaysInMonth(date) {
-  // Перевірка, чи є вхідне значення об'єктом Date,це можно зробити перевіривши чи є date.getTime по типу функція .
-  // Якщо date не є об'єктом Date, повертаємо рядок
-  // "Помилка: вхідне значення має бути об'єктом Date"
-  // Збереження початкової дати для виведення  в форматі ISO.
-  // Отримання поточного місяця.
-  // Отримання поточного року.
-  // Створення об'єкта Date для першого дня наступного місяця.
-  // Віднімання одного дня від наступного місяця, щоб отримати останній день поточного місяця.
-  // Отримання числа останнього дня поточного місяця - це кількість днів у місяці.
-  // Повертаємо об'єкт з початковою датою та кількістю днів у місяці.
+  if (typeof date.getTime !== "function") {
+    return "Помилка: вхідне значення має бути об'єктом Date";
+  }
+  const inputDate = new Date(date);
+  const year = inputDate.getFullYear();
+  const month = inputDate.getMonth();
+  const nextYear = new Date(year, month + 1);
+  const daysInMonth = (nextYear - inputDate) / (1000 * 60 * 60 * 24);
+  return { inputDate, daysInMonth };
 }
 console.log("Завдання: 9 ==============================");
 
@@ -284,10 +282,19 @@ console.log(getDaysInMonth(new Date("2023-02-01")));
  * }
  */
 function getFormattedTime(date) {
+  if (typeof date.getTime !== "function") {
+    return "Помилка: вхідне значення має бути об'єктом Date";
+  }
+  const inputDate = new Date(date);
+  const year = inputDate.getFullYear();
+  const month = inputDate.getMonth();
+  const nextYear = new Date(year, month + 1);
+  const daysInMonth = (nextYear - inputDate) / (1000 * 60 * 60 * 24);
+  return { inputDate, daysInMonth };.
   // Перевірка, чи є вхідне значення об'єктом Date,це можно зробити перевіривши чи є date.getTime по типу функція .
   // Якщо date не є об'єктом Date, повертаємо рядок
   // "Помилка: вхідне значення має бути об'єктом Date"
-  // Збереження початкової дати для виведення  в форматі ISO.
+  // Збереження початкової дати ля виведення  в форматі ISO.
   // Отримання годин.
   // Отримання хвилин.
   // Отримання секунд.
