@@ -124,8 +124,8 @@ console.log(roundObjectValues(myObject));
  */
 function calculateVolumeCylinder(radius, height) {
   if (typeof radius !== "number" || typeof height !== "number") {
-    console.log("Помилка: аргумент має бути об'єктом");
-    return "Помилка: обробкa вхідних даних не можливa.";
+    console.log("Помилка: обидва аргументи мають бути числами.");
+    return null;
   }
   let volume = Math.PI * Math.pow(radius, 2) * height;
   return Math.ceil(volume);
@@ -168,12 +168,12 @@ console.log(sumPositiveNumbers([-5, 3, 2, -1, 7, -6]));
  * Поверне: дробова частина числа.
  */
 function getFractionalPart(num) {
-  // Перевіряємо, чи є num числом. Якщо num не є числом, виводимо повідомлення "Помилка: вхідний аргумент має бути числом.".
-  // Повертаємо null, що свідчить про неможливість обробки вхідних даних.
-  // Округляємо відкидуючи дробову частину.
-  // Віднімаємо цілу частину від початкового числа, щоб отримати дробову частину.
-  // Округлюємо дробову частину з формату double до float.
-  // Повертаємо дробову частину числа.
+  if (typeof num !== "number") {
+    console.log("Помилка: аргумент має бути числом");
+    return null;
+  }
+  const int = Math.trunc(num);
+  return Math.fround(num - int);
 }
 
 console.log("Завдання 8 ==============================");
@@ -189,11 +189,12 @@ console.log(getFractionalPart(12.34567));
  *  Поверне: Найбільше число округлене до найближчого цілого.
  */
 function compareAndRound(num1, num2) {
-  // Перевірка, чи обидва аргументи є числами. Якщо хоча б один аргумент не є числом, виводимо повідомлення "Помилка: обидва аргументи мають бути числами.".
-  // Повертаємо null, що свідчить про неможливість обробки вхідних даних.
-  // Визначаємо найбільше число.
-  // Округляємо найбільше число до найближчого цілого.
-  // Повертаємо округлене число.
+  if (typeof num1 !== "number" || typeof num2 !== "number") {
+    console.log("Помилка: обидва аргументи мають бути числами.");
+    return null;
+  }
+  const big = Math.max(num1, num2);
+  return Math.round(big);
 }
 
 console.log("Завдання 9 ==============================");
@@ -210,11 +211,16 @@ console.log(compareAndRound(13.4, 15.7));
  *  Поверне: Оцінку суми прибутку від інвестицій.
  */
 function estimateInvestment(principal, interestRate, years) {
-  // Перевірка, чи усі аргументи є числами. Якщо хоча б один аргумент не є числом, виводимо повідомлення про помилку в консоль.
-  // Повертаємо null, що свідчить про неможливість обробки вхідних даних.
-  // Розраховуємо суму інвестицій за формулою P*(1+rate)^years, де P - початкова сума інвестицій, rate - річна процентна ставка, years - кількість років.
-  // Округляємо ії до найближчого цілого
-  // Повертаємо розраховану суму інвестицій.
+  if (
+    typeof principal !== "number" ||
+    typeof interestRate !== "number" ||
+    typeof years !== "number"
+  ) {
+    console.log("Помилка: обидва аргументи мають бути числами.");
+    return null;
+  }
+  const invest = principal * Math.pow(1 + interestRate, years);
+  return Math.round(invest);
 }
 
 console.log("Завдання 10 ==============================");
@@ -233,16 +239,20 @@ console.log(estimateInvestment(1000, 0.05, 5));
  * Повертає чи перевищує totalPrice maxPrice.
  */
 function isTotalPriceExceedsMaxPrice(products, maxPrice) {
-  // Перевіряємо, чи аргумент products є масивом.
-  // Якщо products не є масивом, виводимо повідомлення про помилку.
-  // Повертаємо null, що свідчить про неможливість обробки вхідних даних.
-  // Перевіряємо, чи аргумент maxPrice є числом.
-  // Якщо maxPrice не є числом, виводимо повідомлення про помилку.
-  // Повертаємо null, що свідчить про неможливість обробки вхідних даних.
-  // Використовуємо метод reduce() для обчислення загальної ціни.
-  // Додаємо ціну продукту до аккумулятора.
-  // Конвертуємо totalPrice та maxPrice за допомогою Math.fround.
-  // Порівнюємо, чи не перевищує totalPrice maxPrice.
+  if (!Array.isArray(products)) {
+    console.log("Помилка: обробкa вхідних даних не можливa.");
+    return null;
+  }
+  if (typeof maxPrice !== "number") {
+    console.log("Помилка: обчислення не можливе.");
+    return null;
+  }
+  const totalPrice = products.reduce((acc, cur) => {
+    acc += cur;
+    return acc;
+  });
+  const totalPriceX = Math.fround(totalPrice);
+  return totalPriceX > maxPrice;
 }
 
 console.log("Завдання 11 ==============================");
