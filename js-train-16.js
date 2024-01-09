@@ -117,19 +117,18 @@ compareArrays([1, 2, 3, 4, 5], [1, 2, 3, 4]);
  */
 function buildMatrix(size) {
   if (typeof size !== "number") {
-    console.log("Аргумент має бути числом!");
+    console.error("Аргумент має бути числом!");
     return null;
   }
-  const matrix = new Array(size);
-  const matrixRow = new Array(size);
-  // Створюємо порожній масив який буде нашою матрицею.
-  // Цикл для заповнення рядків матриці, лічильник і має бути від 0 до розміру матриці.
-  // Створюємо порожній масив, який буде рядком матриці.
-  // Цикл всередені циклу для заповнення колонок матриці,лічильник j має бути від 0 до розміру матриці.
-  // Генеруємо випадкове число від 0 до 9 округляємо його до меншого цілого, і додаємо його до рядка.
-  // Додаємо рядок до матриці.
-  // Виводимо матрицю в консоль за допомогою як таблицю.
-  // Повертаємо створену матрицю.
+  let matrix = new Array(size);
+  for (let i = 0; i < matrix.length; i++) {
+    matrix[i] = new Array(size);
+    for (let j = 0; j < matrix.length; j++) {
+      matrix[i][j] = Math.floor(Math.random() * 9);
+    }
+  }
+  console.table(matrix);
+  return matrix;
 }
 
 console.log("Завдання: 5 ==============================");
@@ -144,6 +143,11 @@ buildMatrix(5);
  *  n - стартове число.
  */
 function traceBackward(n) {
+  console.log(n);
+  if (n > 1) {
+    traceBackward(n - 1);
+  }
+  return traceBackward;
   // Виводимо поточне число n.
   // Якщо n є більше 1, викликаємо функцію traceBackward знову з аргументом n - 1.
   // Виведемо стек викликів, коли досягнемо 1.
@@ -159,11 +163,12 @@ traceBackward(5);
  * students - масив об'єктів-студентів.
  */
 function displayGroupedInfo(students) {
-  // Переберомо об'єкт за допомого for of
-  // Створимо групу з повідомленням `Студент: ${student.name}`
-  // Виведемо корисне повідомлення з текстом `Вік: ${student.age}`
-  // Виведемо корисне повідомлення з текстом `Предмет: ${student.subject}`
-  // Закриємо групу
+  for (const student of students) {
+    console.group(`Студент: ${student.name}`);
+    console.info(`Вік: ${student.age}`);
+    console.info(`Предмет: ${student.subject}`);
+    console.groupEnd();
+  }
 }
 
 console.log("Завдання: 7 ==============================");
@@ -191,9 +196,16 @@ displayGroupedInfo([
  *  userInput - об'єкт з введеними користувачем даними.
  */
 function validateUserInput(userInput) {
-  // Перевіремо умову наявності імені користувача, якщо воно відсутнє виводимо "Помилка: ім'я користувача відсутнє!"
-  // Перевіремо умову наявності паролю, якщо він відсутній виводимо "Помилка: пароль відсутній!"
-  // Перевірка довжини паролю чи менше вона ніж 8,якщо ні виводимо повідомлення про потенційну проблему з текстом "Попередження: пароль має бути довшим за 8 символів!"
+  if (userInput.hasOwnProperty(username)) {
+    console.warn("Помилка: ім'я користувача відсутнє!");
+  }
+  if (userInput.hasOwnProperty(password)) {
+    console.warn("Помилка: пароль відсутній!");
+  }
+  console.assert(
+    password.length < 8,
+    "Попередження: пароль має бути довшим за 8 символів!"
+  );
 }
 
 console.log("Завдання: 8 ==============================");
