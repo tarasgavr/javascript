@@ -143,7 +143,7 @@ buildMatrix(5);
  *  n - стартове число.
  */
 function traceBackward(n) {
-  console.log(n);
+  console.trace(n);
   if (n > 1) {
     traceBackward(n - 1);
   }
@@ -196,14 +196,14 @@ displayGroupedInfo([
  *  userInput - об'єкт з введеними користувачем даними.
  */
 function validateUserInput(userInput) {
-  if (userInput.hasOwnProperty(username)) {
+  if (userInput.username === "") {
     console.warn("Помилка: ім'я користувача відсутнє!");
   }
-  if (userInput.hasOwnProperty(password)) {
+  if (userInput.password === "") {
     console.warn("Помилка: пароль відсутній!");
   }
   console.assert(
-    password.length < 8,
+    userInput.password.length > 8,
     "Попередження: пароль має бути довшим за 8 символів!"
   );
 }
@@ -220,11 +220,14 @@ validateUserInput({ username: "alex", password: "pass" });
  * products - Масив об'єктів товарів з властивостями `price` та `title`.
  */
 function calculateTotalPrice(products) {
-  // Початок вимірювання часу
-  // Створення змінної total яка буде нашою загальную ціною, початкове значення нуль
-  // Перебираємо кожен об'єкт товару та додаємо ціну товару до загальної вартості
-  // Виведення загальної вартості товарів у форматі "Загальна вартість товарів:", total
-  // Зупинка вимірювання та виведення часу
+  console.time("calculateTotalPrice");
+  let total;
+  products.forEach((element) => {
+    total += element.price;
+    return total;
+  });
+  console.log("Загальна вартість товарів:", total);
+  console.timeEnd("calculateTotalPrice");
 }
 
 console.log("Завдання: 9 ==============================");
@@ -246,7 +249,20 @@ calculateTotalPrice(products);
  *  word - слово, для якого потрібно порахувати кількість літер.
  */
 function countVowelsAndConsonants(word) {
-  // Створюємо рядок де будуть всі голосні "aeiou"
+  const vowels = "aeiou";
+  let vowelsCount = 0;
+  let consonantsCount = 0;
+  for (const vowel of word) {
+    const letter = vowel.toLowerCase();
+    if (vowels.includes(letter)) {
+      vowelsCount++;
+    } else {
+      consonantsCount++;
+    }
+  }
+  console.info(
+    `There are ${vowelsCount} vowels and ${consonantsCount} consonants in ${word}`
+  );
   // Перебираємо кожну літеру у слові за допомогою for of
   // Перетворюємо літеру на малу літеру для порівняння
   // Перевіряємо, чи є літера в нашому рядку з голосними, якщо так, то виводимио лічильник голосних, інакше приголосних
