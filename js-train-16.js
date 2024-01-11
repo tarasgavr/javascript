@@ -148,9 +148,6 @@ function traceBackward(n) {
     traceBackward(n - 1);
   }
   return traceBackward;
-  // Виводимо поточне число n.
-  // Якщо n є більше 1, викликаємо функцію traceBackward знову з аргументом n - 1.
-  // Виведемо стек викликів, коли досягнемо 1.
 }
 
 console.log("Завдання: 6 ==============================");
@@ -221,7 +218,7 @@ validateUserInput({ username: "alex", password: "pass" });
  */
 function calculateTotalPrice(products) {
   console.time("calculateTotalPrice");
-  let total;
+  let total = 0;
   products.forEach((element) => {
     total += element.price;
     return total;
@@ -263,10 +260,6 @@ function countVowelsAndConsonants(word) {
   console.info(
     `There are ${vowelsCount} vowels and ${consonantsCount} consonants in ${word}`
   );
-  // Перебираємо кожну літеру у слові за допомогою for of
-  // Перетворюємо літеру на малу літеру для порівняння
-  // Перевіряємо, чи є літера в нашому рядку з голосними, якщо так, то виводимио лічильник голосних, інакше приголосних
-  // Скидаємо лічильники
 }
 console.log("Завдання: 10 ==============================");
 countVowelsAndConsonants("HelloWorld!");
