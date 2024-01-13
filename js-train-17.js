@@ -7,9 +7,9 @@
  *  text - Текст, у якому треба здійснити заміну.
  */
 function replaceText(word, replacement, text) {
-  // Створення регулярного виразу для пошуку слова з флагом 'g' (глобальний пошук).
-  // Використання методу `replace` регулярного виразу для заміни слова на фразу у тексті.
-  // Повернення заміненого тексту.
+  const regex = new RegExp(word, "g");
+  const sample = text.replace(regex, replacement);
+  return sample;
 }
 
 // Перевірка
@@ -32,6 +32,8 @@ console.log(
  *  text - Текст, який треба перевірити.
  */
 function checkWord(word, text) {
+  const regex = new RegExp(word, "i");
+  return text.test(arguments);
   // Створення регулярного виразу для пошуку слова з флагом 'i' (регістронезалежний пошук).
   // Використання методу `test` регулярного виразу для перевірки наявності слова у тексті.
   // Повернення результату перевірки.
