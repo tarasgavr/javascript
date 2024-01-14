@@ -33,7 +33,7 @@ console.log(
  */
 function checkWord(word, text) {
   const regex = new RegExp(word, "i");
-  return text.test(arguments);
+  return regex.test(text);
   // Створення регулярного виразу для пошуку слова з флагом 'i' (регістронезалежний пошук).
   // Використання методу `test` регулярного виразу для перевірки наявності слова у тексті.
   // Повернення результату перевірки.
@@ -52,10 +52,13 @@ console.log(checkWord("example", "This is an example sentence."));
  *  str - Рядок, з якого треба вилучити текст.
  */
 function extractTextInParentheses(str) {
-  // Створення регулярного виразу з використанням зворотніх посилань для пошуку тексту в круглих дужках /\((.*?)\)/g.
-  // Використання методу `matchAll` для отримання всіх збігів регулярного виразу.
-  // Створення масиву зі знайденими текстами.
-  // Повернення масиву вилучених текстів.
+  const regex = /\((.*?)\)/g;
+  const regexArr = [...str.matchAll(regex)];
+  const result = [];
+  for (const items of regexArr) {
+    result.push(items[1]);
+  }
+  return result;
 }
 
 // Перевірка
@@ -72,10 +75,13 @@ console.log(extractTextInParentheses("I have some (text) in (parentheses)."));
  *  str - Рядок, в якому потрібно знайти email-адреси.
  */
 function countEmails(str) {
-  // Створення регулярного виразу для пошуку email-адрес /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/g.
-  // Використання методу `match` для отримання всіх збігів регулярного виразу.
-  // Підрахунок кількості email-адрес.
-  // Повернення кількості email-адрес.
+  const regex = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/g;
+  const result = str.match(regex);
+  let counter = 0;
+  for (const item of result) {
+    counter += 1;
+  }
+  return counter;
 }
 
 // Перевірка
@@ -95,6 +101,14 @@ console.log(
  *  Повертає масив з індексами всіх входжень слова у рядок.
  */
 function findWordOccurrences(str, word) {
+  const regex = RegExp(word, "gi");
+  let matches = [];
+  let match;
+  while (regex.test(str)) {
+    console.log(regex.lastIndex);
+    console.log(word.length);
+    matches.push(regex.lastIndex - word.length);
+  }
   // Створення регулярного виразу для пошуку слова з флагами 'g та 'i',
   // Створюємо пустий масив matches, та змінну match без значення
   // За допомогою циклу whild створюємо ітерацію поки рядок містить збіги з регулярним виразом, та змінній match присвоюємо збіги
