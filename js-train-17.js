@@ -234,7 +234,7 @@ console.log(checkRegexMethods(/test/msy));
  * Повертає  - Індекс першого входження слова у рядок або -1, якщо слово не знайдено.
  */
 function findWord(str, word) {
-  const regex = /word/;
+  const regex = RegExp(word, "gi");
   return str.search(regex);
 }
 
