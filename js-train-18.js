@@ -6,9 +6,12 @@
  *  data - вхідні дані.
  */
 function checkData(data) {
-  // Якщо об'єкт не пустий повертаємо дані
-  // Інакше створюємо помилку,в якості тексту помилки ми використовуємо рядок "Об'єкт пустий".
-  // Якщо виникла помилка, повертаємо її повідомлення.
+  if (Object.keys(data).length !== 0) {
+    return data;
+  } else {
+    const newError = new Error("Об'єкт пустий");
+    return newError;
+  }
 }
 
 console.log("Завдання: 1 ==============================");
@@ -26,10 +29,14 @@ console.log(checkData({ name: "John", age: 30, city: "New York" }));
  *  jsonStr - JSON-рядок для аналізу.
  */
 function parseJson(jsonStr) {
-  // Спроба розпарсити JSON-рядок.
-  // Якщо рядок має невірний формат, виникне помилка, яку ми обробляємо у блоку catch.
-  // Повертаємо отриманий об'єкт
-  // Якщо виникла помилка, повертаємо її повідомлення.
+  try {
+    return JSON.parse(jsonStr);
+  } catch (error) {
+    const newError = new Error("Пропущена закриваюча лапка після 'John'", {
+      cause: error,
+    });
+    return newError;
+  }
 }
 console.log("Завдання: 2 ==============================");
 
