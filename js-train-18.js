@@ -60,6 +60,15 @@ console.log(parseJson(invalidJson));
  *  age - вік користувача.
  */
 function getAge(age) {
+  try {
+    if (age > 0) {
+      return `Вік користувача: ${age}`;
+    }
+  } catch (error) {
+    error.message = "Вік не може бути менше 0!";
+    error.name = "AgeError";
+  }
+  return error;
   // Спроба отримати вік користувача.
   // Якщо вік менше 0, виникне помилка, яку ми обробляємо у блоку catch.
   // Генеруємо помилку, якщо вік менше 0 з повідомленням Вік не може бути менше 0!.
