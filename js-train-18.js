@@ -10,7 +10,7 @@ function checkData(data) {
     return data;
   } else {
     const newError = new Error("Об'єкт пустий");
-    return newError;
+    return newError.message;
   }
 }
 
@@ -32,10 +32,7 @@ function parseJson(jsonStr) {
   try {
     return JSON.parse(jsonStr);
   } catch (error) {
-    const newError = new Error("Пропущена закриваюча лапка після 'John'", {
-      cause: error,
-    });
-    return newError;
+    return error.message;
   }
 }
 console.log("Завдання: 2 ==============================");
@@ -60,22 +57,13 @@ console.log(parseJson(invalidJson));
  *  age - вік користувача.
  */
 function getAge(age) {
-  try {
-    if (age > 0) {
-      return `Вік користувача: ${age}`;
-    }
-  } catch (error) {
-    error.message = "Вік не може бути менше 0!";
-    error.name = "AgeError";
+  if (age > 0) {
+    return `Вік користувача: ${age}`;
+  } else if (age < 0) {
+    const newError = new Error("Вік не може бути менше 0!");
+    newError.name = "AgeError";
+    return { error: newError.message, name: newError.name };
   }
-  return error;
-  // Спроба отримати вік користувача.
-  // Якщо вік менше 0, виникне помилка, яку ми обробляємо у блоку catch.
-  // Генеруємо помилку, якщо вік менше 0 з повідомленням Вік не може бути менше 0!.
-  // До помилки дадаємо властивість name зі значенням "AgeError"
-  // Викидаємо помилку
-  // Якщо помилки не має повертаємо рядок `Вік користувача: ${age}`
-  // Якщо виникла помилка, повертаємо об'єкт з name та message помилки.
 }
 console.log("Завдання: 3 ==============================");
 
@@ -95,6 +83,16 @@ console.log(getAge(20));
  *  id - ID книги.
  */
 function getBookById(books, id) {
+  try {
+    books.forEach((book) => {
+      if (book.id === id) {
+        return `Книга: ${book.title}`;
+      }
+    });
+  } catch (error) {
+    const newError = new TypeError("Книга з ID ${id} не знайдена!.");
+  }
+  return `${newError.name}: Книга з ID ${id} не знайдена!.`;
   // Спроба знайти книгу по ID та записати в змінну book.
   // Якщо книга не знайдена, генерується TypeError з повідомленням Книга з ID ${id} не знайдена!.
   // Повертаємо book
