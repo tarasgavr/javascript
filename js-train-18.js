@@ -84,15 +84,14 @@ console.log(getAge(20));
  */
 function getBookById(books, id) {
   try {
-    books.forEach((book) => {
-      if (book.id === id) {
-        return `Книга: ${book.title}`;
-      }
-    });
+    let book = Object(books.find((el) => el.id === id));
+    if (!book) {
+      throw new TypeError(`Книга з ID ${id} не знайдена!.`);
+    }
+    return `Книга: ${book.title}`;
   } catch (error) {
-    const newError = new TypeError("Книга з ID ${id} не знайдена!.");
+    console.log(error.toString()); //`${error.name}: ${error.message}`;
   }
-  return `${newError.name}: Книга з ID ${id} не знайдена!.`;
   // Спроба знайти книгу по ID та записати в змінну book.
   // Якщо книга не знайдена, генерується TypeError з повідомленням Книга з ID ${id} не знайдена!.
   // Повертаємо book
