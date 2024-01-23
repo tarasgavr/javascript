@@ -84,13 +84,14 @@ console.log(getAge(20));
  */
 function getBookById(books, id) {
   try {
-    let book = Object(books.find((el) => el.id === id));
+    let book = books.find((el) => el.id === id);
     if (!book) {
       throw new TypeError(`Книга з ID ${id} не знайдена!.`);
     }
+    // console.log(typeof book);
     return `Книга: ${book.title}`;
   } catch (error) {
-    console.log(error.toString()); //`${error.name}: ${error.message}`;
+    return error.toString(); //`${error.name}: ${error.message}`;
   }
   // Спроба знайти книгу по ID та записати в змінну book.
   // Якщо книга не знайдена, генерується TypeError з повідомленням Книга з ID ${id} не знайдена!.
@@ -132,6 +133,17 @@ console.log(
  *  encodedString - Рядок для декодування.
  */
 function decodeURIComponentWrapper(encodedString) {
+  try {
+    const expression = decodeURIComponent(encodedString);
+    return expression;
+  } catch (error) {
+    if ((error.name = "URIError")) {
+      error.message = "Помилка декодування URI,";
+      return error;
+    } else {
+      return error.toString();
+    }
+  }
   // Спроба декодувати рядок
   // Повертаємо декодований рядок
   // Якщо виникла помилка, і ії назва дорівнює URIError повертаємо помилку про неправильний URI формат з повідомленням Помилка декодування URI,
@@ -151,7 +163,16 @@ console.log(decodeURIComponentWrapper("%E0%A4%A")); // виведе інформ
  *  numbers - Масив чисел для пошуку.
  */
 function findEvenNumber(numbers) {
-  // Створюємо змінну evenNumber без значення
+  console.log(numbers);
+  try {
+    let evenNumber = numbers.find((a) => a % 2 === 0);
+    if (!evenNumber) {
+      throw new Error("У масиві немає чисел, що діляться на 2 без остачі!.");
+    }
+    return evenNumber;
+  } catch (error) {
+    return error.toString();
+  }
   // Шукаємо перше число, що ділиться на 2 без остачі, та записуємо в нашу змінну.
   // Якщо такого числа немає, кидаємо помилку з повідомлення У масиві немає чисел, що діляться на 2 без остачі!.
   // Якщо число знайдено повертаємо його
@@ -178,11 +199,20 @@ console.log(findEvenNumber([1, 4, 5]));
  *  user - Об'єкт користувача для перевірки.
  */
 function validateUser(user) {
-  // Перевіряємо, чи існує об'єкт користувача,якщо ні викидуємо помилку з повідомленням "Об'єкт користувача не вказано!".
-  // Перевіряємо, чи існує ім'я користувача,якщо ні викидуємо помилку з повідомленням "Ім'я користувача не вказано!", а як причину вказуємо об'єкт user.
-  // Перевіряємо, чи існує email користувача,якщо ні викидуємо помилку з повідомленням "Email користувача не вказано!", а як причину вказуємо об'єкт user.
-  // Якщо всі перевірки пройдено успішно виводимо повідомлення "Об'єкт користувача відповідає всім вимогам."
-  // Виводимо повідомлення про помилку та причину помилки.
+  try {
+    if (typeof user !== "object") {
+      throw new Error("Об'єкт користувача не вказано!");
+    }
+    if (!user.hasOwnProperty("name")) {
+      throw new Error("Ім'я корист0увача не вказано!", { cause: user });
+    }
+    if (!user.hasOwnProperty("email")) {
+      throw new Error("Email користувача не вказано!", { cause: user });
+    }
+    console.log("Об'єкт користувача відповідає всім вимогам.");
+  } catch (error) {
+    console.log(error.toString(), user);
+  }
 }
 
 console.log("Завдання: 7 ==============================");
@@ -201,8 +231,17 @@ validateUser({ name: "John Doe" });
  *  number - Число для обчислення квадратного кореня.
  */
 function calculateSquareRoot(number) {
-  // Перевіряємо, чи аргумент є числом, якщо ні викидуємо помилку про невірний тип даних з повідомленням Аргумент має бути числом!".
-  // Перевіряємо, чи число не від'ємне, якщо ні викидуємо помилку про тип недопустимий діапазон з повідомленням Число не повинно бути від'ємним!".
+  try {
+    if (typeof number !== "number") {
+      throw new TypeError("Аргумент має бути числом!");
+    }
+    if (number < 0) {
+      throw new RangeError("Число не повинно бути від'ємним!");
+    }
+    return Math.sqrt(number, 2);
+  } catch (error) {
+    return error.message;
+  }
   // Повертаємо корінь квадратний з вхідного значення
   // Повертаємо повідомлення про помилку.
 }
@@ -225,12 +264,17 @@ console.log(calculateSquareRoot("abc"));
  *  data - Масив чисел для обробки.
  */
 function processData(data) {
-  // Для кожного елемента в масиві
-  // Перевіряємо, чи елемент є числом
-  // Якщо елемент не є числом, кидаємо помилку невірного типу даних з повідомленням `Елемент з індексом ${index} має бути числом!`
-  // Повертаємо рядок "Дані успішно оброблені"
-  // Виводимо stack trace помилки
-  // Повертаємо повідомлення помилки
+  try {
+    data.forEach((num, index) => {
+      if (typeof num !== "number") {
+        throw new TypeError(`Елемент з індексом ${index} має бути числом!`);
+      }
+    });
+    return "Дані успішно оброблені";
+  } catch (error) {
+    console.log(error.stack);
+    return error.message;
+  }
 }
 
 console.log("Завдання: 9 ==============================");
@@ -252,6 +296,11 @@ console.log(processData([1, "two", 3]));
  *  expression - Математичний вираз у вигляді рядка.
  */
 function evaluateExpression(expression) {
+  try {
+    return eval(expression);
+  } catch (error) {
+    return error.toString();
+  }
   // Повертаємо результат розрахунку
   // Якщо була виявлена помилка повертаємо помилку при виконанні функції eval
 }
