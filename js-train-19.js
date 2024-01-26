@@ -1,14 +1,12 @@
 // 1. Створення базового об'єкту "Book":
-const Book = {
+let Book = {
   title: "Загальна Книга",
   author: "Анонім",
   pages: 0,
   read() {
-    console.log(`Ви читаєте ${title} від ${author}`);
+    console.log(`Ви читаєте ${this.title} від ${this.author}`);
   },
 };
-
-// Створюємо об'єкт Book
 
 console.log("Завдання: 1 ==============================");
 console.log(Book);
@@ -16,15 +14,15 @@ console.log(Object.getPrototypeOf(Book));
 Book.read();
 
 // 2. Наслідування від базового об'єкту Book
-const Novel = Object.create(Book);
+let Novel = Object.create(Book);
 Novel.genre = "Новела";
-
+Novel;
 console.log("Завдання: 2 ==============================");
 console.log(Novel);
 console.log(Object.getPrototypeOf(Novel));
 
 // 3. Створення нового об'єкту та зміна його прототипу
-const Biography = {
+let Biography = {
   title: "Загальна Біографія",
   author: "Біограф",
   pages: 200,
@@ -42,11 +40,30 @@ if (Novel.isPrototypeOf(Biography)) {
  * Також тут використовується інкапсуляція для створення властивості 'info', яка не може бути змінена напряму, а лише змінюється за допомогю гетера
  */
 
-// Створюємо ScienceBook, наслідуємо властивості і функції від об'єкта Book
-
-// Додаємо властивість 'info' за допомогою Object.defineProperty
+let ScienceBook = Object.create(Book);
+ScienceBook.title = "Фізика 101";
+ScienceBook.author = "Альберт Ейнштейн";
+(ScienceBook.info = "написана в 1915 році"),
+  Object.defineProperty(ScienceBook, "info", {
+    // value: "написана в 1915 році",
+    configurable: false,
+    set(value) {
+      this._info = value;
+    },
+    get() {
+      return `Про книгу ${this.title}: ${this._info}`;
+    },
+  });
+try {
+  Object.defineProperty(ScienceBook, "info", {
+    value: "Opened",
+  });
+} catch (error) {
+  error.message = `Cannot assign to read only property 'info' of object '${Object}'`;
+  return error.message;
+}
 // Зробимо щоб 'info' не можно було видалити або змінити, перевіримо і спробуємо присвоїти ій будь яке значення (це потрібно робити ззовні defineProperty),
-// Отримаємо помилку Cannot assign to read only property 'info' of object '#<Object>'
+// Отримаємо помилку Cannot assign to read only property 'info' of object '#<Object}'
 
 // Далі створюємо сетер який присвоє властивості info значення яке отримує при виклику, помилку більше не отримуємо але при спробі вивести значення info отримуємо undefined
 
@@ -61,6 +78,9 @@ if (Novel.isPrototypeOf(Biography)) {
 // | info        | написана в 1915 році |
 
 console.log("Завдання: 4 ==============================");
+console.log(ScienceBook.info);
+// console.log(ScienceBook);
+// console.log(ScienceBook);
 // Виводимо в консоль властивість info
 
 // Виводимо в консоль налаштування властивости info
