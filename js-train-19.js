@@ -16,7 +16,6 @@ Book.read();
 // 2. Наслідування від базового об'єкту Book
 let Novel = Object.create(Book);
 Novel.genre = "Новела";
-Novel;
 console.log("Завдання: 2 ==============================");
 console.log(Novel);
 console.log(Object.getPrototypeOf(Novel));
@@ -41,27 +40,21 @@ if (Novel.isPrototypeOf(Biography)) {
  */
 
 let ScienceBook = Object.create(Book);
-ScienceBook.title = "Фізика 101";
-ScienceBook.author = "Альберт Ейнштейн";
-(ScienceBook.info = "написана в 1915 році"),
-  Object.defineProperty(ScienceBook, "info", {
-    // value: "написана в 1915 році",
-    configurable: false,
-    set(value) {
-      this._info = value;
-    },
-    get() {
-      return `Про книгу ${this.title}: ${this._info}`;
-    },
-  });
-try {
-  Object.defineProperty(ScienceBook, "info", {
-    value: "Opened",
-  });
-} catch (error) {
-  error.message = `Cannot assign to read only property 'info' of object '${Object}'`;
-  return error.message;
-}
+Object.defineProperty(ScienceBook, "info", {
+  configurable: false,
+  set(value) {
+    this._info = value;
+  },
+  get() {
+    return `Про книгу ${this.title}: ${this._info}`;
+  },
+});
+// try {
+//   delete ScienceBook.info;
+// } catch (error) {
+//   error.message = `Cannot assign to read only property 'info' of object '${Object}'`;
+//   return error.message;
+// }
 // Зробимо щоб 'info' не можно було видалити або змінити, перевіримо і спробуємо присвоїти ій будь яке значення (це потрібно робити ззовні defineProperty),
 // Отримаємо помилку Cannot assign to read only property 'info' of object '#<Object}'
 
@@ -77,10 +70,12 @@ try {
 // | author      | "Альберт Ейнштейн"   |
 // | info        | написана в 1915 році |
 
+ScienceBook.title = "Фізика 101";
+ScienceBook.author = "Альберт Ейнштейн";
+ScienceBook.info = "написана в 1915 році";
 console.log("Завдання: 4 ==============================");
 console.log(ScienceBook.info);
-// console.log(ScienceBook);
-// console.log(ScienceBook);
+console.log(Object.getOwnPropertyDescriptor(ScienceBook, "info"));
 // Виводимо в консоль властивість info
 
 // Виводимо в консоль налаштування властивости info
@@ -93,51 +88,39 @@ console.log(ScienceBook.info);
  * має виводити "Ви читаєте підручник "<title>" від <author>. <info>"
  */
 
-//Створюємо Textbook та наслідуємо властивості з ScienceBook
-
-// Перевизначаємо метод read(), відповідно з дописом вище
-
-// Встановлюємо значення для Textbook
-// | Властивість | Значення                   |
-// |-------------|----------------------------|
-// | title       | "Фізика у Вищій Школі"     |
-// | author      | "Дж. Д. Джонс"             |
-
+let Textbook = Object.create(ScienceBook);
+(Textbook.read = function () {
+  return `Ви читаєте підручник ${this.title} від ${this.author} ${this.info}`;
+}),
+  // Встановлюємо значення для Textbook
+  // | Властивість | Значення                   |
+  // |-------------|----------------------------|
+  // | title       | "Фізика у Вищій Школі"     |
+  // | author      | "Дж. Д. Джонс"             |
+  (Textbook.title = "Фізика у Вищій Школі");
+Textbook.author = "Дж. Д. Джонс";
 console.log("Завдання: 5 ==============================");
-// Викликаємо функцію read об'єкту Textbook
+console.log(Textbook.read());
 
 // 6. Абстракція: створення об'єкта з загальними властивостями
-/*
- * Об'єкт: Media
- * Властивості:
- * --------------
- * | Властивість | Значення           |
- * |-------------|--------------------|
- * | format      | "Загальний Формат" |
- * | length      | 0                  |
- *
- * Функції:
- * ---------------------------------------------------------------------------------------------------------------
- * | Функція | Опис                                                                                              |
- * |---------|---------------------------------------------------------------------------------------------------|
- * | play()  | Виводить повідомлення "Зараз відтворюється медіа у форматі <format> з тривалістю <length> секунд" |
- */
-
-// Створюємо об'єкт Media
-
-/*
- * Об'єкт: Song
- * Властивості та функції наслідуються від об'єкта Media
- * Додаткові властивості: artist, title
- */
-
-// Створюємо об'єкт Song, наслідуємо властивості і функції від об'єкта Media
+let Media = {
+  format: "Загальний Формат",
+  length: 0,
+  play() {
+    console.log(
+      `Зараз відтворюється медіа у форматі ${this.format} з тривалістю ${this.length} секунд`
+    );
+  },
+};
+let Song = Object.create(Media);
 
 // Встановлюємо додаткові властивості
 // | Властивість | Значення               |
 // |-------------|------------------------|
 // | artist      | "Загальний Виконавець" |
 // | title       | "Загальна Пісня"       |
-
+Song.artist = "Загальний Виконавець";
+Song.title = "Загальна Пісня";
 console.log("Завдання: 6 ==============================");
 // Викликаємо функцію play об'єкту Song
+console.log(Song.play());
