@@ -271,7 +271,7 @@ class Concert extends Performance {
     console.log(
       `Гурт ${super.band.name} виступить в ${
         super.location
-      } ${super.date.toLocaleDateString()}, ціна квитка ${this.#ticketPrice}`
+      } ${super.date.toString()}, ціна квитка ${this.#ticketPrice}`
     );
   }
 }
@@ -346,7 +346,7 @@ class LeadSinger extends Vocalist {
     super(name, band);
   }
 }
-const musician = new Musician(arguments);
+const musician = new Musician("John", "Guitarist");
 /*
  * Створення musician екземпляра класу Musician
  * ---------------------------------------------------
@@ -355,6 +355,7 @@ const musician = new Musician(arguments);
  * | name        | "John"           |
  * | instrument  | "Guitarist"      |
  */
+const guitarist = new Guitarist("Jimmy Page", "гітара", "Led Zeppelin");
 
 /*
  * Створення guitarist екземпляра класу Guitarist
@@ -366,6 +367,7 @@ const musician = new Musician(arguments);
  * | band        | "Led Zeppelin"    |
  */
 
+const bassist = new Bassist("Paul McCartney", "бас-гітара", "The Beatles");
 /*
  * Створення bassist екземпляра класу Bassist
  * ---------------------------------------------------
@@ -375,6 +377,7 @@ const musician = new Musician(arguments);
  * | instrument  | "бас-гітара"     |
  * | band        | "The Beatles"    |
  */
+const band = new Band("The Beatles", [bassist]);
 
 // Створення band екземпляру класу Band
 /*
@@ -386,8 +389,9 @@ const musician = new Musician(arguments);
  * | members     | [bassist]       |
  */
 
-// Додаємо guitarist до band за допомогою addMember
+band.addMember(guitarist);
 
+const vocalist = new Vocalist("Freddie Mercury", "Queen");
 /*
  * Створення vocalist екземпляра класу Vocalist
  * -------------------------------------
@@ -397,6 +401,7 @@ const musician = new Musician(arguments);
  * | band        | "Queen"           |
  */
 
+const songwriter = new SongWriter(["Yesterday", "Hey Jude", "Let It Be"]);
 /*
  * Створення songwriter екземпляра класу SongWriter
  * -------------------------------------
@@ -405,6 +410,7 @@ const musician = new Musician(arguments);
  * | songs       | ["Yesterday","Hey Jude","Let It Be",]|
  */
 
+const performance = new Performance(band, "Liverpool", new Date("2023-08-01"));
 // Створення performance екземпляра класу Performance
 /*
  * ------------------------------------------------------
@@ -417,6 +423,7 @@ const musician = new Musician(arguments);
 
 // використання Object.assign() для успадкування властивостей songwriter для LeadSinger.prototype
 
+const concert = new Concert(band, "BBC studios", new Date("1994-07-06"), 100);
 /*
  * Створення concert екземпляра класу Concert
  * ---------------------------------------------------
@@ -428,6 +435,11 @@ const musician = new Musician(arguments);
  * | ticketPrice | 100              |
  */
 
+const leadsinger = new LeadSinger("Mick Jagger", "The Rolling Stones", [
+  "Yesterday",
+  "Hey Jude",
+  "Let It Be",
+]);
 /*
  * Створення leadsinger екземпляра класу LeadSinger
  * -------------------------------------
@@ -439,12 +451,12 @@ const musician = new Musician(arguments);
  */
 
 // Методи для тестування розкоментувати після виконня всіх завдань
-// musician.play();
-// guitarist.play();
-// bassist.play();
-// band.playMusic();
-// performance.info();
-// concert.info();
-// vocalist.info();
-// songwriter.info();
-// leadsinger.info();
+musician.play();
+guitarist.play();
+bassist.play();
+band.playMusic();
+performance.info();
+concert.info();
+vocalist.info();
+songwriter.info();
+leadsinger.info();
