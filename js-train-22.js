@@ -38,7 +38,7 @@ console.log(orders);
 // передані аргументи та вирішує який клас повинен мати об’єкт при створенні
 // Клас Book описує книгу в магазині
 class Book {
-  constructor(title, author, coverColor) {
+  constructor({ title, author, coverColor }) {
     this.title = title;
     this.author = author;
     this.coverColor = coverColor;
@@ -52,16 +52,14 @@ class Book {
  * Клас AudioBook описує аудіокнигу в магазині
  */
 class AudioBook {
-  /**
-   * Конструктор AudioBook приймає об'єкт з параметрами
-   * title - назва книги
-   * author - автор книги
-   * audioLength - тривалість аудіокниги
-   */
-  /**
-     * Метод describe генерує опис аудіокниги
-       Повертає рядок у форматі: "Аудіокнига: '{назва}', автор: '{автор}', тривалість: '{тривалість}'"
-     */
+  constructor({ title, author, audioLength }) {
+    this.title = title;
+    this.author = author;
+    this.audioLength = audioLength;
+  }
+  describe() {
+    return `Книга: ${this.title}, автор: ${this.author}, тривалість: ${this.audioLength}`;
+  }
 }
 
 /**
@@ -69,47 +67,54 @@ class AudioBook {
  */
 
 class ProductFactory {
-  TYPE = {
+  static TYPE = {
     BOOK: "book",
     AUDIOBOOK: "audiobook",
   };
-  createProduct(type, options) {
-    throw new Error(`Такого типу продукту не існує: ${type}`);
+
+  static createProduct(type, options) {
+    if ((type = this.TYPE.BOOK)) {
+      return new Book(options);
+    } else if ((type = this.TYPE.AUDIOBOOK)) {
+      return new AudioBook(options);
+    } else {
+      throw new Error(`Такого типу продукту не існує: ${type}`);
+    }
   }
 }
 console.log("Завдання 2 ====================================");
 // Після виконання розкоментуйте код нижче
 
 // Використовуємо ProductFactory для створення нової книги
-// const factoryBook = ProductFactory.createProduct(ProductFactory.TYPE.BOOK, {
-//   title: "Назва книги",
-//   author: "Автор книги",
-//   coverColor: "Синій",
-// });
+const factoryBook = ProductFactory.createProduct(ProductFactory.TYPE.BOOK, {
+  title: "Назва книги",
+  author: "Автор книги",
+  coverColor: "Синій",
+});
 
 // Виводимо в консоль опис нової книги
-// console.log(factoryBook.describe());
+console.log(factoryBook.describe());
 
 // Використовуємо ProductFactory для створення нової аудіокниги
-// const factoryAudiobook = ProductFactory.createProduct(
-//   ProductFactory.TYPE.AUDIOBOOK,
-//   {
-//     title: "Назва аудіокниги",
-//     author: "Автор аудіокниги ",
-//     audioLength: "5 годин",
-//   }
-// );
+const factoryAudiobook = ProductFactory.createProduct(
+  ProductFactory.TYPE.AUDIOBOOK,
+  {
+    title: "Назва аудіокниги",
+    author: "Автор аудіокниги",
+    audioLength: "5 годин",
+  }
+);
 
 // Виводимо в консоль опис нової аудіокниги
-// console.log(factoryAudiobook.describe());
+console.log(factoryAudiobook.describe());
 
 // Спробуємо створити продукт непідтримуваного типу
-// try {
-//   const factoryUnknown = ProductFactory.createProduct("comics", {});
-// } catch (error) {
-//   // Виводимо помилку в консоль
-//   console.erro(error.message);
-// }
+try {
+  const factoryUnknown = ProductFactory.createProduct("comics", {});
+} catch (error) {
+  // Виводимо помилку в консоль
+  console.error(error.message);
+}
 
 // Спостерігач (Observer) — це патерн програмування, який визначає залежність "один-багато" між об'єктами, так що зміна стану одного об'єкта
 // призводить до автоматичного оновлення всіх залежних об'єктів
@@ -118,12 +123,12 @@ console.log("Завдання 2 ====================================");
  * Клієнт ідентифікується своєю електронною адресою, яку використовується для відправки повідомлень.
  */
 class Customer {
-  /**
-   * Конструктор для класу Customer. Приймає email - Електронна адреса клієнта.
-   */
-  /**
-   * Метод відправки повідомлення клієнту по електронній пошті.Приймає message - повідомлення,та виводить в консоль ${this.email} ${message}.
-   */
+  constructor(email) {
+    this.email = email;
+  }
+  static send(message) {
+    console.log("${this.email} ${message}");
+  }
 }
 
 /**
