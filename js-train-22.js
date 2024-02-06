@@ -58,7 +58,7 @@ class AudioBook {
     this.audioLength = audioLength;
   }
   describe() {
-    return `Книга: ${this.title}, автор: ${this.author}, тривалість: ${this.audioLength}`;
+    return `Аудіокнига: ${this.title}, автор: ${this.author}, тривалість: ${this.audioLength}`;
   }
 }
 
@@ -73,12 +73,13 @@ class ProductFactory {
   };
 
   static createProduct(type, options) {
-    if ((type = this.TYPE.BOOK)) {
-      return new Book(options);
-    } else if ((type = this.TYPE.AUDIOBOOK)) {
-      return new AudioBook(options);
-    } else {
-      throw new Error(`Такого типу продукту не існує: ${type}`);
+    switch (type) {
+      case this.TYPE.BOOK:
+        return new Book(options);
+      case this.TYPE.AUDIOBOOK:
+        return new AudioBook(options);
+      default:
+        throw new Error(`Такого типу продукту не існує: ${type}`);
     }
   }
 }
@@ -126,8 +127,10 @@ class Customer {
   constructor(email) {
     this.email = email;
   }
-  static send(message) {
-    console.log("${this.email} ${message}");
+  sendMail(message) {
+    console.log(
+      ` Bідправлення повідомлення ${message} по електронній пошті ${this.email}.`
+    );
   }
 }
 
@@ -135,9 +138,9 @@ class Customer {
  * Клас Product представляє продукт, який можна створювати.
  */
 class Product {
-  /**
-   * Конструктор для класу Product.Приймає name - Назва продукту.
-   */
+  constructor(name) {
+    this.name = name;
+  }
 }
 
 /**
@@ -145,47 +148,52 @@ class Product {
  * Магазин має назву і список підписників, які отримують повідомлення про нові продукти.
  */
 class Store {
-  /**
-   * Конструктор для класу Store.Приймає name - Назва магазину, та створює пустий масив customers
-   */
-  /**
-   * Метод subscribe для підписки клієнта на магазин. Приймає customer - Клієнт, який підписується.
-   * Після виклику цього методу, клієнт буде отримувати повідомлення про нові продукти, через push додаємо клієнта до масиву.
-   */
-  /**
-   * Метод unsubscribe для відписки клієнта від магазину.Приймає customer - Клієнт, який відписується.
-   * Після виклику цього методу, клієнт більше не буде отримувати повідомлення про нові продукти, через filter прибираємо клієнта з масиву.
-   */
-  /**
-   * Метод createProduct для створення нового продукту в магазині.Приймає name - Назва нового продукту.
-   * Після виклику цього методу, новий продукт буде створено, а всі підписники отримають про це повідомлення через sendNotify.
-   */
-  /**
-   * Метод для відправки повідомлень всім підписникам про новий продукт.Приймає product - Продукт, про який відправляється повідомлення.
-   * Новий продукт "${product.name}" в магазині ${this.name}! за допомогою sendEmail.
-   */
-  // За допомогою forEach перебираємо масив customers
-  // Для кожного елементу масиву викликаємо метод sendEmail з рядком `Новий продукт "${product.name}" в магазині ${this.name}!`
+  customers = [];
+  constructor(name) {
+    this.name = name;
+  }
+  subscribe(customer) {
+    this.customer = customer;
+    this.customers.push(customer);
+  }
+  unsubscribe(customer) {
+    this.customers.filter((item, id) => {
+      if (item === customer) {
+        this.customers.splice(id, 1);
+      }
+    });
+  }
+  createProduct(name) {
+    const product = new Product(name);
+    this.sendNoify(product);
+  }
+  sendNoify(product) {
+    this.customers.forEach((element) => {
+      element.sendMail(
+        `Новий продукт "${product.name}" в магазині ${this.name}!`
+      );
+    });
+  }
 }
 
 console.log("Завдання 3 ====================================");
 // Після виконання розкоментуйте код нижче
 
-// const store = new Store("IT Supermarket");
+const store = new Store("IT Supermarket");
 
-// const customer1 = new Customer("john@example.com");
-// const customer2 = new Customer("jane@example.com");
-// const customer3 = new Customer("alice@example.com");
+const customer1 = new Customer("john@example.com");
+const customer2 = new Customer("jane@example.com");
+const customer3 = new Customer("alice@example.com");
 
-// store.subscribe(customer1);
-// store.subscribe(customer2);
-// store.subscribe(customer3);
+store.subscribe(customer1);
+store.subscribe(customer2);
+store.subscribe(customer3);
 
-// store.createProduct("Новий ноутбук");
+store.createProduct("Новий ноутбук");
 
-// store.unsubscribe(customer1);
+store.unsubscribe(customer1);
 
-// store.createProduct("Бездротові навушники");
+store.createProduct("Бездротові навушники");
 
 // Декоратор (Decorator) — це патерн програмування, який додає нову функціональність до існуючих об'єктів, не змінюючи їхньої структури.
 // Іншими словами, він дозволяє розширити функціональність об'єкта, не змінюючи сам об'єкт.
@@ -193,32 +201,42 @@ console.log("Завдання 3 ====================================");
 // Клас Drink представляє основний напій, який можна приготувати.
 // Цей клас містить базову вартість напою (price=10) та його ім'я (name="Чай").
 class Drink {
-  // Метод prepare() виводить в консоль рядок "Приготування {назва напою}"
+  price = 10;
+  name = "Чай";
+  prepare() {
+    console.log(`Приготування ${this.name}`);
+  }
 }
 
 // Клас HoneyDecorator є декоратором, який додає мед до напою.
 class HoneyDecorator {
-  // Конструктор приймає в якості параметрів базовий напій (drink) та кількість меду (amount), яку треба додати.
-  // Getter для name повертає рядок `${this.drink.name} з ${this.amount} г меду`.
-  // Getter для price розраховує загальну вартість напою, враховуючи базову вартість напою
-  // і додаткову вартість меду, яку за замовчуванням встановлюємо на 0.5, і множимо на this.amount.
-  // Метод prepare відповідає за приготування напою з медом.
-  // Він виводить в консоль Приготування ${this.name} з медом
+  constructor(drink, amount) {
+    this.drink = drink;
+    this.amount = amount;
+  }
+  get name() {
+    return `${this.drink.name} з ${this.amount} г меду`;
+  }
+  get price() {
+    return this.drink.price + this.amount * 0.5;
+  }
+  prepare() {
+    console.log(`Приготування ${this.name}`);
+  }
 }
 console.log("Завдання 4 ====================================");
 // Після виконання розкоментуйте код нижче
 
 // Створення об'єкту базового напою (чаю)
-// let tea = new Drink();
-// console.log(tea.name); // Виводить ім'я напою
-// console.log(tea.price); // Виводить вартість напою
-// tea.prepare(); // Готує напій
+let tea = new Drink();
+console.log(tea.name); // Виводить ім'я напою
+console.log(tea.price); // Виводить вартість напою
+tea.prepare(); // Готує напій
 
-// Додавання декоратора меду до чаю
-// let honeyTea = new HoneyDecorator(tea, 2); // Додаємо 2 грами меду
-// console.log(honeyTea.name); // Виводить нову назву напою
-// console.log(honeyTea.price); // Виводить нову вартість напою
-// honeyTea.prepare(); // Готує напій з медом
+let honeyTea = new HoneyDecorator(tea, 2); // Додаємо 2 грами меду
+console.log(honeyTea.name); // Виводить нову назву напою
+console.log(honeyTea.price); // Виводить нову вартість напою
+honeyTea.prepare(); // Готує напій з медом
 
 // Мементо (Memento) — це патерн програмування, який забезпечує збереження стану об'єкта для подальшого відновлення
 
