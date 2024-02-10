@@ -362,7 +362,7 @@ class ProcessorBuilder {
     this.lastProcessor = null;
   }
   add(processor) {
-    if (processor !== this.firstProcessor) {
+    if (!this.firstProcessor) {
       this.firstProcessor = processor;
       this.lastProcessor = processor;
     } else {
