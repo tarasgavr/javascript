@@ -3,105 +3,155 @@
 
 // Клас ContentContainer використовується для управління списком вкладених елементів контенту
 class ContentContainer {
-  // Створюємо властивість elements для зберігання вкладених елементів контенту. Початкове значення - порожній масив.
-  // Створюємо addElement, який отримує element як параметр та додає його в масив elements.
-  // Створюємо removeElement, який отримує element як параметр, знаходить його індекс у масиві та видаляє, якщо елемент знайдено.
+  elements = [];
+  addElement(element) {
+    this.elements.push(element);
+  }
+  removeElement(element) {
+    if (this.elements.find(element)) {
+      const index = this.elements.findIndex(element);
+      this.elements.splice(index, 1);
+    }
+  }
 }
 
 // Клас Message, що є розширенням класу ContentContainer. Використовується для створення повідомлень з текстом.
 class Message extends ContentContainer {
-  // Створюємо конструктор класу, який приймає content як параметр та ініціалізує його
-  // Створюємо метод display, який виводить ${this.content} для всіх елементів масиву
+  constructor(content) {
+    super();
+    this.content = content;
+  }
+  display() {
+    console.log(`${this.content}`);
+    for (const iterator of this.elements) {
+      iterator.display();
+    }
+  }
 }
 
 // Клас Article, що є розширенням класу ContentContainer. Використовується для створення статті з вкладеними елементами.
 class Article extends ContentContainer {
-  // Створюємо конструктор класу, який приймає title назву статті як параметр та ініціалізує об'єкт з нею
-  // Створюємо метод display, який виводить Стаття: ${this.title} для всіх елементів масиву
+  constructor(title) {
+    super();
+    this.title = title;
+  }
+  display() {
+    console.log(`${this.title}`);
+    for (const iterator of this.elements) {
+      iterator.display();
+    }
+  }
 }
 
 console.log("Завдання 1 ====================================");
 // Після виконання розкоментуйте код нижче
 
 // Створюємо об'єкт Article з назвою "Навчальна стаття"
-// const article = new Article("Навчальна стаття");
+const article = new Article("Навчальна стаття");
 
 // Додаємо повідомлення до статті
-// article.addElement(new Message("Дуже корисна стаття"));
-// article.addElement(new Message("Дякую за чудовий матеріал!"));
+article.addElement(new Message("Дуже корисна стаття"));
+article.addElement(new Message("Дякую за чудовий матеріал!"));
 
 // Додаємо вкладене повідомлення до першого повідомлення в статті
-// article.elements[0].addElement(new Message("Відповідь: Згоден!"));
+article.elements[0].addElement(new Message("Відповідь: Згоден!"));
 
 // Виводимо інформацію про статтю та всі її вкладені елементи
-// article.display();
+article.display();
 
 // Виводимо масив вкладених елементів статті
-// console.log(article.elements);
+console.log(article.elements);
 
 // Муха (Flyweight) — це патерн програмування, основна ідея якого полягає в тому, щоб спільно використовувати об'єкт-одиночка
 // замість створення окремих унікальних об'єктів для кожного випадку використання
 
 // Клас Group. Він використовує шаблон "Одиночка" та відповідає за створення груп товарів.
-// Створюємо приватне статичне поле #groups використовується для зберігання усіх створених груп. Має початкове значени: пустий об'єкт
-//Об'єкт використовується для зберігання груп, де ключ - це назва групи, а значення - екземпляр групи.
-
-// Створюмєо конструктор класу, який приймає назву групи як аргумент та ініціалізує поле this.name.
-
-// Створюємо статичний метод create, який приймає назву групи name як аргумент.
-// Метод завжди повертає екземпляр групи з вказаною назвою.
-// Перевірка чи група з такою назвою ще не була створена
-// то вона створюється та зберігається в полі #groups.
-// в кінці повертає #groups[name]
-
-// Клас Product відповідає за створення продуктів.
-// Створюємо конструктор класу, який приймає назву продукту name та групу group як аргументи та ініціалізує відповідні поля.
-
-// Робимо метод display, який виводить інформацію про продукт в консоль Продукт: ${this.name}, Група: ${this.group.name}.
-
+class Group {
+  static #groups = {};
+  constructor(name) {
+    this.name = name;
+  }
+  static create(name) {
+    if (!Object.hasOwn(this.#groups, name)) {
+      this.#groups[name] = new Group(name);
+    }
+    return this.#groups[name];
+  }
+}
+class Product {
+  constructor(name, group) {
+    this.name = name;
+    this.group = group;
+  }
+  display() {
+    console.log(`Продукт: ${this.name}, Група: ${this.group.name}.`);
+  }
+}
 console.log("Завдання 2 ====================================");
 // Після виконання розкоментуйте код нижче
 
 // Створення груп за допомогою методу Group.create. Цей метод гарантує, що кожна група з унікальною назвою буде створена лише один раз.
-// const electronics = Group.create("Електроніка");
-// const books = Group.create("Книги");
-// const electronics2 = Group.create("Електроніка");
+const electronics = Group.create("Електроніка");
+const books = Group.create("Книги");
+const electronics2 = Group.create("Електроніка");
 
 // Виведення груп в консоль. Ми бачимо, що electronics та electronics2 - це один і той же об'єкт.
-// console.log(electronics, books, electronics2);
-// console.log(electronics === electronics2); // true
+console.log(electronics, books, electronics2);
+console.log(electronics === electronics2); // true
 
 // Створення продуктів. Кожен продукт належить до певної групи.
-// const product1 = new Product("Ноутбук", electronics);
-// const product2 = new Product("Навушники", electronics);
-// const product3 = new Product("Воно", books);
-// const product4 = new Product("Смартфон", Group.create("Електроніка")); // тут створюється нова група або використовується вже створена
+const product1 = new Product("Ноутбук", electronics);
+const product2 = new Product("Навушники", electronics);
+const product3 = new Product("Воно", books);
+const product4 = new Product("Смартфон", Group.create("Електроніка")); // тут створюється нова група або використовується вже створена
 
 // Виведення продуктів в консоль.
-// product1.display();
-// product2.display();
-// product3.display();
-// product4.display();
+product1.display();
+product2.display();
+product3.display();
+product4.display();
 
 // Перевірка, чи належать два продукти до однієї групи.
-// console.log(product1.group === product4.group); // true
+console.log(product1.group === product4.group); // true
 
 // Фільтрація продуктів за групою. В даному випадку виводяться тільки продукти групи "Електроніка".
-// const list = [product1, product2, product3, product4].filter(
-//   (product) => product.group === Group.create("Електроніка")
-// );
+const list = [product1, product2, product3, product4].filter(
+  (product) => product.group === Group.create("Електроніка")
+);
 
-// console.log(list); // виводиться список продуктів, що належать до групи "Електроніка"
+console.log(list); // виводиться список продуктів, що належать до групи "Електроніка"
 
 // Шаблонний метод (Template Method) — це патерн програмування, який визначає загальну структуру алгоритму, залишаючи певні кроки реалізації підкласам.
 // Клас-шаблон визначає основну логіку алгоритму, а підкласи можуть змінювати або розширювати окремі кроки.
 
 // Клас TeaMaker відповідає за загальні дії, необхідні для приготування чаю.
 class TeaMaker {
-  // Робимо метод makeTea, який викликає всі кроки приготування чаю по черзі boilWater, addTeaLeaves, #steepTea,
-  // pourIntoCup, addCondiments, serveTea.
-  // Робимо метод boilWater, який відповідає за кип'ятіння води та виводить в консоль Кип'ятимо воду....
-  // Робимо метод addTeaLeaves, який відповідає за додавання чайних листків та виводить в консоль Додаємо чайні листки....
+  makeTea() {
+    this.boilWater();
+    this.addTeaLeaves();
+    this.steepTea();
+    this.pourIntoCup();
+    this.addCondiments();
+    this.serveTea();
+  }
+  boilWater() {
+    console.log("Кип'ятимо воду....");
+  }
+  addTeaLeaves() {
+    console.log("Додаємо чайні листки....");
+  }
+  steepTea() {
+    console.log("Кип'ятимо воду....");
+  }
+  pourIntoCup() {
+    console.log("Кип'ятимо воду....");
+  }
+  addCondiments() {
+    console.log("Кип'ятимо воду....");
+  }
+  serveTea() {
+    console.log("Кип'ятимо воду....");
+  }
   // Робимо метод steepTea, що відповідає за заварювання чаю та виводить в консоль Заварюємо чай....
   // Робимо метод pourIntoCup, що відповідає за переливання чаю в чашку та виводить в консоль Переливаємо чай в чашку....
   // Робимо метод addCondiments, що залишається пустим і може бути перевизначений у підкласах.
@@ -340,7 +390,7 @@ class EmailMessenger {
   // Створюємо статичний метод sendMessage який приймає один параметр - message, та виводить в консоль `Відправлено Email: ${message}`
 }
 
-console.log("Завдання 7 ====================================");
+console.log("Завдання 8 ====================================");
 // Після виконання розкоментуйте код нижче
 
 // Створюємо двох користувачів - John та Jane - які відправляють повідомлення за допомогою різних месенджерів.
