@@ -141,146 +141,168 @@ class TeaMaker {
     console.log("Додаємо чайні листки....");
   }
   steepTea() {
-    console.log("Кип'ятимо воду....");
+    console.log("Заварюємо чай....");
   }
   pourIntoCup() {
-    console.log("Кип'ятимо воду....");
+    console.log("Переливаємо чай в чашку....");
   }
-  addCondiments() {
-    console.log("Кип'ятимо воду....");
-  }
+  addCondiments() {}
   serveTea() {
-    console.log("Кип'ятимо воду....");
+    console.log("Чай подається!");
   }
-  // Робимо метод steepTea, що відповідає за заварювання чаю та виводить в консоль Заварюємо чай....
-  // Робимо метод pourIntoCup, що відповідає за переливання чаю в чашку та виводить в консоль Переливаємо чай в чашку....
-  // Робимо метод addCondiments, що залишається пустим і може бути перевизначений у підкласах.
-  // Робимо метод serveTea, що відповідає за подачу чаю та виводить в консоль Чай подається!.
 }
 
 // Клас GreenTeaMaker є підкласом класу TeaMaker та додає інгредієнти для зеленого чаю.
 class GreenTeaMaker extends TeaMaker {
-  // Робимо метод addCondiments, який виводить в консоль Додаємо мед, щоб приготувати зелений чай...
+  addCondiments() {
+    console.log("Додаємо мед, щоб приготувати зелений чай...");
+  }
 }
 
 // Клас BlackTeaMaker є підкласом класу TeaMaker та додає інгредієнти для чорного чаю.
 class BlackTeaMaker extends TeaMaker {
-  // Робимо метод addCondiments, який виводить в консоль Додаємо мед, щоб приготувати чорний чай...
+  addCondiments() {
+    console.log("Додаємо мед, щоб приготувати чорний чай...");
+  }
 }
 
 console.log("Завдання 3 ====================================");
 // Після виконання розкоментуйте код нижче
 
 // Створюємо екземпляри класів GreenTeaMaker та BlackTeaMaker.
-// const greenTeaMaker = new GreenTeaMaker();
-// greenTeaMaker.makeTea();
+const greenTeaMaker = new GreenTeaMaker();
+greenTeaMaker.makeTea();
 
-// const blackTeaMaker = new BlackTeaMaker();
-// blackTeaMaker.makeTea();
+const blackTeaMaker = new BlackTeaMaker();
+blackTeaMaker.makeTea();
 
 // Відвідувач (Visitor) — це патерн програмування, який дозволяє додавати нові операції до групи об'єктів, не змінюючи самі об'єкти.
 // Відвідувач розділяє алгоритм від представлення об'єктів, що дозволяє додавати нові операції, не змінюючи класи цих об'єктів.
 
 // Клас Letter представляє об'єкт листа з назвою і текстом.
 class Letter {
-  // Створіть конструктор, що приймає назву листа title та його текстовий вміст text та ініціалізує відповідні поля
-  // Записуємо аргумент title в властивість title, яка представляє назву листа в класі
-  // Записуємо аргумент text в властивість text, яка представляє  текстовий вміст листа в класі
+  constructor(title, text) {
+    this.title = title;
+    this.text = text;
+  }
 }
 
 // Клас Picture представляє об'єкт зображення з назвою та розміром
 class Picture {
-  // Створіть конструктор, що приймає назву зображення title та його розмір size та ініціалізує відповідні поля
-  // Записуємо аргумент title в властивість title, яка представляє назву зображення в класі
-  //  Записуємо аргумент size в властивість size, яка представляє розмір зображення
+  constructor(title, size) {
+    this.title = title;
+    this.size = size;
+  }
 }
 
 // Клас Movie представляє об'єкт відеофільму з назвою та тривалістю
 class Movie {
-  // Конструктор приймає назву відеофільму title та його тривалість duration та ініціалізує відповідні поля
-  // Записуємо аргумент title в властивість title, яка представляє назву відеофільму в класі
-  // Записуємо аргумент duration в властивість duration, яка представляє тривалість відеофільму
+  constructor(title, duration) {
+    this.title = title;
+    this.duration = duration;
+  }
 }
 
 // Клас Portfolio представляє колекцію об'єктів, таких як листи, зображення та відеофільми
 class Portfolio {
-  // Створимо властивість elements, яка представляє список об'єктів в портфоліо, початкове значення пустий масив
-  // Зрібть метод addElement, що приймає element та додає об'єкт до портфоліо
-  // Зробіть методи readLetter, що приймає letter та виводить в консоль: "Лист: ${letter.title}, Розмір: ${letter.text.length} символів"
-  // Зробіть методи readPicture, що приймає letter та виводить в консоль: "Картина: ${picture.title}, Розмір: ${picture.size} KB"
-  // Зробіть методи readMovie, що приймає letter та виводить в консоль: "Фільм: ${movie.title}, Тривалість: ${movie.duration} хвилин"
-  // Зробіть метод readElements, який читає інформацію про всі об'єкти в портфоліо в залежності від того якого класу елемент викликає readLetter, readPicture, readMovie
-  // Робимо ітерацію for де є змінна element в яку приходять елементи this.elements
-  // Через instanceof по черзі через if та instanceof перевіряємо відношення element до кожного класу.
-  // Якщо element є елементом певного класу, то викликати відповідний метод для читання об'єкту певного класу
+  elements = [];
+  addElement(element) {
+    this.elements.push(element);
+  }
+  readLetter(letter) {
+    console.log(
+      `Лист: ${letter.title}, Розмір: ${letter.text.length} символів`
+    );
+  }
+  readPicture(picture) {
+    console.log(`Картина: ${picture.title}, Розмір: ${picture.size} KB`);
+  }
+  readMovie(movie) {
+    console.log(`Фільм: ${movie.title}, Тривалість: ${movie.duration} хвилин`);
+  }
+  readElements() {
+    for (const el of this.elements) {
+      if (el instanceof Letter) {
+        this.readLetter(el);
+      }
+      if (el instanceof Picture) {
+        this.readPicture(el);
+      }
+      if (el instanceof Movie) {
+        this.readMovie(el);
+      }
+    }
+  }
 }
 
 console.log("Завдання 4 ====================================");
 // Після виконання розкоментуйте код нижче
 
 // Створюємо екземпляр класу Portfolio
-// const myPortfolio = new Portfolio();
+const myPortfolio = new Portfolio();
 
 // Створюємо різні об'єкти
-// const letter = new Letter("My Letter", "Hello, this is a letter.");
-// const picture = new Picture("My Picture", 2048);
-// const movie = new Movie("My Movie", 120);
+const letter = new Letter("My Letter", "Hello, this is a letter.");
+const picture = new Picture("My Picture", 2048);
+const movie = new Movie("My Movie", 120);
 
 // Додаємо об'єкти до портфоліо
-// myPortfolio.addElement(letter);
-// myPortfolio.addElement(picture);
-// myPortfolio.addElement(movie);
+myPortfolio.addElement(letter);
+myPortfolio.addElement(picture);
+myPortfolio.addElement(movie);
 
 // Виводимо всі об'єкти в портфоліо
-// console.log(myPortfolio.elements);
+console.log(myPortfolio.elements);
 
 // Читаємо інформацію про всі об'єкти в портфоліо
-// myPortfolio.readElements();
+myPortfolio.readElements();
 
 // Адаптер (Adapter) — це патерн програмування, який дозволяє об'єктам з інтерфейсом несумісним з іншими об'єктами працювати разом,
 // перетворюючи інтерфейс одного об'єкта на інтерфейс, очікуваний іншим об'єктом.
 
 // Клас BankTransfer представляє собою систему для здійснення банківських переказів
 class BankTransfer {
-  // Зробіть метод initiateTransfer, який приймає amount та відповідає за ініціювання банківського переказу
-  // Він приймає суму переказу як параметр
-  // Для ініціювання банківського переказу спершу обчислюється сума з урахуванням комісії calculatedAmount = this.calculateFee(amount)
-  // Виводимо інформацію про ініціювання банківського переказу Ініціюємо банківський переказ: $${calculatedAmount}
-  // Зробіть метод calculateFee, який відповідає за розрахунок комісії за переказ
-  // Він приймає amount переказу як параметр та повертає число після розрахування комісії
-  // Логіка розрахунку комісії за переказ amount * 1.02
-  // Припустимо, комісія становить 2% від суми переказу
+  initiateTransfer(amount) {
+    this.amount = amount;
+    const calculatedAmount = this.calculateFee(amount);
+    console.log(`Ініціюємо банківський переказ: $${calculatedAmount}`);
+  }
+  calculateFee(amount) {
+    return amount * 1.02;
+  }
 }
 
 // Клас WalletTransfer представляє собою систему для здійснення переказів з гаманця
 class WalletTransfer {
-  // Створіть метод processTransfer, який відповідає за здійснення переказу з гаманця
-  // Він приймає суму переказу як параметр
-  // Виводимо інформацію про здійснення переказу з гаманця Здійснюємо переказ з гаманця: $${amount}
+  processTransfer(amount) {
+    console.log(`Здійснюємо переказ з гаманця: $${amount}`);
+  }
 }
 
 // Клас TransferAdapter виступає адаптером, який дозволяє нам користуватися
 // методами WalletTransfer так, ніби це BankTransfer.
 class TransferAdapter {
-  // Робимо конструктор, що приймає об'єкт transferSystem типу WalletTransfer
-  // Зберігаємо посилання на об'єкт WalletTransfer у властивості transferSystem
-  // Робимо метод initiateTransfer, який адаптує API WalletTransfer до API BankTransfer.
-  // Він приймає amount як аргумент та повертає результат виконання переказу.
-  // Викликаємо допоміжний метод calculateFee для обчислення комісії за переказ та результат записуєм в константу calculatedAmount
-  // Викликаємо метод processTransfer об'єкту WalletTransfer з calculatedAmount.
-  // В результаті повертаємо результат виконання переказу.
-  // Створюємо метод calculateFee, що приймає amount та обчислює суму комісії за переказ amount * 1.2, засновуючись на вхідній сумі.
-  // Повертаємо amount * 1.2
+  constructor(transferSystem) {
+    this.transferSystem = transferSystem;
+  }
+  initiateTransfer(amount) {
+    this.amount = amount;
+    const calculatedAmount = this.calculateFee(amount);
+    this.transferSystem.processTransfer(calculatedAmount);
+  }
+  calculateFee(amount) {
+    return amount * 1.02;
+  }
 }
 console.log("Завдання 5 ====================================");
 // Після виконання розкоментуйте код нижче
 
 // Створимо екземпляри BankTransfer
-// const purchase1 = new BankTransfer();
-// purchase1.initiateTransfer(1000);
+const purchase1 = new BankTransfer();
+purchase1.initiateTransfer(1000);
 
-// const purchase2 = new BankTransfer();
-// purchase2.initiateTransfer(10);
+const purchase2 = new BankTransfer();
+purchase2.initiateTransfer(10);
 
 // Стратегія (Strategy) — це патерн програмування, який дозволяє визначати різні алгоритми та забезпечує можливість обміну їх під час виконання програми.
 
