@@ -308,88 +308,119 @@ purchase2.initiateTransfer(10);
 
 // Клас Basket представляє кошик для покупок з певною стратегією знижки
 class Basket {
-  // Створимо конструктор приймає, що стратегію знижки discountPlan як параметр
-  // Властивість discountPlan отримує значення стратегії знижки, яке було передано конструктору
-  // Створюємо новий пустий масив для зберігання товарів (goods) в кошику
-  // Робимо метод addGood, що приймає один параметр - good, який потрібно додати до масиву
-  // Додаємо новий товар в масив товарів
-  // Робимо метод calculateTotalPrice, що розраховує загальну вартість товарів в кошику з урахуванням знижки
-  // За допомогою метода reduce ми сумуємо вартість всіх товарів в масиві
-  // Застосовуємо знижку до загальної вартості за допомогою метода applyDiscount нашого об'єкта discountPlan
+  goods = [];
+  constructor(discountPlan) {
+    this.discountPlan = discountPlan;
+  }
+  addGood(good) {
+    this.goods.push(good);
+  }
+  calculateTotalPrice() {
+    const totalPrice = this.goods.reduce((acc, cur) => {
+      acc += cur.price;
+      return acc;
+    }, 0);
+    return this.discountPlan.applyDiscount(totalPrice);
+  }
 }
 
 // Клас RegularDiscountPlan: стратегія знижки для постійних клієнтів
 class RegularDiscountPlan extends Basket {
-  // Робимо метод applyDiscount, що приймає ціну price як параметр
-  // Повертає ціну з урахуванням знижки в 10% price * 0.9
+  applyDiscount(price) {
+    return price * 0.9;
+  }
 }
 
 //Клас VIPDiscountPlan: стратегія знижки для VIP клієнтів
 class VIPDiscountPlan extends Basket {
-  // Робимо метод applyDiscount, що приймає ціну price як параметр
-  // Повертає ціну з урахуванням знижки в 20% price * 0.8
+  applyDiscount(price) {
+    return price * 0.8;
+  }
 }
 
 // Клас NewClientDiscountPlan: стратегія знижки для нових клієнтів
 class NewClientDiscountPlan extends Basket {
-  // Робимо метод applyDiscount, що приймає ціну price як параметр
-  // Повертає ціну з урахуванням знижки в 5% price * 0.95
+  applyDiscount(price) {
+    return price * 0.95;
+  }
 }
 
 console.log("Завдання 6 ====================================");
 // Після виконання розкоментуйте код нижче
 
 // Створення нового екземпляру кошика зі стратегією знижки для нових клієнтів
-// const basket1 = new Basket(new NewClientDiscountPlan());
+const basket1 = new Basket(new NewClientDiscountPlan());
 
 // Додавання товарів до кошика
-// basket1.addGood({ name: "Product 1", price: 100 });
-// basket1.addGood({ name: "Product 2", price: 50 });
+basket1.addGood({ name: "Product 1", price: 100 });
+basket1.addGood({ name: "Product 2", price: 50 });
 
 // Розрахунок і виведення загальної вартості товарів з урахуванням знижки
-// console.log(basket1.calculateTotalPrice());
+console.log(basket1.calculateTotalPrice());
 
 // Ітератор (Iterator) — це патерн програмування, який надає спосіб послідовного доступу до елементів колекції без розкриття його внутрішньої структури.
 
 // Клас Employee відповідає за створення об'єктів працівників. Кожен працівник має своє ім'я, посаду та зарплату.
 class Employee {
-  // Створимо конструктор, що використовується для ініціалізації об'єктів класу. Він приймає три параметри: name, position та salary.
-  // Передаємо аргумент в this.name, this.position та this.salary - це властивості класу. Вони ініціалізуються значеннями, переданими в конструктор.
+  constructor(name, position, salary) {
+    this.name = name;
+    this.position = position;
+    this.salary = salary;
+  }
 }
 
 // Клас EmployeeGroup використовується для створення груп працівників. Він містить список працівників.
 class EmployeeGroup {
-  // Задаємо властивість employees, яке призначене для зберігання працівників. Він ініціалізується як порожній масив.
-  // Робимо метод addEmployee, який додає працівника до групи. Він приймає один параметр employee - об'єкт типу Employee.
-  // Цей метод додає об'єкт працівника до масиву employees, використовуючи метод push.
+  employees = [];
+
+  addEmplopyee(employee) {
+    this.employees.push(employee);
+  }
 }
 
 // Клас EmployeeIterator відповідає за ітерацію по групі працівників.
 class EmployeeIterator {
-  // Робимо властивість #employees - це масив працівників, по якому ми будемо ітерувати. Він ініціалізується у конструкторі.
-  // Робимо властивість #currentIndex, яка вказує на поточну позицію в масиві працівників. Він ініціалізується зі значенням 0.
-  // Конструктор приймає один параметр employeeGroup - об'єкт типу EmployeeGroup. Він ініціалізує властивість #employees this.#employees = employeeGroup.employees.
-  // Створимо метод #hasNext, який перевіряє, чи є в масиві працівників наступний елемент для ітерації.
-  // Він повертає true, якщо поточний індекс менший за довжину масиву, і false в протилежному випадку.
-  // Робимо метод next, який повертає наступного працівника в масиві та збільшує #currentIndex на 1 якщо є наступний елемент, інакше повертає null.
-  // Робимо метод list, який використовується для виведення імен всіх працівників в групі.
+  #employees;
+  #contentIndex = 0;
+  constructor(employeeGtoup) {
+    this.#employees = employeeGtoup.employees;
+  }
+  #hasNext() {
+    if (this.#contentIndex < this.#employees.length) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  next() {
+    if (this.#hasNext()) {
+      this.#contentIndex++;
+    } else {
+      return null;
+    }
+  }
+  list() {
+    this.#employees.forEach((element) => {
+      console.log(element.name);
+    });
+  }
 }
 
 console.log("Завдання 7 ====================================");
 // Після виконання розкоментуйте код нижче
 
 // Створюємо нову групу працівників.
-// const employeeGroup = new EmployeeGroup();
+const employeeGroup = new EmployeeGroup();
 
 // Додаємо нових працівників до групи, використовуючи метод addEmployee.
-// employeeGroup.addEmployee(new Employee("John Doe", "Manager", 5000));
-// employeeGroup.addEmployee(new Employee("Jane Smith", "Developer", 4000));
+employeeGroup.addEmployee(new Employee("John Doe", "Manager", 5000));
+employeeGroup.addEmployee(new Employee("Jane Smith", "Developer", 4000));
 
 // Створюємо новий ітератор для групи працівників.
-// const employeeIterator = new EmployeeIterator(employeeGroup);
+const employeeIterator = new EmployeeIterator(employeeGroup);
 
 // Виводимо імена всіх працівників в групі, використовуючи метод list.
-// console.log(employeeIterator.list());
+console.log(employeeIterator.list());
 
 // Медіатор (Mediator) — це патерн програмування, який визначає об'єкт, який інкапсулює взаємодію між групою об'єктів. Медіатор сприяє слабкій залежності між цими об'єктами,
 // дозволяючи спілкуватися з ними через централізовану точку.
