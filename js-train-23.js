@@ -362,7 +362,9 @@ console.log(basket1.calculateTotalPrice());
 
 // Клас Employee відповідає за створення об'єктів працівників. Кожен працівник має своє ім'я, посаду та зарплату.
 class Employee {
+  // Створимо конструктор, що використовується для ініціалізації об'єктів класу. Він приймає три параметри: name, position та salary.
   constructor(name, position, salary) {
+    // Передаємо аргумент в this.name, this.position та this.salary - це властивості класу. Вони ініціалізуються значеннями, переданими в конструктор.
     this.name = name;
     this.position = position;
     this.salary = salary;
@@ -371,38 +373,47 @@ class Employee {
 
 // Клас EmployeeGroup використовується для створення груп працівників. Він містить список працівників.
 class EmployeeGroup {
+  // Задаємо властивість employees, яке призначене для зберігання працівників. Він ініціалізується як порожній масив.
   employees = [];
 
-  addEmplopyee(employee) {
+  // Робимо метод addEmployee, який додає працівника до групи. Він приймає один параметр employee - об'єкт типу Employee.
+  addEmployee(employee) {
+    // Цей метод додає об'єкт працівника до масиву employees, використовуючи метод push.
     this.employees.push(employee);
   }
 }
 
 // Клас EmployeeIterator відповідає за ітерацію по групі працівників.
 class EmployeeIterator {
-  #employees;
-  #contentIndex = 0;
-  constructor(employeeGtoup) {
-    this.#employees = employeeGtoup.employees;
+  // Робимо властивість #employees - це масив працівників, по якому ми будемо ітерувати. Він ініціалізується у конструкторі.
+  #employees = [];
+  // Робимо властивість #currentIndex, яка вказує на поточну позицію в масиві працівників. Він ініціалізується зі значенням 0.
+  #currentIndex = 0;
+
+  // Конструктор приймає один параметр employeeGroup - об'єкт типу EmployeeGroup. Він ініціалізує властивість #employees this.#employees = employeeGroup.employees.
+  constructor(employeeGroup) {
+    this.#employees = employeeGroup.employees;
   }
+
+  // Створимо метод #hasNext, який перевіряє, чи є в масиві працівників наступний елемент для ітерації.
+  // Він повертає true, якщо поточний індекс менший за довжину масиву, і false в протилежному випадку.
   #hasNext() {
-    if (this.#contentIndex < this.#employees.length) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.#currentIndex < this.#employees.length;
   }
+
+  // Робимо метод next, який повертає наступного працівника в масиві та збільшує #currentIndex на 1 якщо є наступний елемент, інакше повертає null.
   next() {
     if (this.#hasNext()) {
-      this.#contentIndex++;
-    } else {
-      return null;
+      const employee = this.#employees[this.#currentIndex];
+      this.#currentIndex++;
+      return employee;
     }
+    return null;
   }
+
+  // Робимо метод list, який використовується для виведення імен всіх працівників в групі.
   list() {
-    this.#employees.forEach((element) => {
-      console.log(element.name);
-    });
+    return this.#employees.map((employee) => employee.name);
   }
 }
 
@@ -427,31 +438,43 @@ console.log(employeeIterator.list());
 
 // Клас User відповідає за користувача, який може відправляти повідомлення.
 class User {
-  // Створюємо конструктор класу, який приймає name та messenger як параметри та ініціалізує їх
-  // Робимо метод sendMessage який відправляє повідомлення за допомогою відповідного месенджера, та виводить в консоль `${this.name} відправив повідомлення ${message}`.
-  // Він приймає один параметр - message - повідомлення, яке потрібно відправити за допомогою методу sendMessage.
-  // Метод receiveMessage приймає аргументи user,message та виводить в консоль ${this.name} отримав повідомлення від ${user.name}: ${message}
+  constructor(name, messenger) {
+    this.name = name;
+    this.messenger = messenger;
+  }
+  sendMessage(message) {
+    console.log(`${this.name} відправив повідомлення ${message}`);
+  }
+  receiveMessage(user, message) {
+    console.log(
+      `${this.name} отримав повідомлення від ${user.name}: ${message}`
+    );
+  }
 }
 
 // Клас SMSMessenger відповідає за відправку повідомлень за допомогою SMS.
 class SMSMessenger {
-  // Створюємо статичний метод sendMessage який приймає один параметр - message, та виводить в консоль `Відправлено SMS: ${message}`
+  static sendMessage(message) {
+    console.log(`Відправлено SMS: ${message}`);
+  }
 }
 
 // Клас EmailMessenger відповідає за відправку повідомлень за допомогою Email.
 class EmailMessenger {
-  // Створюємо статичний метод sendMessage який приймає один параметр - message, та виводить в консоль `Відправлено Email: ${message}`
+  static sendMessage(message) {
+    console.log(`Відправлено Email: ${message}`);
+  }
 }
 
 console.log("Завдання 8 ====================================");
 // Після виконання розкоментуйте код нижче
 
 // Створюємо двох користувачів - John та Jane - які відправляють повідомлення за допомогою різних месенджерів.
-// const john = new User("John", SMSMessenger);
-// const jane = new User("Jane", EmailMessenger);
+const john = new User("John", SMSMessenger);
+const jane = new User("Jane", EmailMessenger);
 
 // John відправляє повідомлення за допомогою SMS.
-// john.sendMessage("Привіт!"); // Виведе: Відправлено SMS: [John]: Привіт!
+john.sendMessage("Привіт!"); // Виведе: Відправлено SMS: [John]: Привіт!\\
 
 // Jane відправляє повідомлення за допомогою Email.
-// jane.sendMessage("Привіт!"); // Виведе: Відправлено Email: [Jane]: Привіт!
+jane.sendMessage("Привіт!"); // Виведе: Відправлено Email: [Jane]: Привіт!
