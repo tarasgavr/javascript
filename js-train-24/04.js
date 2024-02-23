@@ -16,7 +16,7 @@ function task4() {
       }, 2000);
     });
   }
-  const test = Promise.allSettled([promise1, promise2]);
+  const test = Promise.all([promise1, promise2]);
   test
     .then((data) => {
       console.log(data);

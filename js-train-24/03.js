@@ -27,13 +27,6 @@ function task3() {
     .finally(() => {
       console.log("Завдання 3 завершено");
     });
-  promise2()
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
 }
 
 // Викликаємо функцію task3
