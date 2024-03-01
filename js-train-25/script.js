@@ -1,7 +1,12 @@
 //Завдання 3
 async function getDataFromUrl(URL) {
   try {
-    fetch(URL, {});
+    const res = await fetch(URL, { method: "GET" });
+    if (res.ok) {
+      const data = await res.json();
+      console.log(data);
+    } else {
+    }
   } catch (error) {}
 }
 // Асинхронна функція getDataFromUrl, яка приймає один параметр - URL
@@ -16,8 +21,8 @@ async function getDataFromUrl(URL) {
 // Виводимо помилки в консоль якщо вони є
 
 // Розкоментуйте після виконання завданння
-// console.log("Завдання: 3 ==============================");
-// getDataFromUrl("https://swapi.dev/api/people/1");
+console.log("Завдання: 3 ==============================");
+getDataFromUrl("https://swapi.dev/api/people/1");
 
 //Завдання 4
 // Асинхронна функція, яка приймає три параметри - URL, дані для відправки та токен авторизації, маємо аргумент url, data, authToken
