@@ -32,11 +32,17 @@ async function* gatherData() {
     yield dbData;
     const apiData = await getDataFromAPI();
     yield apiData;
-    const cacheDataData = await getDataFromCache();
-    yield cacheDataData;
+    const cacheData = await getDataFromCache();
+    yield cacheData;
   } catch (error) {
     console.log(error);
   }
+}
+async function displayData() {
+  const gather = gatherData();
+  console.log((await gather.next()).value);
+  console.log((await gather.next()).value);
+  console.log((await gather.next()).value);
 }
 // Оголошуємо асинхронну функцію-генератор з ім'ям gatherData
 // Використовуємо try для обробки помилок

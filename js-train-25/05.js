@@ -1,13 +1,16 @@
 //Завдання 5.
 async function* asyncGenerator() {
   let i = 0;
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  yield "Counter value";
+  while (true) {
+    await new Promise((resolve, reject) => setTimeout(resolve, 1000));
+    yield i;
+    i++;
+  }
 }
 const gen = asyncGenerator();
 async function printFiveItems() {
-  for (let item of gen) {
-    console.log(item);
+  for await (let item of gen) {
+    console.log(`Counter value: ${item}`);
     if (item === 4) {
       break;
     }
