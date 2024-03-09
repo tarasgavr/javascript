@@ -1,0 +1,7 @@
+@use '../../lib/services.scss' as s;
+form {
+  display: flex;
+  flex-direction: column;
+  padding: s.space(4);
+  gap: s.space(2);
+}

@@ -3,9 +3,37 @@
 в якому міститься код, котрий буде віддаватися по шляху (PATH) - "/"
  }}
 
-<div >
-  Hello world!
-</div>
+<main>
+  <form action='/user-create' method='get'>
+    <div class='form-caption'>Створити користувача</div>
+    <label for='user-email' class='form-label'>Email
+      <input
+        type='email'
+        name='user-email'
+        placeholder='Email'
+        class='form-input'
+      />
+    </label>
+    <label for='user-login' class='form-label'>Логін
+      <input
+        type='email'
+        name='user-login'
+        placeholder='Логін'
+        class='form-input'
+      />
+    </label>
+    <label for='user-password' class='form-label'>Пароль
+      <input
+        type='email'
+        name='user-password'
+        placeholder='Пароль'
+        class='form-input'
+      />
+    </label>
+    <button class='form-button'>Створити</button>
+    <div class='form-caption'>Список користувачів</div>
+  </form>
+</main>
 
 {{! 
     Цей код містить лише те, що буде виводитись в <body>
