@@ -1,8 +1,16 @@
-form {
+.form {
   display: flex;
   flex-direction: column;
   padding: 16px;
   gap: 8px;
+}
+.form__caption {
+  border-bottom: 1px solid #000;
+  padding-bottom: 16px;
+}
+.form__input {
+  border: 1px solid #000;
+  padding: 8px;
 }
 
 /*# sourceMappingURL=style.css.map */

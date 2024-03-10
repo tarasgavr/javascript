@@ -1,37 +1,37 @@
 {{! 
 Це код container файлу для index сторінки, 
-в якому міститься код, котрий буде віддаватися по шляху (PATH) - "/"
+в якому міститься код, котрий буде віддаватися по шляху (PATH) __ "/"
  }}
 
 <main>
-  <form action='/user-create' method='get'>
-    <div class='form-caption'>Створити користувача</div>
-    <label for='user-email' class='form-label'>Email
+  <form class='form' action='/user-create' method='get'>
+    <div class='form__caption'>Створити користувача</div>
+    <label for='user__email' class='form__label'>Email
       <input
         type='email'
-        name='user-email'
+        name='user__email'
         placeholder='Email'
-        class='form-input'
+        class='form__input'
       />
     </label>
-    <label for='user-login' class='form-label'>Логін
+    <label for='user__login' class='form__label'>Логін
       <input
         type='email'
-        name='user-login'
+        name='user__login'
         placeholder='Логін'
-        class='form-input'
+        class='form__input'
       />
     </label>
-    <label for='user-password' class='form-label'>Пароль
+    <label for='user__password' class='form__label'>Пароль
       <input
         type='email'
-        name='user-password'
+        name='user__password'
         placeholder='Пароль'
-        class='form-input'
+        class='form__input'
       />
     </label>
-    <button class='form-button'>Створити</button>
-    <div class='form-caption'>Список користувачів</div>
+    <button class='form__button'>Створити</button>
+    <div class='form__caption'>Список користувачів</div>
   </form>
 </main>
 

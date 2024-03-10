@@ -1,7 +1,15 @@
 @use '../../lib/services.scss' as s;
-form {
+.form {
   display: flex;
   flex-direction: column;
   padding: s.space(4);
   gap: s.space(2);
+  &__caption {
+    border-bottom: 1px solid #000;
+    padding-bottom: s.space(4);
+  }
+  &__input {
+    border: 1px solid #000;
+    padding: s.space(2);
+  }
 }
