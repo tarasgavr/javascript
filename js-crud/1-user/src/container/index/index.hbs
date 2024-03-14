@@ -1,43 +1,53 @@
-{{! 
-Це код container файлу для index сторінки, 
-в якому міститься код, котрий буде віддаватися по шляху (PATH) __ "/"
- }}
-
 <main>
-  <div class='form'>
-  </div>
-  <form action='/user-create' method='get'>
-    <h1 class='form__caption'>Створити користувача</h1>
-    <label for='user__email' class='form__label'>Email
-      <input
-        type='email'
-        name='user__email'
-        placeholder='Email'
-        class='form__input'
-      />
-    </label>
-    <label for='user__login' class='form__label'>Логін
-      <input
-        type='email'
-        name='user__login'
-        placeholder='Логін'
-        class='form__input'
-      />
-    </label>
-    <label for='user__password' class='form__label'>Пароль
-      <input
-        type='email'
-        name='user__password'
-        placeholder='Пароль'
-        class='form__input'
-      />
-    </label>
-    <button class='form__button'>Створити</button>
-    <h1 class='form__caption'>Список користувачів</h1>
-  </form>
+  <section>
+    <form class='form' action='/user-create' method='post'>
+      <h1 class='form__caption'>Створити користувача</h1>
+      <label for='user__login' class='form__label'>Логін
+        <input
+          type='text'
+          name='user__login'
+          placeholder='Логін'
+          class='form__input'
+        />
+      </label>
+      <label for='user__email' class='form__label'>Email
+        <input
+          type='email'
+          name='user__email'
+          placeholder='Email'
+          class='form__input'
+        />
+      </label>
+      <label for='user__password' class='form__label'>Пароль
+        <input
+          type='password'
+          name='user__password'
+          placeholder='Пароль'
+          class='form__input'
+        />
+      </label>
+      <button class='form__button'>Створити</button>
+    </form>
+  </section>
+  <section>
+    <form class='form'>
+      <h1 class='form__caption'>Список користувачів</h1>
+      {{#with data.users}}
+        {{#if isEmpty}}
+          <div class='form-title'>Порожній</div>
+        {{else}}
+          <ul>
+            {{#each list}}
+              <li>{{login}}
+                |
+                {{email}}
+                | (<a href='/user-create'>Видалити</a>) | (<a
+                  href='/user-create'
+                >Оновити</a>)</li>
+            {{/each}}
+          </ul>
+        {{/if}}
+      {{/with}}
+    </form>
+  </section>
 </main>
-
-{{! 
-    Цей код містить лише те, що буде виводитись в <body>
-    Адже наш layout/default.hbs має вже структуру HTML
-}}

@@ -16,6 +16,7 @@
   &__input {
     border: 1px solid #000;
     padding: s.space(2);
+    margin-left: s.space(2);
   }
   &__button {
     display: block;
@@ -25,7 +26,6 @@
     padding: s.space(2);
   }
   &__link {
-    border: 1px solid #000;
     padding: s.space(2);
   }
 }
