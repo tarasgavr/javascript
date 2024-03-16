@@ -29,6 +29,9 @@ class User {
 
 // ↙️ тут вводимо шлях (PATH) до сторінки
 router.get('/', function (req, res) {
+  // const { login, email, password } = req.body
+  // const user = new User(login, email, password)
+  // User.addUser(user)
   const list = User.getUserList()
   // ↙️ cюди вводимо назву файлу з сontainer
   res.render('index', {
@@ -45,20 +48,13 @@ router.get('/', function (req, res) {
 })
 
 // ================================================================
-// router.get Створює нам один ентпоїнт
-// ↙️ тут вводимо шлях (PATH) до сторінки
 router.post('/user-create', function (req, res) {
-  // res.render генерує нам HTML сторінку
   const { login, email, password } = req.body
   const user = new User(login, email, password)
   User.addUser(user)
-  console.log(req.body)
-  // ↙️ cюди вводимо назву файлу з сontainer
   res.render('user-create', {
-    // вказуємо назву папки контейнера, в якій знаходяться наші стилі
     style: 'user-create',
   })
-  // ↑↑ сюди вводимо JSON дані
 })
 
 // Підключаємо роутер до бек-енду
