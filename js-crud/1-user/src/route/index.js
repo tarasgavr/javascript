@@ -10,6 +10,7 @@ class User {
     this.login = login
     this.email = email
     this.password = password
+    this.id = new Date().getTime()
   }
   static addUser = (user) => {
     this.#userList.push(user)
@@ -43,7 +44,6 @@ router.get('/', function (req, res) {
       },
     },
   })
-  // ↑↑ сюди вводимо JSON дані
 })
 // ================================================================
 router.post('/user-create', function (req, res) {
