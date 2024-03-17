@@ -31,17 +31,10 @@ class User {
   }
 }
 // ================================================================
-// router.get Створює нам один ентпоїнт
 
-// ↙️ тут вводимо шлях (PATH) до сторінки
 router.get('/', function (req, res) {
-  // const { login, email, password } = req.body
-  // const user = new User(login, email, password)
-  // User.addUser(user)
   const list = User.getUserList()
-  // ↙️ cюди вводимо назву файлу з сontainer
   res.render('index', {
-    // вказуємо назву папки контейнера, в якій знаходяться наші стилі
     style: 'index',
     data: {
       users: {
