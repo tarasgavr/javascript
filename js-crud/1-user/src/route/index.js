@@ -18,17 +18,23 @@ class User {
   static getUserList = () => {
     return this.#userList
   }
-  static deleteUser = (user) => {
+  static getUserById = (id) => {
+    this.#userList.find((element) => element.id === id)
+  }
+  static deleteUser = (id) => {
     const index = this.#userList.findIndex(
-      (value) => value === user,
+      (value) => value.id === id,
     )
     this.#userList.splice(index, 1)
   }
-  static updateUser = (user) => {
-    const index = this.#userList.findIndex(
-      (value) => value === user,
-    )
-    this.#userList.splice(index, 1)
+  static updateUser = (id, { email }) => {
+    const user = this.getUserById(id)
+    if (user) {
+      Object.assign(user, { email })
+      return true
+    } else {
+      return false
+    }
   }
 }
 // ================================================================
@@ -55,19 +61,18 @@ router.post('/user-create', function (req, res) {
   })
 })
 // ================================================================
-router.post('/user-delete', function (req, res) {
-  const { login, email, password } = req.body
-  const user = new User(login, email, password)
-  User.deleteUser(user)
+router.get('/user-delete', function (req, res) {
+  const { id } = req.query
+  User.deleteUser(id)
   res.render('user-delete', {
     style: 'user-delete',
   })
 })
 // ================================================================
 router.post('/user-update', function (req, res) {
-  const { login, email, password } = req.body
-  const user = new User(login, email, password)
-  User.updateUser(user)
+  const { id, email, password } = req.body
+  console.log(id)
+  User.updateUser(id, { email })
   res.render('user-update', {
     style: 'user-update',
   })
