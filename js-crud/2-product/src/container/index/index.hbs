@@ -1,0 +1,55 @@
+<main>
+  <section>
+    <form class='form' action='/user-create' method='post'>
+      <h1 class='form__caption'>Створити користувача</h1>
+      <label for='user__login' class='form__label'>Логін
+        <input
+          type='text'
+          name='login'
+          placeholder='Логін'
+          class='form__input'
+        />
+      </label>
+      <label for='user__email' class='form__label'>Email
+        <input
+          type='email'
+          name='email'
+          placeholder='Email'
+          class='form__input'
+        />
+      </label>
+      <label for='user__password' class='form__label'>Пароль
+        <input
+          type='password'
+          name='password'
+          placeholder='Пароль'
+          class='form__input'
+        />
+      </label>
+      <button class='form__button'>Створити</button>
+    </form>
+  </section>
+  <section>
+    <form class='form'>
+      <h1 class='form__caption'>Список користувачів</h1>
+      {{#with data.users}}
+        {{#if isEmpty}}
+          <div class='form-title'>Порожній</div>
+        {{else}}
+          <ul>
+            {{#each list}}
+              <li>{{login}}
+                |
+                {{email}}
+                |
+                {{id}}
+                | (<a href='/user-delete'>Видалити</a>) | (<a
+                  href='/user-update'
+                >Оновити</a>)</li>
+            {{/each}}
+          </ul>
+        {{/if}}
+      {{/with}}
+    </form>
+  </section>
+</main>
