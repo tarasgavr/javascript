@@ -4,6 +4,7 @@ const express = require('express')
 const router = express.Router()
 
 // ================================================================
+
 class User {
   static #userList = []
   constructor(login, email, password) {
@@ -15,22 +16,26 @@ class User {
   static addUser = (user) => {
     this.#userList.push(user)
   }
-  static getUserList = () => {
-    return this.#userList
-  }
-  static getUserById = (id) => {
+  static getUserList = () => this.#userList
+
+  static getUserById = (id) =>
     this.#userList.find((element) => element.id === id)
-  }
+
   static deleteUser = (id) => {
     const index = this.#userList.findIndex(
       (value) => value.id === id,
     )
     this.#userList.splice(index, 1)
   }
-  static updateUser = (id, { email }) => {
+  static updateUser = (id, data) => {
     const user = this.getUserById(id)
+    const { email } = data
+
     if (user) {
-      Object.assign(user, { email })
+      if (email) {
+        user.email = email
+      }
+
       return true
     } else {
       return false
@@ -70,9 +75,10 @@ router.get('/user-delete', function (req, res) {
 })
 // ================================================================
 router.post('/user-update', function (req, res) {
-  const { id, email, password } = req.body
-  console.log(id)
-  User.updateUser(id, { email })
+  const { email, password, id } = req.body
+
+  User.updateUser(Number(id), { email })
+
   res.render('user-update', {
     style: 'user-update',
   })
