@@ -7,35 +7,45 @@ const router = express.Router()
 class Product {
   static #productList = []
   constructor(name, price, description) {
-    let num = Math.trunc(Math.random() * 10000)
+    let num = Math.trunc(Math.random() * 100000)
     this.name = name
     this.price = price
     this.description = description
     if (num.length !== 5) {
-      num = Math.trunc(Math.random() * 10000)
+      num = Math.trunc(Math.random() * 100000)
       this.id = num
     } else {
       this.id = num
     }
     this.createDate = new Date().toISOString()
   }
-  static addProduct = (product) => {
+  static addProduct = (product) =>
     this.#productList.push(product)
-  }
-  static getProductList = () => {
-    return this.#productList
-  }
-  static deleteProduct = (product) => {
+
+  static getProductList = () => this.#productList
+
+  static getProductById = (id) =>
+    this.#productList.find((element) => element.id === id)
+
+  static deleteProduct = (id) => {
     const index = this.#productList.findIndex(
-      (value) => value === product,
+      (value) => value.id === id,
     )
     this.#productList.splice(index, 1)
   }
-  static updateProduct = (product) => {
-    const index = this.#productList.findIndex(
-      (value) => value === product,
-    )
-    this.#productList.splice(index, 1)
+  static updateProduct = (id, data) => {
+    const product = this.getProductById(id)
+    const { price } = data
+
+    if (product) {
+      if (price) {
+        product.price = price
+      }
+
+      return true
+    } else {
+      return false
+    }
   }
 }
 // ================================================================
@@ -62,19 +72,17 @@ router.post('/product-create', function (req, res) {
   })
 })
 // ================================================================
-router.post('/product-delete', function (req, res) {
-  const { name, price, description } = req.body
-  const product = new Product(name, price, description)
-  Product.deleteProduct(product)
+router.get('/product-delete', function (req, res) {
+  const { id } = req.query
+  Product.deleteProduct(id)
   res.render('product-delete', {
     style: 'product-delete',
   })
 })
 // ================================================================
 router.post('/product-update', function (req, res) {
-  const { name, price, description } = req.body
-  const product = new Product(name, price, description)
-  Product.updateProduct(product)
+  const { id, price } = req.body
+  Product.updateProduct(Number(id), { price })
   res.render('product-update', {
     style: 'product-update',
   })
