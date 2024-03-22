@@ -49,6 +49,7 @@ class Product {
   }
 }
 // ================================================================
+
 router.get('/', function (req, res) {
   const list = Product.getProductList()
   res.render('index', {
@@ -59,12 +60,6 @@ router.get('/', function (req, res) {
         isEmpty: list.length === 0,
       },
     },
-  })
-})
-// ================================================================
-router.get('/product-create', function (req, res) {
-  res.render('product-create', {
-    style: 'product-create',
   })
 })
 // ================================================================
