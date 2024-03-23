@@ -5,39 +5,36 @@
       action='/product-create'
       method='post'
     >
-      <div class='card'>
-        <div class='card-header'>
-          Створення товару
-        </div>
-        <div class='card-body'>
-          <h5 class='card-title'>Інформація про товар</h5>
-          <label class='form__label'>Назва товару
-            <input
-              type='text'
-              name='name'
-              placeholder='Назва продукту'
-              class='form__input'
-            />
-          </label>
-          <label class='form__label'>Ціна продукту
-            <input
-              type='number'
-              name='price'
-              placeholder='Ціна продукту'
-              class='form__input'
-            />
-          </label>
-          <label class='form__label'>Короткий опис товару</label>
-          <textarea
-            name='description'
-            placeholder='Короткий опис продукту'
+      <h2 class='form__caption'>Створення товару</h2>
+      <h5 class='form__title'>Інформація про товар</h5>
+      <div class='form__block'>
+        <div>
+          <label for='name' class='form__label'>Назва товару</label>
+          <input
+            type='text'
+            name='name'
             class='form__input'
-          ></textarea>
-          <button
-            class='form__button btn btn-primary'
-          >Створити товар</button>
+          />
+        </div>
+        <div>
+          <label
+            for='number'
+            class='form__label'
+          >Ціна</label>
+          <input
+            type='number'
+            name='price'
+            class='form__input'
+          />
         </div>
       </div>
+      <label for='description' class='form__label'>Короткий
+        опис товару</label>
+      <textarea
+        name='description'
+        class='form__input'
+      ></textarea>
+      <button class='form__button'>Створити товар</button>
     </form>
   </section>
 </main>
