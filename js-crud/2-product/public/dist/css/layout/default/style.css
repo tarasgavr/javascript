@@ -1,14 +1,11 @@
 .form {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 8px;
-  width: 400px;
+  box-shadow: 16px 24px 32px rgb(238, 238, 238);
 }
-.form__caption {
+.form__title {
   font-size: 20px;
   font-weight: bold;
-  border-bottom: 1px solid #033;
-  padding-bottom: 16px;
 }
 .form__block {
   display: flex;
@@ -16,8 +13,11 @@
   justify-content: space-between;
   margin-top: 8px;
 }
+.form__block div {
+  width: 45%;
+}
 .form__input {
-  border: 1px solid #000;
+  border: 1px solid rgb(0, 0, 0);
   padding: 8px;
   width: 100%;
 }
@@ -26,10 +26,8 @@
   margin-top: 8px;
 }
 .form__button {
-  display: block;
-  margin: 0 auto;
-  background-color: #01f;
-  color: #fff;
+  background-color: rgb(0, 102, 204);
+  color: rgb(255, 255, 255);
   padding: 8px;
   justify-self: stretch;
 }

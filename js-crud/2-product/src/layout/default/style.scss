@@ -1,14 +1,14 @@
 @use '../../lib/services.scss' as s;
+
 .form {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: s.space(2);
-  width: s.space(100);
-  &__caption {
+  background-color: s.color('transparent-white');
+  box-shadow: s.space(4) s.space(6) s.space(8)
+    s.color('gray');
+  &__title {
     font-size: s.space(5);
     font-weight: bold;
-    border-bottom: 1px solid s.color('light');
-    padding-bottom: s.space(4);
   }
   &__block {
     display: flex;
@@ -16,8 +16,11 @@
     justify-content: space-between;
     margin-top: s.space(2);
   }
+  &__block div {
+    width: 45%;
+  }
   &__input {
-    border: 1px solid #000;
+    border: 1px solid s.color('black');
     padding: s.space(2);
     width: 100%;
   }
@@ -26,10 +29,8 @@
     margin-top: s.space(2);
   }
   &__button {
-    display: block;
-    margin: 0 auto;
-    background-color: #01f;
-    color: #fff;
+    background-color: s.color('blue');
+    color: s.color('white');
     padding: s.space(2);
     justify-self: stretch;
   }
