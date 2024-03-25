@@ -50,9 +50,15 @@ class Product {
 }
 // ================================================================
 router.get('/', function (req, res) {
-  const list = Product.getProductList()
   res.render('index', {
     style: 'index',
+  })
+})
+// ================================================================
+router.get('/product-list', function (req, res) {
+  const list = Product.getProductList()
+  res.render('product-list', {
+    style: 'product-list',
     data: {
       products: {
         list,
@@ -72,8 +78,9 @@ router.post('/product-create', function (req, res) {
   const { name, price, description } = req.body
   const product = new Product(name, price, description)
   Product.addProduct(product)
-  res.render('product-create', {
-    style: 'product-create',
+  res.render('product-alert', {
+    style: 'product-alert',
+    info: 'Товар був успішно створений',
   })
 })
 // ================================================================

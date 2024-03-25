@@ -1,0 +1,29 @@
+<main>
+  <section>
+    <form class='form'>
+      <h1 class='form__caption'>Список продуктів</h1>
+      {{#with data.products}}
+          <ul>
+            {{#each list}}
+              <li>{{name}}
+                |
+                {{price}}
+                |
+                {{description}}
+                |
+                {{id}}
+                | (<a
+                  href='/product-delete?id={{id}}'
+                >Видалити</a>) | (<a
+                  href='/product-create'
+                >Створити</a>) | (<a
+                  href='/product-update'
+                >Оновити</a>)
+              </li>
+            {{/each}}
+          </ul>
+        {{/if}}
+      {{/with}}
+    </form>
+  </section>
+</main>
