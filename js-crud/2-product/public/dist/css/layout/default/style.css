@@ -10,6 +10,7 @@
   box-shadow: 16px 24px 32px rgb(28, 135, 201);
 }
 .form-alert {
+  vertical-align: middle;
   display: flex;
   justify-content: space-around;
   background-color: rgb(238, 238, 238);

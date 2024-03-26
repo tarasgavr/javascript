@@ -1,0 +1,15 @@
+@use '../../lib/services.scss' as s;
+
+.card {
+  display: flex;
+  gap: s.space(2);
+  width: 30%;
+  height: 30%;
+  background-color: s.color('gray');
+  box-shadow: s.space(4) s.space(6) s.space(8)
+    s.color('light-blue');
+  &__container {
+    display: flex;
+    gap: s.space(4);
+  }
+}

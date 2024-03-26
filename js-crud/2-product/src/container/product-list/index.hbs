@@ -1,28 +1,21 @@
 <main>
   <section>
     <form class='form'>
-      <h1 class='form__caption'>Список продуктів</h1>
+      <h1 class='form__title'>Список товарів</h1>
       {{#with data.products}}
-          <ul>
-            {{#each list}}
-              <li>{{name}}
-                |
-                {{price}}
-                |
-                {{description}}
-                |
-                {{id}}
-                | (<a
-                  href='/product-delete?id={{id}}'
-                >Видалити</a>) | (<a
-                  href='/product-create'
-                >Створити</a>) | (<a
-                  href='/product-update'
-                >Оновити</a>)
-              </li>
-            {{/each}}
-          </ul>
-        {{/if}}
+        <div class='card__container'>
+          {{#each list}}
+            <div class='card'>
+              <h3>{{name}}</h3>
+              <p>{{description}}</p>
+              <h5>ID :{{id}}</h5>
+              <div>
+                <h4>{{price}}&#8372;</h4>
+                <a href='/product-edit'></a>
+              </div>
+            </div>
+          {{/each}}
+        </div>
       {{/with}}
     </form>
   </section>

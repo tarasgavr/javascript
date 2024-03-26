@@ -11,6 +11,7 @@
   box-shadow: s.space(4) s.space(6) s.space(8)
     s.color('light-blue');
   &-alert {
+    vertical-align: middle;
     display: flex;
     justify-content: space-around;
     background-color: s.color('gray');
