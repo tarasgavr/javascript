@@ -1,14 +1,32 @@
 .card {
   display: flex;
-  gap: 8px;
-  width: 30%;
-  height: 30%;
-  background-color: rgb(238, 238, 238);
-  box-shadow: 16px 24px 32px rgb(28, 135, 201);
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+  width: 160px;
+  height: 160px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 8px 12px 16px rgb(0, 0, 0);
 }
 .card__container {
   display: flex;
   gap: 16px;
+  margin-top: 16px;
+  margin-left: 8px;
+}
+.card h3 {
+  color: rgb(0, 102, 204);
+  margin-bottom: 8px;
+}
+.card h5 {
+  color: rgb(238, 238, 255);
+}
+.card div {
+  display: flex;
+  justify-content: space-between;
+}
+.card a {
+  color: rgb(28, 135, 201);
 }
 
 /*# sourceMappingURL=style.css.map */
