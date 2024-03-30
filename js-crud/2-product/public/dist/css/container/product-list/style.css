@@ -1,25 +1,43 @@
+.main__caption {
+  color: rgb(0, 102, 204);
+  margin: 0.5rem;
+}
+
 .card {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 8px;
-  width: 160px;
-  height: 160px;
+  gap: 1rem;
+  padding: 0.5rem;
+  width: 10rem;
+  height: 10rem;
+  margin-bottom: 0.5rem;
   background-color: rgb(255, 255, 255);
-  box-shadow: 8px 12px 16px rgb(0, 0, 0);
+  box-shadow: 0.5rem 0.75rem 1rem rgb(0, 0, 0);
 }
 .card__container {
   display: flex;
-  gap: 16px;
-  margin-top: 16px;
-  margin-left: 8px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  width: 36rem;
+  margin: 0.5rem 0.5rem;
+}
+.card__block {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem 0.5rem;
 }
 .card h3 {
   color: rgb(0, 102, 204);
-  margin-bottom: 8px;
+}
+.card p {
+  margin-bottom: 0.5rem;
 }
 .card h5 {
-  color: rgb(238, 238, 255);
+  color: rgb(38, 38, 38);
+  margin-bottom: 0.5rem;
 }
 .card div {
   display: flex;
@@ -27,6 +45,15 @@
 }
 .card a {
   color: rgb(28, 135, 201);
+}
+
+button {
+  margin: 0 auto;
+  background-color: rgb(28, 135, 201);
+}
+
+button a {
+  color: rgb(255, 255, 255);
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -7,12 +7,12 @@ const router = express.Router()
 class Product {
   static #productList = []
   constructor(name, price, description) {
-    let num = Math.trunc(Math.random() * 100000)
+    let num = Math.trunc(Math.random() * 10000000000)
     this.name = name
     this.price = price
     this.description = description
-    if (num.length !== 5) {
-      num = Math.trunc(Math.random() * 100000)
+    if (num.length !== 9) {
+      num = Math.trunc(Math.random() * 10000000000)
       this.id = num
     } else {
       this.id = num
@@ -55,6 +55,35 @@ router.get('/', function (req, res) {
   })
 })
 // ================================================================
+router.get('/product-edit', function (req, res) {
+  const { id } = req.query
+
+  const product = Product.getProductById(Number(id))
+
+  console.log(product)
+
+  if (product) {
+    // ↙️ cюди вводимо назву файлу з сontainer
+    return res.render('product-edit', {
+      // вказуємо назву папки контейнера, в якій знаходяться наші стилі
+      style: 'product-edit',
+
+      data: {
+        name: product.name,
+        price: product.price,
+        id: product.id,
+        description: product.description,
+      },
+    })
+  } else {
+    return res.render('product-alert', {
+      // вказуємо назву папки контейнера, в якій знаходяться наші стилі
+      style: 'product-alert',
+      info: 'Продукту за таким ID не знайдено',
+    })
+  }
+})
+// ================================================================
 router.get('/product-list', function (req, res) {
   const list = Product.getProductList()
   res.render('product-list', {
@@ -81,6 +110,14 @@ router.post('/product-create', function (req, res) {
   res.render('product-alert', {
     style: 'product-alert',
     info: 'Товар був успішно створений',
+  })
+})
+// ================================================================
+router.get('/product-delete', function (req, res) {
+  const { id } = req.query
+  Product.deleteProduct(id)
+  res.render('product-delete', {
+    style: 'product-delete',
   })
 })
 // ================================================================
