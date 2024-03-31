@@ -84,6 +84,34 @@ router.get('/product-edit', function (req, res) {
   }
 })
 // ================================================================
+router.post('/product-edit', function (req, res) {
+  // const { id } = req.query
+
+  // const product = Product.getProductById(Number(id))
+
+  console.log(req.query)
+
+  /*  if (product) {
+    // ↙️ cюди вводимо назву файлу з сontainer
+    return res.render('product-edit', {
+      // вказуємо назву папки контейнера, в якій знаходяться наші стилі
+      style: 'product-edit',
+
+      data: {
+        name: product.name,
+        price: product.price,
+        id: product.id,
+        description: product.description,
+      },
+    })
+  } else {
+    return */ res.render('product-alert', {
+    // вказуємо назву папки контейнера, в якій знаходяться наші стилі
+    style: 'product-alert',
+    info: 'Продукту за таким ID не знайдено',
+  })
+})
+// ================================================================
 router.get('/product-list', function (req, res) {
   const list = Product.getProductList()
   res.render('product-list', {

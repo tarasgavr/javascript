@@ -4,11 +4,13 @@
     <form class='form' action='/product-edit' method='post'>
       <h5 class='form__title'>Інформація про товар</h5>
       <div class='form__block'>
+       {{#with data}}
         <div>
           <label for='name' class='form__label'>Назва товару</label>
           <input
             type='text'
             name='name'
+            value='{{name}}'
             class='form__input'
           />
         </div>
@@ -20,6 +22,16 @@
           <input
             type='number'
             name='price'
+            value='{{price}}'
+            class='form__input'
+          />
+        </div>
+        <div>
+          <label for='number' class='form__label'>ID</label>
+          <input
+            type='number'
+            name='id'
+            value='{{id}}'
             class='form__input'
           />
         </div>
@@ -28,15 +40,13 @@
         опис товару</label>
       <textarea
         name='description'
-        class='form__input'
-      ></textarea>
+                class='form__input'
+      >{{description}}</textarea>
       <div>
         <button class='form__button-update'>Оновити товар</button>
-        <button
-          type='reset'
-          class='form__button-delete'
-        >Видалити товар</button>
+        <button class='form__button-delete'>Видалити товар</button>
       </div>
+       {{/with}}
     </form>
   </section>
 </main>
