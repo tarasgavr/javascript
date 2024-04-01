@@ -27,7 +27,7 @@
           />
         </div>
         <div>
-          <label for='number' class='form__label'>ID</label>
+          <label for='id' class='form__label'>ID</label>
           <input
             type='number'
             name='id'
@@ -38,13 +38,12 @@
       </div>
       <label for='description' class='form__label'>Короткий
         опис товару</label>
-      <textarea
-        name='description'
-                class='form__input'
-      >{{description}}</textarea>
+      <textarea name='description' class='form__input'>{{description}}</textarea>
       <div>
         <button class='form__button-update'>Оновити товар</button>
-        <button class='form__button-delete'>Видалити товар</button>
+        <button class='form__button-delete'>
+          <a href='/product-edit?id={{id}}'>Видалити товар</a>
+        </button>
       </div>
        {{/with}}
     </form>

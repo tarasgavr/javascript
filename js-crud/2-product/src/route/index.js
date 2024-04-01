@@ -84,34 +84,6 @@ router.get('/product-edit', function (req, res) {
   }
 })
 // ================================================================
-router.post('/product-edit', function (req, res) {
-  // const { id } = req.query
-
-  // const product = Product.getProductById(Number(id))
-
-  console.log(req.query)
-
-  /*  if (product) {
-    // ↙️ cюди вводимо назву файлу з сontainer
-    return res.render('product-edit', {
-      // вказуємо назву папки контейнера, в якій знаходяться наші стилі
-      style: 'product-edit',
-
-      data: {
-        name: product.name,
-        price: product.price,
-        id: product.id,
-        description: product.description,
-      },
-    })
-  } else {
-    return */ res.render('product-alert', {
-    // вказуємо назву папки контейнера, в якій знаходяться наші стилі
-    style: 'product-alert',
-    info: 'Продукту за таким ID не знайдено',
-  })
-})
-// ================================================================
 router.get('/product-list', function (req, res) {
   const list = Product.getProductList()
   res.render('product-list', {
@@ -141,27 +113,21 @@ router.post('/product-create', function (req, res) {
   })
 })
 // ================================================================
-router.get('/product-delete', function (req, res) {
+router.get('/product-edit', function (req, res) {
   const { id } = req.query
-  Product.deleteProduct(id)
-  res.render('product-delete', {
-    style: 'product-delete',
+  Product.deleteProduct(Number(id))
+  res.render('product-alert', {
+    style: 'product-alert',
+    info: 'Товар був успішно видалений',
   })
 })
 // ================================================================
-router.get('/product-delete', function (req, res) {
-  const { id } = req.query
-  Product.deleteProduct(id)
-  res.render('product-delete', {
-    style: 'product-delete',
-  })
-})
-// ================================================================
-router.post('/product-update', function (req, res) {
-  const { id, price } = req.body
+router.post('/product-edit', function (req, res) {
+  const { name, price, description, id } = req.body
   Product.updateProduct(Number(id), { price })
-  res.render('product-update', {
-    style: 'product-update',
+  res.render('product-alert', {
+    style: 'product-alert',
+    info: 'Товар був успішно оновлений',
   })
 })
 
