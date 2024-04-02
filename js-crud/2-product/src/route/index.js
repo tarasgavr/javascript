@@ -113,7 +113,7 @@ router.post('/product-create', function (req, res) {
   })
 })
 // ================================================================
-router.get('/product-edit', function (req, res) {
+router.get('/product-delete', function (req, res) {
   const { id } = req.query
   Product.deleteProduct(Number(id))
   res.render('product-alert', {

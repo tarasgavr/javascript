@@ -41,9 +41,11 @@
     display: flex;
     justify-content: space-between;
   }
-  &__button-delete {
+  & a {
+    border: 1px solid s.color('black');
     background-color: s.color('red');
     color: s.color('white');
+    text-align: center;
     padding: s.space(2);
     width: 49%;
   }
