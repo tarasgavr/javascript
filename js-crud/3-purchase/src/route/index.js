@@ -6,7 +6,7 @@ const router = express.Router()
 // ================================================================
 class Product {
   static #productList = []
-  constructor(name, price, description) {
+  constructor(name, price, description, amount) {
     let num = Math.trunc(Math.random() * 10000000000)
     this.name = name
     this.price = price
@@ -17,7 +17,7 @@ class Product {
     } else {
       this.id = num
     }
-    this.createDate = new Date().toISOString()
+    this.amount = amount
   }
   static addProduct = (product) =>
     this.#productList.push(product)
@@ -52,84 +52,118 @@ class Product {
 router.get('/', function (req, res) {
   res.render('index', {
     style: 'index',
-  })
-})
-// ================================================================
-router.get('/product-edit', function (req, res) {
-  const { id } = req.query
-
-  const product = Product.getProductById(Number(id))
-
-  console.log(product)
-
-  if (product) {
-    // ↙️ cюди вводимо назву файлу з сontainer
-    return res.render('product-edit', {
-      // вказуємо назву папки контейнера, в якій знаходяться наші стилі
-      style: 'product-edit',
-
-      data: {
-        name: product.name,
-        price: product.price,
-        id: product.id,
-        description: product.description,
-      },
-    })
-  } else {
-    return res.render('product-alert', {
-      // вказуємо назву папки контейнера, в якій знаходяться наші стилі
-      style: 'product-alert',
-      info: 'Продукту за таким ID не знайдено',
-    })
-  }
-})
-// ================================================================
-router.get('/product-list', function (req, res) {
-  const list = Product.getProductList()
-  res.render('product-list', {
-    style: 'product-list',
     data: {
-      products: {
-        list,
-        isEmpty: list.length === 0,
+      caption: 'Товари',
+      title:
+        "Комп'ютери та ноутбуки/Комп'ютери, неттопи, моноблоки",
+      products: [
+        {
+          img: '../img/image616.png',
+          name: "Комп'ютер Artline Gaming(X43v31) AMD Ryzen 5 3600",
+          description:
+            'AMD Ryzen 5 3600 (3.6 - 4.2 ГГц) / RAM 16 ГБ / HDD 1 ТБ + SSD 480 ГБ / nVidia GeForce RTX 3050, 8 ГБ / без ОД / LAN / без ОС',
+          status: 'Готовий до відправки',
+          badge__text: 'Топ продажів',
+          button__text: 'Купити зараз:',
+          price: 27000,
+        },
+        {
+          img: '../img/image617.png',
+          name: "Комп'ютер COBRA Advanced (I11F.8.H1S2.15T.13356) Intel",
+          description:
+            'Intel Core i3-10100F (3.6 - 4.3 ГГц) / RAM 8 ГБ / HDD 1 ТБ + SSD 240 ГБ / GeForce GTX 1050 Ti, 4 ГБ / без ОД / LAN / Linux',
+          status: 'Готовий до відправки',
+          badge__text: 'Топ продажів',
+          button__text: 'Купити зараз:',
+          price: 17000,
+        },
+        {
+          img: '../img/image618.png',
+          name: "Комп'ютер ARTLINE Gaming by ASUS TUF v119 (TUFv119)",
+          description:
+            'Intel Core i9-13900KF (3.0 - 5.8 ГГц) / RAM 64 ГБ / SSD 2 ТБ (2 x 1 ТБ) / nVidia GeForce RTX 4070 Ti, 12 ГБ / без ОД / LAN / Wi-Fi / Bluetooth / без ОС',
+          status: 'Готовий до відправки',
+          badge__text: 'Топ продажів',
+          button__text: 'Купити зараз:',
+          price: 113000,
+        },
+        {
+          img: '../img/image616.png',
+          name: "Комп'ютер Artline Gaming(X43v31) AMD Ryzen 5 3600",
+          description:
+            'AMD Ryzen 5 3600 (3.6 - 4.2 ГГц) / RAM 16 ГБ / HDD 1 ТБ + SSD 480 ГБ / nVidia GeForce RTX 3050, 8 ГБ / без ОД / LAN / без ОС',
+          status: 'Готовий до відправки',
+          badge__text: 'Топ продажів',
+          button__text: 'Купити зараз:',
+          price: 27000,
+        },
+        {
+          img: '../img/image617.png',
+          name: "Комп'ютер COBRA Advanced (I11F.8.H1S2.15T.13356) Intel",
+          description:
+            'Intel Core i3-10100F (3.6 - 4.3 ГГц) / RAM 8 ГБ / HDD 1 ТБ + SSD 240 ГБ / GeForce GTX 1050 Ti, 4 ГБ / без ОД / LAN / Linux',
+          status: 'Готовий до відправки',
+          badge__text: 'Топ продажів',
+          button__text: 'Купити зараз:',
+          price: 17000,
+        },
+        {
+          img: '../img/image618.png',
+          name: "Комп'ютер ARTLINE Gaming by ASUS TUF v119 (TUFv119)",
+          description:
+            'Intel Core i9-13900KF (3.0 - 5.8 ГГц) / RAM 64 ГБ / SSD 2 ТБ (2 x 1 ТБ) / nVidia GeForce RTX 4070 Ti, 12 ГБ / без ОД / LAN / Wi-Fi / Bluetooth / без ОС',
+          status: 'Готовий до відправки',
+          badge__text: 'Топ продажів',
+          button__text: 'Купити зараз:',
+          price: 113000,
+        },
+      ],
+      product__fixed: {
+        img: '../img/image620.png',
+        name: "Комп'ютер Artline Gaming(X43v31) AMD Ryzen 5 3600",
+        description:
+          'AMD Ryzen 5 3600 (3.6 - 4.2 ГГц) / RAM 16 ГБ / HDD 1 ТБ + SSD 480 ГБ / nVidia GeForce RTX 3050, 8 ГБ / без ОД / LAN / без ОС',
+        status: 'Готовий до відправки',
+        badge__text: 'Топ продажів',
+        button__text: 'Купити зараз:',
+        price: 27000,
       },
+      other__products: [
+        {
+          img: '../img/iimage616.png',
+          name: "Комп'ютер Artline Gaming(X43v31) AMD Ryzen 5 3600",
+          description:
+            'AMD Ryzen 5 3600 (3.6 - 4.2 ГГц) / RAM 16 ГБ / HDD 1 ТБ + SSD 480 ГБ / nVidia GeForce RTX 3050, 8 ГБ / без ОД / LAN / без ОС',
+          status: 'Готовий до відправки',
+          badge__text: 'Топ продажів',
+          button__text: 'Купити зараз:',
+          price: 27000,
+        },
+        {
+          img: '../img/iimage617.png',
+          name: "Комп'ютер COBRA Advanced (I11F.8.H1S2.15T.13356) Intel",
+          description:
+            'Intel Core i3-10100F (3.6 - 4.3 ГГц) / RAM 8 ГБ / HDD 1 ТБ + SSD 240 ГБ / GeForce GTX 1050 Ti, 4 ГБ / без ОД / LAN / Linux',
+          status: 'Готовий до відправки',
+          badge__text: 'Топ продажів',
+          button__text: 'Купити зараз:',
+          price: 17000,
+        },
+        {
+          img: '../img/iimage618.png',
+          name: "Комп'ютер ARTLINE Gaming by ASUS TUF v119 (TUFv119)",
+          description:
+            'Intel Core i9-13900KF (3.0 - 5.8 ГГц) / RAM 64 ГБ / SSD 2 ТБ (2 x 1 ТБ) / nVidia GeForce RTX 4070 Ti, 12 ГБ / без ОД / LAN / Wi-Fi / Bluetooth / без ОС',
+          status: 'Готовий до відправки',
+          badge__text: 'Топ продажів',
+          button__text: 'Купити зараз:',
+          price: 113000,
+        },
+      ],
     },
   })
 })
 // ================================================================
-router.get('/product-create', function (req, res) {
-  res.render('product-create', {
-    style: 'product-create',
-  })
-})
-// ================================================================
-router.post('/product-create', function (req, res) {
-  const { name, price, description } = req.body
-  const product = new Product(name, price, description)
-  Product.addProduct(product)
-  res.render('product-alert', {
-    style: 'product-alert',
-    info: 'Товар був успішно створений',
-  })
-})
-// ================================================================
-router.get('/product-delete', function (req, res) {
-  const { id } = req.query
-  Product.deleteProduct(Number(id))
-  res.render('product-alert', {
-    style: 'product-alert',
-    info: 'Товар був успішно видалений',
-  })
-})
-// ================================================================
-router.post('/product-edit', function (req, res) {
-  const { name, price, description, id } = req.body
-  Product.updateProduct(Number(id), { price })
-  res.render('product-alert', {
-    style: 'product-alert',
-    info: 'Товар був успішно оновлений',
-  })
-})
 
 // Підключаємо роутер до бек-енду
 module.exports = router

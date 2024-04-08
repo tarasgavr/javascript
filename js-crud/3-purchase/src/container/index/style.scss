@@ -1,18 +1,35 @@
 @use '../../lib/services.scss' as s;
 
-.form {
+.caption {
+  color: s.color('light-blue');
+}
+.title {
+  color: s.color('gray');
+  font-weight: bold;
+}
+.heading {
   display: grid;
-  gap: s.space(2);
-  background-color: s.color('light-gray');
-  box-shadow: s.space(4) s.space(6) s.space(8)
-    s.color('light-blue');
+  gap: s.space(5);
+  margin-bottom: s.space(15);
+}
+.card-container {
+  display: grid;
+  grid-template-rows: repeat(3, min-content);
+  grid-template-columns: repeat(3, min-content);
+  column-gap: s.space(5);
+  row-gap: s.space(15);
   padding-bottom: s.space(2);
-  &__caption {
-    color: s.color('light-blue');
-    margin: s.space(2);
-  }
-  &__title {
-    font-size: s.space(5);
-    font-weight: bold;
-  }
+}
+.card {
+  display: grid;
+  gap: s.space(4);
+  padding: s.space(4);
+}
+.badge {
+  border-radius: 50%;
+  padding: s.space(4) s.space(2);
+}
+.blue {
+  border: 1px solid #00f;
+  color: s.color('light-blue');
 }

@@ -1,0 +1,7 @@
+@use '../../lib/services.scss' as s;
+body {
+  display: grid;
+  justify-content: center;
+  margin-top: s.space(25);
+  font-family: Inter, serif;
+}
