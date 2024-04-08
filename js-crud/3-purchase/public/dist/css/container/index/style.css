@@ -4,7 +4,6 @@
 
 .title {
   color: rgb(38, 38, 38);
-  font-weight: bold;
 }
 
 .heading {
@@ -15,10 +14,8 @@
 
 .card-container {
   display: grid;
-  grid-template-rows: repeat(3, min-content);
-  grid-template-columns: repeat(3, min-content);
-  column-gap: 1.25rem;
-  row-gap: 3.75rem;
+  grid: repeat(3, min-content)/repeat(3, min-content);
+  gap: 3.75rem 1.25rem;
   padding-bottom: 0.5rem;
 }
 
@@ -26,16 +23,32 @@
   display: grid;
   gap: 1rem;
   padding: 1rem;
+  border: 1px solid rgb(38, 38, 38);
 }
 
 .badge {
-  border-radius: 50%;
+  border-radius: 1.25rem;
   padding: 1rem 0.5rem;
 }
 
-.blue {
-  border: 1px solid #00f;
+.blue-badge {
+  border: 1px solid rgb(0, 102, 204);
   color: rgb(0, 102, 204);
+}
+
+.green-badge {
+  border: 1px solid rgb(0, 255, 0);
+  color: rgb(0, 102, 204);
+}
+
+.button {
+  border-radius: 1.25rem;
+  padding: 1rem 0.5rem;
+}
+
+.blue-button {
+  background-color: rgb(0, 102, 204);
+  color: rgb(255, 255, 255);
 }
 
 /*# sourceMappingURL=style.css.map */

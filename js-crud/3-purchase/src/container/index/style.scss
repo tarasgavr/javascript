@@ -1,11 +1,10 @@
 @use '../../lib/services.scss' as s;
 
 .caption {
-  color: s.color('light-blue');
+  color: s.color('blue');
 }
 .title {
   color: s.color('gray');
-  font-weight: bold;
 }
 .heading {
   display: grid;
@@ -14,22 +13,33 @@
 }
 .card-container {
   display: grid;
-  grid-template-rows: repeat(3, min-content);
-  grid-template-columns: repeat(3, min-content);
-  column-gap: s.space(5);
-  row-gap: s.space(15);
+  grid: repeat(3, min-content) / repeat(3, min-content);
+  gap: s.space(15) s.space(5);
   padding-bottom: s.space(2);
 }
 .card {
   display: grid;
   gap: s.space(4);
   padding: s.space(4);
+  border: 1px solid s.color('gray');
 }
 .badge {
-  border-radius: 50%;
+  border-radius: s.space(5);
   padding: s.space(4) s.space(2);
 }
-.blue {
-  border: 1px solid #00f;
-  color: s.color('light-blue');
+.blue-badge {
+  border: 1px solid s.color('blue');
+  color: s.color('blue');
+}
+.green-badge {
+  border: 1px solid s.color('green');
+  color: s.color('blue');
+}
+.button {
+  border-radius: s.space(5);
+  padding: s.space(4) s.space(2);
+}
+.blue-button {
+  background-color: s.color('blue');
+  color: s.color('white');
 }
