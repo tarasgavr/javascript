@@ -164,7 +164,8 @@ router.get('/', function (req, res) {
   })
 })
 // ================================================================
-router.get('/product-fixed', function (req, res) {
+router.post('/product-fixed', function (req, res) {
+  console.log(req.body)
   res.render('product-fixed', {
     style: 'product-fixed',
     data: {

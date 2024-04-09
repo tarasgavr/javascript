@@ -7,11 +7,13 @@
             {{#each products}}
   <div class="card">
     <img src="{{img}}" alt="Комп'ютер">
-    <h4>{{name}}</h4>
-    <p>{{description}}</p>
-    <div class="badge green-badge">{{status}}</div>
-    <div class="badge blue-badge">{{badge__text}}</div>
-    <button class="button blue-button">{{button__text}}{{price}}&#8372;</button>
+    <div class='product-name'>{{name}}</div>
+    <p class='product-description'>{{description}}</p>
+    <div class="block">
+      <div class="badge green-badge">{{status}}</div>
+      <div class="badge blue-badge">{{badge__text}}</div>
+    </div>
+    <button class="button blue-button">{{button__text}} <span>{{price}}&#8372;</span></button>
   </div>
             {{/each}}
 </form> 
