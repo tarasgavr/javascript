@@ -1,15 +1,15 @@
 @use '../../lib/services.scss' as s;
 
-.caption {
-  color: s.color('blue');
-}
-.title {
-  color: s.color('gray');
-}
 .heading {
   display: grid;
   gap: s.space(5);
   margin-bottom: s.space(15);
+  .caption {
+    color: s.color('blue');
+  }
+  .title {
+    color: s.color('gray');
+  }
 }
 .card-container {
   display: grid;

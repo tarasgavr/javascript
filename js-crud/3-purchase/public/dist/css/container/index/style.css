@@ -1,15 +1,13 @@
-.caption {
-  color: rgb(0, 102, 204);
-}
-
-.title {
-  color: #ced4da;
-}
-
 .heading {
   display: grid;
   gap: 1.25rem;
   margin-bottom: 3.75rem;
+}
+.heading .caption {
+  color: #0050ff;
+}
+.heading .title {
+  color: #ced4da;
 }
 
 .card-container {
@@ -47,8 +45,8 @@
 }
 
 .blue-badge {
-  border: 1px solid rgb(0, 102, 204);
-  color: rgb(0, 102, 204);
+  border: 1px solid #0050ff;
+  color: #0050ff;
 }
 
 .green-badge {
@@ -68,7 +66,7 @@
 }
 
 .blue-button {
-  background-color: rgb(0, 102, 204);
+  background-color: #0050ff;
   color: rgb(255, 255, 255);
 }
 

@@ -1,49 +1,51 @@
 @use '../../lib/services.scss' as s;
 
-.main__caption {
-  color: s.color('light-blue');
-  margin: s.space(2);
-}
-.form {
-  display: grid;
-  gap: s.space(2);
-  background-color: s.color('light-gray');
-  box-shadow: s.space(4) s.space(6) s.space(8)
-    s.color('light-blue');
+.card-container-fixed {
+  display: flex;
+  gap: s.space(5);
   padding-bottom: s.space(2);
-  &__caption {
-    color: s.color('light-blue');
-    margin: s.space(2);
-  }
-  &__title {
-    font-size: s.space(5);
-    font-weight: bold;
-  }
-  &__block {
-    display: flex;
-    justify-content: space-between;
-    margin-top: s.space(2);
-  }
-  &__block div {
-    width: 45%;
-  }
-  &__input {
-    border: 1px solid s.color('black');
-    padding: s.space(2);
-    margin-right: s.space(2);
-    width: 100%;
-  }
-  &__label {
-    display: block;
-    margin-top: s.space(2);
-  }
-  &__button {
-    background-color: s.color('blue');
-    color: s.color('white');
-    padding: s.space(2);
-    justify-self: stretch;
-  }
-  &__link {
-    padding: s.space(2);
-  }
+}
+.card {
+  display: grid;
+  gap: s.space(4);
+  padding: s.space(4);
+  border: 1px solid s.color('gray');
+}
+.product-name {
+  font-weight: 500;
+  font-size: s.space(5);
+  color: s.color('blue');
+}
+.product-description {
+  line-height: s.space(5.75);
+}
+.block {
+  display: flex;
+  flex-wrap: wrap;
+  gap: s.space(4);
+}
+.badge {
+  border-radius: s.space(5);
+  padding: s.space(2) s.space(4);
+}
+.blue-badge {
+  border: 1px solid s.color('blue');
+  color: s.color('blue');
+}
+.green-badge {
+  border: 1px solid s.color('green');
+  color: s.color('green');
+}
+.button {
+  border: none;
+  border-radius: s.space(2);
+  padding: s.space(4) s.space(8);
+  font-size: s.space(5);
+}
+.button span {
+  font-weight: 500;
+}
+.blue-button {
+  background-color: s.color('blue');
+  color: s.color('white');
 }

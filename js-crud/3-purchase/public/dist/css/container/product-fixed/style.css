@@ -1,46 +1,61 @@
-.main__caption {
-  margin: 0.5rem;
-}
-
-.form {
-  display: grid;
-  gap: 0.5rem;
-  box-shadow: 1rem 1.5rem 2rem;
+.card-container-fixed {
+  display: flex;
+  gap: 1.25rem;
   padding-bottom: 0.5rem;
 }
-.form__caption {
-  margin: 0.5rem;
+
+.card {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #ced4da;
 }
-.form__title {
+
+.product-name {
+  font-weight: 500;
   font-size: 1.25rem;
-  font-weight: bold;
+  color: #0050ff;
 }
-.form__block {
+
+.product-description {
+  line-height: 1.4375rem;
+}
+
+.block {
   display: flex;
-  justify-content: space-between;
-  margin-top: 0.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
-.form__block div {
-  width: 45%;
+
+.badge {
+  border-radius: 1.25rem;
+  padding: 0.5rem 1rem;
 }
-.form__input {
-  border: 1px solid rgb(0, 0, 0);
-  padding: 0.5rem;
-  margin-right: 0.5rem;
-  width: 100%;
+
+.blue-badge {
+  border: 1px solid #0050ff;
+  color: #0050ff;
 }
-.form__label {
-  display: block;
-  margin-top: 0.5rem;
+
+.green-badge {
+  border: 1px solid rgb(0, 255, 0);
+  color: rgb(0, 255, 0);
 }
-.form__button {
-  background-color: rgb(0, 102, 204);
+
+.button {
+  border: none;
+  border-radius: 0.5rem;
+  padding: 1rem 2rem;
+  font-size: 1.25rem;
+}
+
+.button span {
+  font-weight: 500;
+}
+
+.blue-button {
+  background-color: #0050ff;
   color: rgb(255, 255, 255);
-  padding: 0.5rem;
-  justify-self: stretch;
-}
-.form__link {
-  padding: 0.5rem;
 }
 
 /*# sourceMappingURL=style.css.map */
