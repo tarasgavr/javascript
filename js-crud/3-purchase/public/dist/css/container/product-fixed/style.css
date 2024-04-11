@@ -1,59 +1,51 @@
-.card-container-fixed {
-  display: flex;
-  gap: 1.25rem;
+.wrapper {
+  display: grid;
+  gap: 3.75rem;
   padding-bottom: 0.5rem;
 }
 
-.card {
-  display: grid;
-  gap: 1rem;
-  padding: 1rem;
-  border: 1px solid #ced4da;
+.card-container-fixed {
+  display: flex;
+  gap: 1.25rem;
+  width: 62.5rem;
 }
 
-.product-name {
-  font-weight: 500;
-  font-size: 1.25rem;
+.card {
+  align-self: flex-start;
+  display: grid;
+  gap: 1.875rem;
+}
+.card .product-name {
+  font-size: 1.75rem;
   color: #0050ff;
 }
-
-.product-description {
+.card .product-description {
   line-height: 1.4375rem;
 }
-
-.block {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+.card .block {
+  display: grid;
+  gap: 0.5625rem;
 }
-
-.badge {
-  border-radius: 1.25rem;
-  padding: 0.5rem 1rem;
+.card .block .product-label {
+  color: #ced4da;
 }
-
-.blue-badge {
-  border: 1px solid #0050ff;
-  color: #0050ff;
+.card .block .product-input {
+  padding: 0.984375rem 1.9375rem;
+  color: #ced4da;
 }
-
-.green-badge {
-  border: 1px solid rgb(0, 255, 0);
-  color: rgb(0, 255, 0);
+.card .block .product-button {
+  justify-self: start;
 }
-
-.button {
+.card .block .button {
   border: none;
   border-radius: 0.5rem;
   padding: 1rem 2rem;
   font-size: 1.25rem;
 }
-
-.button span {
+.card .block .button span {
   font-weight: 500;
 }
-
-.blue-button {
+.card .block .blue-button {
   background-color: #0050ff;
   color: rgb(255, 255, 255);
 }
