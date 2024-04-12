@@ -137,7 +137,7 @@ router.get('/product-fixed', function (req, res) {
     },
     other__products: [
       {
-        img: '../img/iimage616.png',
+        img: '../img/image616.png',
         name: "Комп'ютер Artline Gaming(X43v31) AMD Ryzen 5 3600",
         description:
           'AMD Ryzen 5 3600 (3.6 - 4.2 ГГц) / RAM 16 ГБ / HDD 1 ТБ + SSD 480 ГБ / nVidia GeForce RTX 3050, 8 ГБ / без ОД / LAN / без ОС',
@@ -147,7 +147,7 @@ router.get('/product-fixed', function (req, res) {
         price: 27000,
       },
       {
-        img: '../img/iimage617.png',
+        img: '../img/image617.png',
         name: "Комп'ютер COBRA Advanced (I11F.8.H1S2.15T.13356) Intel",
         description:
           'Intel Core i3-10100F (3.6 - 4.3 ГГц) / RAM 8 ГБ / HDD 1 ТБ + SSD 240 ГБ / GeForce GTX 1050 Ti, 4 ГБ / без ОД / LAN / Linux',
@@ -157,7 +157,7 @@ router.get('/product-fixed', function (req, res) {
         price: 17000,
       },
       {
-        img: '../img/iimage618.png',
+        img: '../img/image618.png',
         name: "Комп'ютер ARTLINE Gaming by ASUS TUF v119 (TUFv119)",
         description:
           'Intel Core i9-13900KF (3.0 - 5.8 ГГц) / RAM 64 ГБ / SSD 2 ТБ (2 x 1 ТБ) / nVidia GeForce RTX 4070 Ti, 12 ГБ / без ОД / LAN / Wi-Fi / Bluetooth / без ОС',

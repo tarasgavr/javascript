@@ -16,56 +16,46 @@
   gap: 3.75rem 1.25rem;
   padding-bottom: 0.5rem;
 }
-
-.card {
+.card-container .card {
   display: grid;
   gap: 1rem;
   padding: 1rem;
   border: 1px solid #ced4da;
 }
-
-.product-name {
+.card-container .product-name {
   font-weight: 500;
   font-size: 1.25rem;
 }
-
-.product-description {
+.card-container .product-description {
   line-height: 1.4375rem;
 }
-
-.block {
+.card-container .block {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
 }
-
-.badge {
+.card-container .badge {
   border-radius: 1.25rem;
   padding: 0.5rem 1rem;
 }
-
-.blue-badge {
+.card-container .blue-badge {
   border: 1px solid #0050ff;
   color: #0050ff;
 }
-
-.green-badge {
+.card-container .green-badge {
   border: 1px solid rgb(0, 255, 0);
   color: rgb(0, 255, 0);
 }
-
-.button {
+.card-container .button {
   border: none;
   border-radius: 0.5rem;
   padding: 1rem 2rem;
   font-size: 1.25rem;
 }
-
-.button span {
+.card-container .button span {
   font-weight: 500;
 }
-
-.blue-button {
+.card-container .blue-button {
   background-color: #0050ff;
   color: rgb(255, 255, 255);
 }

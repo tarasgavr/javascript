@@ -1,7 +1,7 @@
 <div class='wrapper'>
   <form
-    action='/product-fixed'
-    method='get'
+    action='/purchase-create'
+    method='post'
     class='card-container-fixed'
   >
     {{#with product__fixed}}
@@ -28,5 +28,26 @@
         </div>
       </div>
     {{/with}}
+  </form>
+  <form
+    action='/product-fixed'
+    method='get'
+    class='card-container'
+  >
+    {{#each other__products}}
+      <div class='card'>
+        <img src='{{img}}' alt="Комп'ютер" />
+        <div class='product-name'>{{name}}</div>
+        <p class='product-description'>{{description}}</p>
+        <div class='block'>
+          <div class='badge green-badge'>{{status}}</div>
+          <div
+            class='badge blue-badge'
+          >{{badge__text}}</div>
+        </div>
+        <button class='button blue-button'>{{button__text}}
+          <span>{{price}}&#8372;</span></button>
+      </div>
+    {{/each}}
   </form>
 </div>
