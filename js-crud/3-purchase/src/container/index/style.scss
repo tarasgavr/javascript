@@ -1,16 +1,5 @@
 @use '../../lib/services.scss' as s;
 
-.heading {
-  display: grid;
-  gap: s.space(5);
-  margin-bottom: s.space(15);
-  .caption {
-    color: s.color('blue');
-  }
-  .title {
-    color: s.color('gray');
-  }
-}
 .card-container {
   display: grid;
   grid: repeat(3, min-content) / repeat(3, min-content);

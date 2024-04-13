@@ -1,20 +1,24 @@
-<div class="heading">
-      {{#with data}}
-  <h1 class='caption'>{{caption}}</h1>
-  <div class='title'>{{title}}</div>
-</div>
-<form action="/product-fixed" method="get" class="card-container">
-            {{#each products}}
-  <div class="card">
-    <img src="{{img}}" alt="Комп'ютер">
-    <div class='product-name'>{{name}}</div>
-    <p class='product-description'>{{description}}</p>
-    <div class="block">
-      <div class="badge green-badge">{{status}}</div>
-      <div class="badge blue-badge">{{badge__text}}</div>
-    </div>
-    <button class="button blue-button">{{button__text}} <span>{{price}}&#8372;</span></button>
-  </div>
-            {{/each}}
-</form> 
-      {{/with}}
+{{#with data}}
+  {{> heading blue=true}}
+  <form
+    action='/product-fixed'
+    method='post'
+    class='card-container'
+  >
+    {{#each products}}
+      <div class='card'>
+        <img src='{{img}}' alt="Комп'ютер" />
+        <div id="product-name" class='product-name'>{{name}}</div>
+        <p class='product-description'>{{description}}</p>
+        <div class='block'>
+          <div class='badge green-badge'>{{status}}</div>
+          <div
+            class='badge blue-badge'
+          >{{badge__text}}</div>
+        </div>
+        <button class='button blue-button'>{{button__text}}
+          <span>{{price}}&#8372;</span></button>
+      </div>
+    {{/each}}
+  </form>
+{{/with}}

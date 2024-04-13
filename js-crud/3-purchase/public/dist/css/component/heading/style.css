@@ -1,0 +1,11 @@
+.heading {
+  display: grid;
+  gap: 1.25rem;
+  margin-bottom: 3.75rem;
+}
+
+.caption {
+  color: #0050ff;
+}
+
+/*# sourceMappingURL=style.css.map */
