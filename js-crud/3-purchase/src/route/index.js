@@ -8,16 +8,16 @@ class Product {
   static #productList = []
   constructor(name, price, description, amount) {
     let num = Math.trunc(Math.random() * 10000000000)
-    this.name = name
-    this.price = price
-    this.description = description
+    this.productName = name
+    this.productPrice = price
+    this.productDescription = description
     if (num.length !== 9) {
       num = Math.trunc(Math.random() * 10000000000)
-      this.id = num
+      this.productId = num
     } else {
-      this.id = num
+      this.productId = num
     }
-    this.amount = amount
+    this.productAmount = amount
   }
   static addProduct = (product) =>
     this.#productList.push(product)

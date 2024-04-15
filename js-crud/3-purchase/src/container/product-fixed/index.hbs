@@ -8,21 +8,23 @@
       {{#with product__fixed}}
         <img src='{{img}}' alt="Комп'ютер" />
         <div class='card'>
-          <div class='product-name'>{{name}}</div>
+          <div class='productName'>{{name}}</div>
+          <input type="hidden" name='productName' value="{{name}}">
           <hr />
-          <p class='product-description'>{{description}}</p>
+          <p class='productDescription'>{{description}}</p>
+          <input type="hidden" name='productDescription' value="{{description}}">
           <hr />
           <div class='block'>
             <label
               class='product-label'
-              for='amount'
+              for='productAmount'
             >Кількість товару</label>
             <input
               class='product-input'
               type='text'
-              name='amount'
+              name='productAmount'
             />
-            <button class='product-button button blue-button'>
+            <button class='product-button button blue-button' name="productrice" value="{{price}}">
               {{button__text}} <span>{{price}}&#8372;</span>
             </button>
           </div>
