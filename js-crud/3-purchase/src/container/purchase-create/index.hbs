@@ -1,51 +1,56 @@
 <main>
   <section>
-    <h2 class='main__caption'>Ваше замовлення</h2>
-    <div class="justify">
-      <div>{{productName}}</div>
-      <div class="text-bold">{{productPrice}}</div>
-    </div>
-    <div class="justify">
-      <div>Вартість доставки</div>
-      <div class="text-bold">150&#8372;</div>
-    </div>
-    <form class='form' action='/product-edit' method='post'>
-      <h5 class='form__title'>Оформлення замовлення</h5>
-      <div class='form__block'>
+    <form class='form grid gap-20' action='/product-edit' method='post'>
+      <div class='main__caption'>Ваше замовлення</div>
+      <div class="grid gap-20">
+        <div class="justify">
+          <div>{{productName}}</div>
+          <div class="text-bold">{{productPrice}}&#8372;</div>
+        </div>
+        <div class="justify">
+          <div>Вартість доставки</div>
+          <div class="text-bold">150&#8372;</div>
+        </div>
+      </div>
+        <div class='form__title line-height'>Оформлення замовлення</div>
+        <div class='grid gap-20'>
+          <div class='justify'>
+            <div>
+              <label for='userSurname' class='form__label'>Прізвище
+                <input type='text' name='userSurname' class='form__input'>
+              </label>
+            </div>
+            <div>
+              <label for='userName' class='form__label'>Ім'я
+                <input type='text' name='userName' class='form__input'>
+              </label>
+            </div>
+          </div>
+          <div class='justify'>
+            <div>
+              <label for='userPhone' class='form__label'>Мобільний телефон
+                <input type='text' name='userPhone' class='form__input'/>
+              </label>
+            </div>
+            <div>
+              <label for='userEmail' class='form__label'>Електронна пошта
+                <input type='text' name='userEmail' class='form__input'/>
+              </label>
+            </div>
+          </div>
+        </div>
+        <label for='purchaseComment' class='form__label'>Коментар</label>
+        <textarea name='purchaseComment' class='form__input'></textarea>
+        <small>Коментар буде передано кур’єру</small>
         <div class='justify'>
-          <div>
-            <label for='userSurname' class='form__label'>Прізвище</label>
-            <input type='text' name='userSurname' class='form__input'>
-          </div>
-          <div>
-            <label for='userName' class='form__label'>Ім'я</label>
-            <input type='text' name='userName' class='form__input'>
-          </div>
+          <label for='purchaseBonus' class='form__label'>Списати бонуси</label>
+          <input type='text' name='purchaseBonus' class='form__input'/>
+          <label for='purchasePromoCode' class='form__label'>Промо-код</label>
+          <input type='text' name='purchasePromoCode' class='form__input'/>
         </div>
-       <div class='justify'>
-            <div>
-              <label for='userPhone' class='form__label'>Мобільний телефон</label>
-              <input type='text' name='userPhone' class='form__input'/>
-            </div>
-            <div>
-              <label for='userEmail' class='form__label'>Електронна пошта</label>
-              <input type='text' name='userEmail' class='form__input'/>
-            </div>
-          </div>
-        </div>
-      </div>
-      <label for='purchaseComment' class='form__label'>Коментар</label>
-      <textarea name='purchaseComment' class='form__input'></textarea>
-      <small>Коментар буде передано кур’єру</small>
-      <div class='justify'>
-        <label for='purchaseBonus' class='form__label'>Списати бонуси</label>
-        <input type='text' name='purchaseBonus' class='form__input'/>
-        <label for='purchasePromoCode' class='form__label'>Промо-код</label>
-        <input type='text' name='purchasePromoCode' class='form__input'/>
-      </div>
-      <h5>Всього: </h5>
-      <div class="text-bold">{{productPrice}}&#8372; </div>
-      <div class="text-bold">(+{{productPrice}}*{{purchasePromoCode}}&#8372; на бонусний рахунок)</div>
+        <h5>Всього: </h5>
+        <div class="text-bold">{{productPrice}}&#8372; </div>
+        <div class="text-bold">(+{{productPrice}}*{{purchasePromoCode}}&#8372; на бонусний рахунок)</div>
         <button class='button blue-button'>Оформити замовлення</button>
     </form>
   </section>

@@ -16,11 +16,11 @@
   display: grid;
   gap: 1.875rem;
 }
-.wrapper .card-container-fixed .card .product-name {
+.wrapper .card-container-fixed .card .productName {
   font-size: 1.75rem;
   color: #0050ff;
 }
-.wrapper .card-container-fixed .card .product-description {
+.wrapper .card-container-fixed .card .productDescription {
   line-height: 1.4375rem;
 }
 .wrapper .card-container-fixed .card .block {

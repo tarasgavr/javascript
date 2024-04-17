@@ -15,11 +15,11 @@
       align-self: flex-start;
       display: grid;
       gap: s.space(7.5);
-      .product-name {
+      .productName {
         font-size: s.space(7);
         color: s.color('blue');
       }
-      .product-description {
+      .productDescription {
         line-height: s.space(5.75);
       }
       .block {

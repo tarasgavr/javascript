@@ -1,39 +1,47 @@
 .main__caption {
   color: #0050ff;
-  margin: 0.5rem;
+  margin-bottom: 3.75rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.text-bold {
+  font-weight: 500;
+}
+
+.line-height {
+  font-size: 1.25rem;
+  line-height: 1.21;
 }
 
 .justify {
-  margin: 0.5rem;
   display: flex;
   justify-content: space-between;
 }
 
-.form {
+.grid {
   display: grid;
+}
+
+.gap-20 {
+  gap: 1.25rem;
+}
+
+.gap-10 {
   gap: 0.625rem;
-  box-shadow: 1rem 1.5rem 2rem;
-  padding-bottom: 0.5rem;
+}
+
+.form {
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0.25rem 0.9375rem 0 rgba(0, 0, 0, 0.15);
+  padding: 1.5rem;
 }
 .form__title {
   color: #0050ff;
-  margin: 0.5rem;
-  font-size: 1.25rem;
-  font-weight: bold;
-}
-.form__block {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 0.5rem;
-}
-.form__block div {
-  width: 45%;
 }
 .form__input {
   border: 1px solid rgb(0, 0, 0);
   padding: 0.5rem;
-  margin-right: 0.5rem;
-  width: 100%;
 }
 .form__label {
   margin-top: 0.5rem;
