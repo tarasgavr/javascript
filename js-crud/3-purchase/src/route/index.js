@@ -6,7 +6,7 @@ const router = express.Router()
 // ================================================================
 class Product {
   static #productList = []
-  constructor(name, price, description, amount) {
+  constructor(name, description, price, amount=1) {
     let num = Math.trunc(Math.random() * 10000000000)
     this.productName = name
     this.productPrice = price
@@ -26,23 +26,21 @@ class Product {
 }
 class Purchase {
   static #purchaseList = []
-  constructor(name, price, description, amount) {
-    let num = Math.trunc(Math.random() * 10000000000)
+  static #count = 0
+  constructor(name, description, price, amount) {
     this.purchaseName = name
     this.purchasePrice = price
     this.purchaseDescription = description
-    if (num.length !== 9) {
-      num = Math.trunc(Math.random() * 10000000000)
-      this.purchaseId = num
-    } else {
-      this.purchaseId = num
-    }
+    this.purchaseId = ++Purchase.#count
     this.purchaseAmount = amount
   }
   static addPurchase = (purchase) =>
     this.#purchaseList.push(purchase)
 
   static getPurchaseList = () => this.#purchaseList
+
+  static getPurchaseById = (id) =>
+    this.#purchaseList.find((element) => element.id === id)
 
   static updatePurchase = (id, data) => {
     const purchase = this.getPurchaseById(id)
@@ -134,22 +132,18 @@ router.get('/', function (req, res) {
 })
 // ================================================================
 router.post('/product-fixed', function (req, res) {
-  const { productName, productDescription, productAmount, productPrice } = req.body;
-  // const product = Product(productName, productDescription, Numher(productAmount), Numher(productPrice));
-  console.log(productName, productDescription, productAmount, productPrice);
+  const { productName, productDescription, productPrice } = req.body;
+  const product = new Product(productName, productDescription, productPrice);
+  console.log(productName, productDescription, productPrice);
+  Product.addProduct(product);
   res.render('product-fixed', {
     style: 'product-fixed',
+    productName,
+    productDescription,
+    productPrice,
+    img: '../img/image620.png',
+    button__text: 'Купити зараз:',
     data: {
-      product__fixed: {
-        img: '../img/image620.png',
-        name: "Комп'ютер Artline Gaming(X43v31) AMD Ryzen 5 3600",
-        description:
-          'AMD Ryzen 5 3600 (3.6 - 4.2 ГГц) / RAM 16 ГБ / HDD 1 ТБ + SSD 480 ГБ / nVidia GeForce RTX 3050, 8 ГБ / без ОД / LAN / без ОС',
-        status: 'Готовий до відправки',
-        badge__text: 'Топ продажів',
-        button__text: 'Купити зараз:',
-        price: 27000,
-      },
       caption: 'Інші товари',
       title: "Комп'ютери та ноутбуки",
       other__products: [

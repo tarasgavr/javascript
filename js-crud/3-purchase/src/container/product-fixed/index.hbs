@@ -1,21 +1,15 @@
 <div class='wrapper'>
-  {{#with data}}
-    <form
-      action='/purchase-create'
-      method='post'
-      class='card-container-fixed'
-    >
-      {{#with product__fixed}}
+    <form action='/purchase-create' method='post' class='card-container-fixed'>
         <img src='{{img}}' alt="Комп'ютер" />
         <div class='card'>
-          <div class='productName'>{{name}}</div>
-          <input type="hidden" name='productName' value="{{name}}">
+          <div class='productName'>{{productName}}</div>
+          <input type="hidden" name='productName' value="{{productName}}">
           <hr />
-          <p class='productDescription'>{{description}}</p>
-          <input type="hidden" name='productDescription' value="{{description}}">
+          <p class='productDescription'>{{productDescription}}</p>
+          <input type="hidden" name='productDescription' value="{{productDescription}}">
           <hr />
           <div class='block'>
-            <label
+            <label 
               class='product-label'
               for='productAmount'
             >Кількість товару</label>
@@ -24,20 +18,19 @@
               type='text'
               name='productAmount'
             />
-            <button class='product-button button blue-button' name="productPrice" value="{{price}}">
-              {{button__text}} <span>{{price}}&#8372;</span>
+            <button class='product-button button blue-button' name="productPrice" value="{{productPrice}}">
+              {{button__text}} <span>{{productPrice}}&#8372;</span>
             </button>
           </div>
         </div>
-      {{/with}}
     </form>
-      {{> heading center=true}}
+      {{> heading caption=data.caption title=data.title center=true}}
     <form
       action='/product-fixed'
       method='post'
       class='card-container'
     >
-      {{#each other__products}}
+      {{#each data.other__products}}
         <div class='card'>
           <img src='{{img}}' alt="Комп'ютер" />
           <div class='product-name'>{{name}}</div>
@@ -55,5 +48,4 @@
         </div>
       {{/each}}
     </form>
-  {{/with}}
 </div>

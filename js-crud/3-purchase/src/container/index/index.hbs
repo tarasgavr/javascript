@@ -1,24 +1,22 @@
 {{#with data}}
   {{> heading blue=true}}
-  <form
-    action='/product-fixed'
-    method='post'
-    class='card-container'
-  >
+  <div class='card-container'>
     {{#each products}}
-      <div class='card'>
+      <form action='/product-fixed' method='post' class='card'>
         <img src='{{img}}' alt="Комп'ютер" />
-        <div id="product-name" class='product-name'>{{name}}</div>
-        <p class='product-description'>{{description}}</p>
+        <div class='productName'>{{name}}</div>
+        <input type="hidden" name='productName' value="{{name}}">
+        <p class='productDescription'>{{description}}</p>
+        <input type="hidden" name='productDescription' value="{{description}}">
         <div class='block'>
           <div class='badge green-badge'>{{status}}</div>
           <div
             class='badge blue-badge'
           >{{badge__text}}</div>
         </div>
-        <button class='button blue-button'>{{button__text}}
+        <button class='button blue-button' name="productPrice" value="{{price}}">{{button__text}}
           <span>{{price}}&#8372;</span></button>
-      </div>
+      </form>
     {{/each}}
-  </form>
+  </div>
 {{/with}}
