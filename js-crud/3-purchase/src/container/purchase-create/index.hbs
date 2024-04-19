@@ -13,7 +13,7 @@
         </div>
       </div>
         <div class='form__title line-height'>Оформлення замовлення</div>
-        <div class='grid row-2 gap-20'>
+        <div class='grid col-2 gap-20'>
           <label for='userSurname' class='form__label'>Прізвище
             <input type='text' name='userSurname' class='form__input'>
           </label>
@@ -31,7 +31,7 @@
           <textarea name='purchaseComment' class='form__input'></textarea>
           <small>Коментар буде передано кур’єру</small>
         </label>
-        <div class='grid row-2'>
+        <div class='grid col-2 gap-20'>
           <label for='purchaseBonus' class='form__label'>Списати бонуси
             <input type='text' name='purchaseBonus' class='form__input'/>
           </label>
@@ -39,9 +39,11 @@
             <input type='text' name='purchasePromoCode' class='form__input'/>
           </label>
         </div>
-        <span class='text-bold'>Всього: </span>
-        <span class="text-bold">{{productPrice}}&#8372; </span>
-        <span class="text-bold">(+{{productPrice}}*{{purchasePromoCode}}&#8372; на бонусний рахунок)</span>
+        <div>
+          <span class='text-bold'>Всього: </span>
+          <span class="text-bold">{{productPrice}}&#8372; </span>
+          <span class="text-bold">(+{{productPrice}}*{{purchasePromoCode}}&#8372; на бонусний рахунок)</span>
+        </div>
         <button class='button blue-button'>Оформити замовлення</button>
     </form>
   </section>
