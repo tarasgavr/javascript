@@ -2,11 +2,11 @@
     <form action='/purchase-create' method='post' class='card-container-fixed'>
         <img src='{{img}}' alt="Комп'ютер" />
         <div class='card'>
-          <div class='productName'>{{productName}}</div>
-          <input type="hidden" name='productName' value="{{productName}}">
+          <div class='productName'>{{name}}</div>
+          <input type="hidden" name='productName' value="{{name}}">
           <hr />
-          <p class='productDescription'>{{productDescription}}</p>
-          <input type="hidden" name='productDescription' value="{{productDescription}}">
+          <p class='productDescription'>{{description}}</p>
+          <input type="hidden" name='productDescription' value="{{description}}">
           <hr />
           <div class='block'>
             <label 
@@ -18,34 +18,30 @@
               type='text'
               name='productAmount'
             />
-            <button class='product-button button blue-button' name="productPrice" value="{{productPrice}}">
-              {{button__text}} <span>{{productPrice}}&#8372;</span>
+            <button class='product-button button blue-button' name="productPrice" value="{{price}}">
+              {{button__text}} <span>{{price}}&#8372;</span>
             </button>
           </div>
         </div>
     </form>
       {{> heading caption=data.caption title=data.title center=true}}
-    <form
-      action='/product-fixed'
-      method='post'
-      class='card-container'
-    >
+    <div class='card-container'>
       {{#each data.other__products}}
-        <div class='card'>
-          <img src='{{img}}' alt="Комп'ютер" />
-          <div class='product-name'>{{name}}</div>
-          <p class='product-description'>{{description}}</p>
-          <div class='block'>
-            <div class='badge green-badge'>{{status}}</div>
-            <div
-              class='badge blue-badge'
-            >{{badge__text}}</div>
-          </div>
-          <button
-            class='button blue-button'
-          >{{button__text}}
-            <span>{{price}}&#8372;</span></button>
+        <form action='/product-fixed' method='post' class='card'>
+        <img src='{{img}}' alt="Комп'ютер" />
+        <div class='productName'>{{name}}</div>
+        <input type="hidden" name='productName' value="{{name}}">
+        <p class='productDescription'>{{description}}</p>
+        <input type="hidden" name='productDescription' value="{{description}}">
+        <div class='block'>
+          <div class='badge green-badge'>{{status}}</div>
+          <div
+            class='badge blue-badge'
+          >{{badge__text}}</div>
         </div>
+        <button class='button blue-button' name="productPrice" value="{{price}}">{{button__text}}
+          <span>{{price}}&#8372;</span></button>
+      </form>
       {{/each}}
-    </form>
+    </div>
 </div>

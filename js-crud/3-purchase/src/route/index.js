@@ -134,13 +134,12 @@ router.get('/', function (req, res) {
 router.post('/product-fixed', function (req, res) {
   const { productName, productDescription, productPrice } = req.body;
   const product = new Product(productName, productDescription, productPrice);
-  console.log(productName, productDescription, productPrice);
   Product.addProduct(product);
   res.render('product-fixed', {
     style: 'product-fixed',
-    productName,
-    productDescription,
-    productPrice,
+    name : product.productName,
+    description : product.productDescription,
+    price : product.productPrice,
     img: '../img/image620.png',
     button__text: 'Купити зараз:',
     data: {
@@ -184,12 +183,12 @@ router.post('/product-fixed', function (req, res) {
 // ================================================================
 router.post('/purchase-create', function (req, res) {
   const { productName, productDescription, productAmount, productPrice } = req.body;
-  // const product = Product(productName, productDescription, Numher(productAmount), Numher(productPrice));
-  console.log(productName, productDescription, productAmount, productPrice);
+    const product = new Product(productName, productDescription, productPrice, productAmount);
+  Product.addProduct(product);
   res.render('purchase-create', {
     style: 'purchase-create',
-    productName,
-    productPrice,
+    name : product.productName,
+    price : product.productPrice,
   })
 })
 // ================================================================
