@@ -192,6 +192,18 @@ router.post('/purchase-create', function (req, res) {
   })
 })
 // ================================================================
+router.post('/purchase-alert', function (req, res) {
+  const { productName, productDescription, productAmount, productPrice } = req.body;
+  const product = new Product(productName, productDescription, productPrice, productAmount);
+  console.log(req.body);
+  Product.addProduct(product);
+  res.render('purchase-alert', {
+    style: 'purchase-alert',
+    name : product.productName,
+    price : product.productPrice,
+  })
+})
+// ================================================================
 
 // Підключаємо роутер до бек-енду
 module.exports = router

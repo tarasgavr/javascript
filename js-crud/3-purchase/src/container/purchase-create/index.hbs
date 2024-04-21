@@ -1,6 +1,6 @@
 <main>
   <section>
-    <form class='form grid gap-20' action='/product-edit' method='post'>
+    <form class='form grid gap-20' action='/purchase-alert' method='post'>
       <div class='main__caption'>Ваше замовлення</div>
       <div class="grid gap-20">
         <div class="justify">
@@ -10,6 +10,7 @@
         <div class="justify">
           <div>Вартість доставки</div>
           <div class="text-bold">150&#8372;</div>
+          <input type="hidden" name='deliveryPrice' value="150">
         </div>
       </div>
         <div class='form__title line-height'>Оформлення замовлення</div>
@@ -32,8 +33,8 @@
           <small>Коментар буде передано кур’єру</small>
         </label>
         <div class='grid col-2 gap-20'>
-          <label for='purchaseBonus' class='form__label'>Списати бонуси
-            <input type='text' name='purchaseBonus' class='form__input'/>
+          <label for='writeOffBonuses' class='form__label'>Списати бонуси
+            <input type='text' name='writeOffBonuses' class='form__input'/>
           </label>
           <label for='purchasePromoCode' class='form__label'>Промо-код
             <input type='text' name='purchasePromoCode' class='form__input'/>
@@ -41,8 +42,8 @@
         </div>
         <div>
           <span class='text-bold'>Всього: </span>
-          <span class="text-bold">{{productPrice}}&#8372; </span>
-          <span class="text-bold">(+{{productPrice}}*{{purchasePromoCode}}&#8372; на бонусний рахунок)</span>
+          <span class="text-bold">{{price}}&#8372; </span>
+          <span class="text-bold">(+{{price}}*{{purchasePromoCode}}&#8372; на бонусний рахунок)</span>
         </div>
         <button class='button blue-button'>Оформити замовлення</button>
     </form>
