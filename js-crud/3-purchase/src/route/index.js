@@ -24,15 +24,40 @@ class Product {
 
   static getProductList = () => this.#productList
 }
+class User {
+  static #userList = []
+  static #count = 0
+  constructor(surname, name, phone, email) {
+    this.userSurname = surname
+    this.userName =  name
+    this.userPhone =  phone
+    this.userId = ++User.#count
+    this.userEmail = email
+  }
+  static addUser = (user) =>
+    this.#userList.push(user)
+  
+  static getUserById = (id) =>
+    this.#userList.find((element) => element.id === id)
+  
+  static getUserList = () => this.#userList
+}
 class Purchase {
   static #purchaseList = []
   static #count = 0
-  constructor(name, description, price, amount) {
+  constructor(name, price, id, comment, promoCode = 1, deliveryPrice, bonuses) {
+    const user = new User.getUserById(id);
+    this.purchaseId = ++Purchase.#count
     this.purchaseName = name
     this.purchasePrice = price
-    this.purchaseDescription = description
-    this.purchaseId = ++Purchase.#count
-    this.purchaseAmount = amount
+    this.purchaseUserSurname = user.userSurname
+    this.purchaseUserName = user.userName
+    this.purchaseUserPhone = user.userPhone
+    this.purchaseUserEmail = user.userEmail
+    this.purchaseComment = comment
+    this.purchasePromoCode = promoCode
+    this.purchaseDeliveryPrice = deliveryPrice
+    this.bonuses = bonuses
   }
   static addPurchase = (purchase) =>
     this.#purchaseList.push(purchase)
@@ -199,6 +224,7 @@ router.post('/purchase-alert', function (req, res) {
   Product.addProduct(product);
   res.render('purchase-alert', {
     style: 'purchase-alert',
+    info : 'Замовлення було успішно створено',
     name : product.productName,
     price : product.productPrice,
   })
