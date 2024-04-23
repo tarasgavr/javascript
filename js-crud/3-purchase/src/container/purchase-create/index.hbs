@@ -5,7 +5,9 @@
       <div class="grid gap-20">
         <div class="justify">
           <div>{{name}}</div>
+          <input type="hidden" name='productName' value="{{name}}">
           <div class="text-bold">{{price}}&#8372;</div>
+          <input type="hidden" name='productPrice' value="{{price}}">
         </div>
         <div class="justify">
           <div>Вартість доставки</div>
@@ -22,7 +24,7 @@
             <input type='text' name='userName' class='form__input'>
           </label>
           <label for='userPhone' class='form__label'>Мобільний телефон
-            <input type='text' name='userPhone' class='form__input'/>
+            <input type='phone' name='userPhone' class='form__input'/>
           </label>
           <label for='userEmail' class='form__label'>Електронна пошта
             <input type='text' name='userEmail' class='form__input'/>

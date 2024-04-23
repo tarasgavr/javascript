@@ -45,8 +45,8 @@ class User {
 class Purchase {
   static #purchaseList = []
   static #count = 0
-  constructor(name, price, id, comment, promoCode = 1, deliveryPrice, bonuses) {
-    const user = new User.getUserById(id);
+  constructor(name, price, userId, comment, promoCode, deliveryPrice, bonuses=0.1) {
+    const user = User.getUserById(userId);
     this.purchaseId = ++Purchase.#count
     this.purchaseName = name
     this.purchasePrice = price
@@ -218,15 +218,17 @@ router.post('/purchase-create', function (req, res) {
 })
 // ================================================================
 router.post('/purchase-alert', function (req, res) {
-  const { productName, productDescription, productAmount, productPrice } = req.body;
-  const product = new Product(productName, productDescription, productPrice, productAmount);
+  const { productName,productPrice, deliveryPrice,userSurname,userName,userPhone,userEmail,purchaseComment,
+    writeOffBonuses, purchasePromoCode } = req.body;
+  const user = new User(userSurname,userName,userPhone,userEmail);
+  User.addUser(user);
+  const purchase = new Purchase(productName, productPrice, user.userId, purchaseComment, purchasePromoCode, deliveryPrice);
+  Purchase.addPurchase(purchase);
+  console.log(Purchase.getPurchaseList());
   console.log(req.body);
-  Product.addProduct(product);
   res.render('purchase-alert', {
     style: 'purchase-alert',
-    info : 'Замовлення було успішно створено',
-    name : product.productName,
-    price : product.productPrice,
+    info : `Замовлення №${purchase.purchaseId} було успішно створено`,
   })
 })
 // ================================================================
