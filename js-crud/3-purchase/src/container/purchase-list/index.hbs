@@ -1,16 +1,24 @@
 <main>
   <section>
-    <h1 class='main__caption'>Список товарів</h1>
-    <div class='card__block'>
-      {{#with data.products}}
+{{> heading caption='Мої замовлення' blue=true}}
         <div class='card__container'>
-          {{#each list}}
+          {{#each data}}
             <div class='card'>
-              <h3>{{name}}</h3>
+              <span class='card-caption'>ID :{{purchaseId}}</span>
+              <div class='card-block'>
+                <span class='card-caption'>Товари</span>
+                <h5>{{purchaseName}}</h5>
+              </div>
+              <div class='card-block'>
+                <span class='card-caption'>Сума замовлення</span>
+                <h5>{{price}}&#8372;</h5>
+              </div>
+              <div class='card-block'>
+                <span class='card-caption'>Товари</span>
+                <h5>{{purchaseName}}</h5>
+              </div>
               <p>{{description}}</p>
-              <h5>ID :{{id}}</h5>
               <div>
-                <h4>{{price}}&#8372;</h4>
                 <a
                   href='/product-edit?id={{id}}'
                 >Редагувати</a>
@@ -18,7 +26,6 @@
             </div>
           {{/each}}
         </div>
-      {{/with}}
     </div>
     <button class='form__button'>
       <a href='/product-create'>Створити</a>

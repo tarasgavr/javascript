@@ -38,7 +38,7 @@ class User {
     this.#userList.push(user)
   
   static getUserById = (id) =>
-    this.#userList.find((element) => element.id === id)
+    this.#userList.find((element) => element.userId === id)
   
   static getUserList = () => this.#userList
 }
@@ -65,7 +65,7 @@ class Purchase {
   static getPurchaseList = () => this.#purchaseList
 
   static getPurchaseById = (id) =>
-    this.#purchaseList.find((element) => element.id === id)
+    this.#purchaseList.find((element) => element.purchaseId === id)
 
   static updatePurchase = (id, data) => {
     const purchase = this.getPurchaseById(id)
@@ -217,21 +217,29 @@ router.post('/purchase-create', function (req, res) {
   })
 })
 // ================================================================
+
 router.post('/purchase-alert', function (req, res) {
-  const { productName,productPrice, deliveryPrice,userSurname,userName,userPhone,userEmail,purchaseComment,
-    writeOffBonuses, purchasePromoCode } = req.body;
+  const { productName,productPrice, deliveryPrice,userSurname,userName,userPhone,userEmail,purchaseComment, writeOffBonuses, purchasePromoCode } = req.body;
   const user = new User(userSurname,userName,userPhone,userEmail);
   User.addUser(user);
   const purchase = new Purchase(productName, productPrice, user.userId, purchaseComment, purchasePromoCode, deliveryPrice);
   Purchase.addPurchase(purchase);
-  console.log(Purchase.getPurchaseList());
   console.log(req.body);
   res.render('purchase-alert', {
     style: 'purchase-alert',
-    info : `Замовлення №${purchase.purchaseId} було успішно створено`,
+    id : purchase.purchaseId,
+    info: `Замовлення №${purchase.purchaseId} було успішно створено`
   })
 })
 // ================================================================
-
+router.post('/purchase-list', function (req, res) {
+  const {id} =req.body;
+  const list =Purchase.getPurchaseList();
+  res.render('purchase-list', {
+    style: 'purchase-list',
+    data : list
+  })
+})
+// ================================================================
 // Підключаємо роутер до бек-енду
 module.exports = router
