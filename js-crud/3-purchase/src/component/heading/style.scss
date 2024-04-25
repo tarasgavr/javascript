@@ -1,9 +1,11 @@
 @use '../../lib/services.scss' as s;
 
 .heading {
+  margin-bottom: s.space(15);
+}
+.grid {
   display: grid;
   gap: s.space(5);
-  margin-bottom: s.space(15);
 }
 .caption {
   color: s.color('blue');
