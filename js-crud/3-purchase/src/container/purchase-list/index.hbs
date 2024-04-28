@@ -4,7 +4,9 @@
         <div class='card__container'>
           {{#each data}}
             <div class='card'>
-              <span class='card-caption'>ID :{{purchaseId}}</span>
+              <div class="cell-center">
+                <span class='card-caption'>ID :{{purchaseId}}</span>
+              </div>
               <div class='card-block'>
                 <span class='card-caption'>Товари</span>
                 <h5>{{purchaseName}}</h5>
@@ -15,10 +17,14 @@
               </div>
               <div class='card-block'>
                 <span class='card-caption'>Нараховані бонуси</span>
-                <h5>{{bonuees}}</h5>
+                <h5>{{bonuses}}</h5>
               </div>
+              <div class="cell-center">
                 <a href='/purchase-edit?id={{purchaseId}}'>Редагувати</a>
+              </div>
+              <div class="cell-center">
                 <a href='/purchase-info?id={{purchaseId}}'>Детальніше</a>
+              </div>
             </div>
           <hr>
           {{/each}}

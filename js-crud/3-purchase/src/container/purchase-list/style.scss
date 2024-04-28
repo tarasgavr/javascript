@@ -7,7 +7,7 @@
   &__container {
     display: grid;
     gap: s.space(5);
-    width: s.space(250);
+    // width: s.space(250);
   }
   &-block {
     display: flex;
@@ -17,8 +17,9 @@
   &-caption {
     color: s.color('gray');
   }
-  &-caption:first-child {
-    align-self: center;
+  .cell-center {
+    display: flex;
+    align-items: center;
   }
   
 }

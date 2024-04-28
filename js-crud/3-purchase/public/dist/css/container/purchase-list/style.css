@@ -6,7 +6,6 @@
 .card__container {
   display: grid;
   gap: 1.25rem;
-  width: 62.5rem;
 }
 .card-block {
   display: flex;
@@ -16,8 +15,9 @@
 .card-caption {
   color: #ced4da;
 }
-.card-caption:first-child {
-  align-self: center;
+.card .cell-center {
+  display: flex;
+  align-items: center;
 }
 
 /*# sourceMappingURL=style.css.map */

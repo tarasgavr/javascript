@@ -45,7 +45,7 @@ class User {
 class Purchase {
   static #purchaseList = []
   static #count = 0
-  constructor(name, price, userId, comment, promoCode, deliveryPrice, bonuses=0.1) {
+  constructor(name, price, userId, comment, promoCode = '', deliveryPrice) {
     const user = User.getUserById(userId);
     this.purchaseId = ++Purchase.#count
     this.purchaseName = name
@@ -57,7 +57,6 @@ class Purchase {
     this.purchaseComment = comment
     this.purchasePromoCode = promoCode
     this.purchaseDeliveryPrice = deliveryPrice
-    this.bonuses = bonuses
   }
   static addPurchase = (purchase) =>
     this.#purchaseList.push(purchase)
@@ -208,23 +207,51 @@ router.post('/product-fixed', function (req, res) {
 // ================================================================
 router.post('/purchase-create', function (req, res) {
   const { productName, productDescription, productAmount, productPrice } = req.body;
-    const product = new Product(productName, productDescription, productPrice, productAmount);
+  const product = new Product(productName, productDescription, productPrice, productAmount);
   Product.addProduct(product);
+  let productTotalPrice = productAmount * productPrice;
+  // switch (purchase.purchasePromoCode) {
+  //   case 'DISCOUNT10':
+  //     productTotalPrice *= 0.1;
+  //     break;
+  //   case 'DISCOUNT25':
+  //     productTotalPrice *= 0.25;
+  //     break;
+  //   case 'DISCOUNT50':
+  //     productTotalPrice *= 0.5;
+  //     break;
+  
+  //   default: productTotalPrice *= 1;
+  // }
   res.render('purchase-create', {
     style: 'purchase-create',
     name : product.productName,
-    price : product.productPrice,
+    price: product.productPrice,
+    totalPrice :productTotalPrice,
+    bonuses: productTotalPrice / 100,
   })
 })
 // ================================================================
-
 router.post('/purchase-alert', function (req, res) {
+  const { totalPrice } = req.query;
   const { productName,productPrice, deliveryPrice,userSurname,userName,userPhone,userEmail,purchaseComment, writeOffBonuses, purchasePromoCode } = req.body;
   const user = new User(userSurname,userName,userPhone,userEmail);
   User.addUser(user);
   const purchase = new Purchase(productName, productPrice, user.userId, purchaseComment, purchasePromoCode, deliveryPrice);
   Purchase.addPurchase(purchase);
-  console.log(req.body);
+  let productTotalPrice = totalPrice;
+  switch (purchase.purchasePromoCode) {
+    case 'DISCOUNT10':
+      productTotalPrice *= 0.1;
+    case 'DISCOUNT25':
+      productTotalPrice *= 0.25;
+    case 'DISCOUNT50':
+      productTotalPrice *= 0.5;
+      break;
+  
+    default: productTotalPrice *= 1;
+  }
+  console.log(req.query);
   res.render('purchase-alert', {
     style: 'purchase-alert',
     id : purchase.purchaseId,
@@ -233,11 +260,13 @@ router.post('/purchase-alert', function (req, res) {
 })
 // ================================================================
 router.post('/purchase-list', function (req, res) {
-  const {id} =req.body;
-  const list =Purchase.getPurchaseList();
+  const { id } = req.body;
+  const list = Purchase.getPurchaseList();
+  const purchase = Purchase.getPurchaseById(id);
+
   res.render('purchase-list', {
     style: 'purchase-list',
-    data : list
+    data: list,
   })
 })
 // ================================================================

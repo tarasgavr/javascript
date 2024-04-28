@@ -1,6 +1,6 @@
 <main>
   <section>
-    <form class='form grid gap-20' action='/purchase-alert' method='post'>
+    <form class='form grid gap-20' action='/purchase-alert?price={{totalPrice}}' method='post'>
       <div class='main__caption'>Ваше замовлення</div>
       <div class="grid gap-20">
         <div class="justify">
@@ -44,8 +44,8 @@
         </div>
         <div>
           <span class='text-bold'>Всього: </span>
-          <span class="text-bold">{{price}}&#8372; </span>
-          <span class="text-bold">(+{{price}}*{{purchasePromoCode}}&#8372; на бонусний рахунок)</span>
+          <span class="text-bold">{{totalPrice}}&#8372; </span>
+          <span class="text-bold">(+{{bonuses}}&#8372; на бонусний рахунок)</span>
         </div>
         <button class='button blue-button'>Оформити замовлення</button>
     </form>
