@@ -68,11 +68,11 @@ class Purchase {
 
   static updatePurchase = (id, data) => {
     const purchase = this.getPurchaseById(id)
-    const { price } = data
+    const { purchasePrice } = data
 
     if (purchase) {
       if (price) {
-        purchase.price = price
+        purchase.purchasePrice = purchasePrice
       }
 
       return true
@@ -210,13 +210,11 @@ router.post('/purchase-create', function (req, res) {
   const product = new Product(productName, productDescription, productPrice, productAmount);
   Product.addProduct(product);
   let productTotalPrice = productAmount * productPrice;
-  // switch (purchase.purchasePromoCode) {
+  // switch (purchasePromoCode) {
   //   case 'DISCOUNT10':
   //     productTotalPrice *= 0.1;
-  //     break;
   //   case 'DISCOUNT25':
   //     productTotalPrice *= 0.25;
-  //     break;
   //   case 'DISCOUNT50':
   //     productTotalPrice *= 0.5;
   //     break;
@@ -227,6 +225,7 @@ router.post('/purchase-create', function (req, res) {
     style: 'purchase-create',
     name : product.productName,
     price: product.productPrice,
+    amount : product.productAmount,
     totalPrice :productTotalPrice,
     bonuses: productTotalPrice / 100,
   })
@@ -240,18 +239,10 @@ router.post('/purchase-alert', function (req, res) {
   const purchase = new Purchase(productName, productPrice, user.userId, purchaseComment, purchasePromoCode, deliveryPrice);
   Purchase.addPurchase(purchase);
   let productTotalPrice = totalPrice;
-  switch (purchase.purchasePromoCode) {
-    case 'DISCOUNT10':
+   if(purchase.purchasePromoCode='DISCOUNT10') {
       productTotalPrice *= 0.1;
-    case 'DISCOUNT25':
-      productTotalPrice *= 0.25;
-    case 'DISCOUNT50':
-      productTotalPrice *= 0.5;
-      break;
-  
-    default: productTotalPrice *= 1;
   }
-  console.log(req.query);
+  console.log(purchase);
   res.render('purchase-alert', {
     style: 'purchase-alert',
     id : purchase.purchaseId,
@@ -263,7 +254,8 @@ router.post('/purchase-list', function (req, res) {
   const { id } = req.body;
   const list = Purchase.getPurchaseList();
   const purchase = Purchase.getPurchaseById(id);
-
+  console.log(req.body);
+  console.log(purchase);
   res.render('purchase-list', {
     style: 'purchase-list',
     data: list,

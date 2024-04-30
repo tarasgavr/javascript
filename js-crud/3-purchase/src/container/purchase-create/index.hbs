@@ -1,6 +1,6 @@
 <main>
   <section>
-    <form class='form grid gap-20' action='/purchase-alert?price={{totalPrice}}' method='post'>
+    <form class='form grid gap-20' action='/purchase-alert?price={{totalPrice}}&amount={{amount}}' method='post'>
       <div class='main__caption'>Ваше замовлення</div>
       <div class="grid gap-20">
         <div class="justify">
@@ -13,6 +13,10 @@
           <div>Вартість доставки</div>
           <div class="text-bold">150&#8372;</div>
           <input type="hidden" name='deliveryPrice' value="150">
+        </div>
+        <div class="justify">
+          <div>Кількість товару</div>
+          <div class="text-bold">{{amount}}</div>
         </div>
       </div>
         <div class='form__title line-height'>Оформлення замовлення</div>
