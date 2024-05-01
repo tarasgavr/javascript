@@ -232,17 +232,27 @@ router.post('/purchase-create', function (req, res) {
 })
 // ================================================================
 router.post('/purchase-alert', function (req, res) {
-  const { totalPrice } = req.query;
+  const { totalPrice, } = req.query;
   const { productName,productPrice, deliveryPrice,userSurname,userName,userPhone,userEmail,purchaseComment, writeOffBonuses, purchasePromoCode } = req.body;
   const user = new User(userSurname,userName,userPhone,userEmail);
   User.addUser(user);
   const purchase = new Purchase(productName, productPrice, user.userId, purchaseComment, purchasePromoCode, deliveryPrice);
   Purchase.addPurchase(purchase);
   let productTotalPrice = totalPrice;
-   if(purchase.purchasePromoCode='DISCOUNT10') {
-      productTotalPrice *= 0.1;
+  console.log(req.query);
+   if(purchase.purchasePromoCode==='DISCOUNT10') {
+      productTotalPrice -=productTotalPrice* 0.1;
+  } else if(purchase.purchasePromoCode==='DISCOUNT25') {
+      productTotalPrice -=productTotalPrice* 0.25;
+  } else if(purchase.purchasePromoCode==='DISCOUNT50') {
+      productTotalPrice -=productTotalPrice* 0.5;
+  } else {
+      productTotalPrice *= 1;
   }
-  console.log(purchase);
+  console.log(typeof purchase.purchasePrice);
+  purchase.purchasePrice = String(productTotalPrice);
+  console.log((productTotalPrice));
+  console.log(purchase.purchasePrice);
   res.render('purchase-alert', {
     style: 'purchase-alert',
     id : purchase.purchaseId,
@@ -254,7 +264,8 @@ router.post('/purchase-list', function (req, res) {
   const { id } = req.body;
   const list = Purchase.getPurchaseList();
   const purchase = Purchase.getPurchaseById(id);
-  console.log(req.body);
+  console.log(list);
+  console.log(id);
   console.log(purchase);
   res.render('purchase-list', {
     style: 'purchase-list',
