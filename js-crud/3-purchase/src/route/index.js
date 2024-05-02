@@ -210,17 +210,6 @@ router.post('/purchase-create', function (req, res) {
   const product = new Product(productName, productDescription, productPrice, productAmount);
   Product.addProduct(product);
   let productTotalPrice = productAmount * productPrice;
-  // switch (purchasePromoCode) {
-  //   case 'DISCOUNT10':
-  //     productTotalPrice *= 0.1;
-  //   case 'DISCOUNT25':
-  //     productTotalPrice *= 0.25;
-  //   case 'DISCOUNT50':
-  //     productTotalPrice *= 0.5;
-  //     break;
-  
-  //   default: productTotalPrice *= 1;
-  // }
   res.render('purchase-create', {
     style: 'purchase-create',
     name : product.productName,
@@ -239,7 +228,6 @@ router.post('/purchase-alert', function (req, res) {
   const purchase = new Purchase(productName, productPrice, user.userId, purchaseComment, purchasePromoCode, deliveryPrice);
   Purchase.addPurchase(purchase);
   let productTotalPrice = totalPrice;
-  console.log(req.query);
    if(purchase.purchasePromoCode==='DISCOUNT10') {
       productTotalPrice -=productTotalPrice* 0.1;
   } else if(purchase.purchasePromoCode==='DISCOUNT25') {
@@ -249,10 +237,6 @@ router.post('/purchase-alert', function (req, res) {
   } else {
       productTotalPrice *= 1;
   }
-  console.log(typeof purchase.purchasePrice);
-  purchase.purchasePrice = String(productTotalPrice);
-  console.log((productTotalPrice));
-  console.log(purchase.purchasePrice);
   res.render('purchase-alert', {
     style: 'purchase-alert',
     id : purchase.purchaseId,
@@ -263,10 +247,6 @@ router.post('/purchase-alert', function (req, res) {
 router.post('/purchase-list', function (req, res) {
   const { id } = req.body;
   const list = Purchase.getPurchaseList();
-  const purchase = Purchase.getPurchaseById(id);
-  console.log(list);
-  console.log(id);
-  console.log(purchase);
   res.render('purchase-list', {
     style: 'purchase-list',
     data: list,
