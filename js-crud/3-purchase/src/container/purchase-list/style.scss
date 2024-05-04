@@ -7,7 +7,7 @@
   &__container {
     display: grid;
     gap: s.space(5);
-    // width: s.space(250);
+    width: s.space(250);
   }
   &-block {
     display: flex;

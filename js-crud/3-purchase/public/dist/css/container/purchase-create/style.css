@@ -39,6 +39,7 @@
   background-color: rgb(255, 255, 255);
   box-shadow: 0 0.25rem 0.9375rem 0 rgba(0, 0, 0, 0.15);
   padding: 1.5rem;
+  width: 62.5rem;
 }
 .form__title {
   color: #0050ff;

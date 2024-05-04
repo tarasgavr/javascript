@@ -6,6 +6,7 @@
 .card__container {
   display: grid;
   gap: 1.25rem;
+  width: 62.5rem;
 }
 .card-block {
   display: flex;

@@ -1,15 +1,7 @@
-<main>
-  <section>
-    <form class='form grid gap-20' action='/purchase-alert?totalPrice={{totalPrice}}&amount={{amount}}' method='post'>
-      <div class='main__caption'>Ваше замовлення</div>
+    <form class='form grid' action='/purchase-edit?i={{purchaseId}}' method='get'>
+      {{> heading caption=caption blue=true}}
+      <span class='card-caption'>ID :{{purchaseId}}</span>
       <div class="grid gap-20">
-        <div class="justify">
-          <div>{{name}}</div>
-          <input type="hidden" name='productName' value="{{name}}">
-          <div class="text-bold">{{price}}&#8372;</div>
-          <input type="hidden" name='productPrice' value="{{price}}">
-        </div>
-        <div class="justify">
           <div>Вартість доставки</div>
           <div class="text-bold">150&#8372;</div>
           <input type="hidden" name='deliveryPrice' value="150">
@@ -19,24 +11,25 @@
           <div class="text-bold">{{amount}}</div>
         </div>
       </div>
-        <div class='form__title line-height'>Оформлення замовлення</div>
         <div class='grid col-2 gap-20'>
           <label for='userSurname' class='form__label'>Прізвище
-            <input type='text' name='userSurname' class='form__input'>
+            <div class="text-bold">{{purchaseUserSurame}}</div>
           </label>
           <label for='userName' class='form__label'>Ім'я
-            <input type='text' name='userName' class='form__input'>
+            <div class="text-bold">{{purchaseUserName}}</div>
           </label>
           <label for='userPhone' class='form__label'>Мобільний телефон
-            <input type='phone' name='userPhone' class='form__input'/>
+            <div class="text-bold">{{purchaseUserPhone}}</div>
           </label>
           <label for='userEmail' class='form__label'>Електронна пошта
-            <input type='text' name='userEmail' class='form__input'/>
+            <div class="text-bold">{{purchaseUserEmail}}</div>
           </label>
         </div>
         <label for='purchaseComment' class='form__label'>Коментар
-          <textarea name='purchaseComment' class='form__input'></textarea>
-          <small>Коментар буде передано кур’єру</small>
+          <div class="text-bold">{{purchaseComment}}</div>
+        </label>
+        <label for='purchaseComment' class='form__label'>Назва товару
+          <div class='text-bold'>{{productName}}</div>
         </label>
         <div class='grid col-2 gap-20'>
           <label for='writeOffBonuses' class='form__label'>Списати бонуси
@@ -46,12 +39,5 @@
             <input type='text' name='purchasePromoCode' class='form__input'/>
           </label>
         </div>
-        <div>
-          <span class='text-bold'>Всього: </span>
-          <span class="text-bold">{{totalPrice}}&#8372; </span>
-          <span class="text-bold">(+{{bonuses}}&#8372; на бонусний рахунок)</span>
-        </div>
-        <button class='button blue-button'>Оформити замовлення</button>
+        <button class='button blue-button'>Змінити дані</button>
     </form>
-  </section>
-</main>
