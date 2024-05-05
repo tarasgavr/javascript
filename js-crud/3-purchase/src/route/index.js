@@ -232,7 +232,7 @@ router.post('/purchase-create', function (req, res) {
 })
 // ================================================================
 router.post('/purchase-alert', function (req, res) {
-  const { mode, totalPrice, amount } = req.query;
+  const { totalPrice, amount } = req.query;
   const { productName,productPrice, deliveryPrice,userSurname,userName,userPhone,userEmail,purchaseComment, writeOffBonuses, purchasePromoCode } = req.body;
   const user = new User(userSurname,userName,userPhone,userEmail);
   User.addUser(user);
@@ -251,11 +251,11 @@ router.post('/purchase-alert', function (req, res) {
   }
   purchase.purchasePrice = productTotalPrice;
   purchase.bonuses = productTotalPrice / 100;
-    res.render('purchase-alert', {
-      style: 'purchase-alert',
-      id : purchase.purchaseId,
-      info: `Замовлення №${purchase.purchaseId} було успішно створено`
-    })
+  res.render('purchase-alert', {
+    style: 'purchase-alert',
+    id : purchase.purchaseId,
+    info: `Замовлення №${purchase.purchaseId} було успішно створено`
+  })
 })
 // ================================================================
 router.post('/purchase-list', function (req, res) {
@@ -268,7 +268,8 @@ router.post('/purchase-list', function (req, res) {
 // ================================================================
 router.get('/purchase-info', function (req, res) {
   const { id} = req.query;
-  let purchase = Purchase.getPurchaseById(  id);
+  console.log(id);
+  const purchase = Purchase.getPurchaseById(id);
   console.log(purchase);
   res.render('purchase-info', {
     style: 'purchase-info',

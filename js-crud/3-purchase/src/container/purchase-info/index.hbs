@@ -1,15 +1,9 @@
-    <form class='form grid' action='/purchase-edit?i={{purchaseId}}' method='get'>
+    <form class='form grid' action='/purchase-edit?id={{purchaseId}}' method='get'>
       {{> heading caption=caption blue=true}}
-      <span class='card-caption'>ID :{{purchaseId}}</span>
-      <div class="grid gap-20">
-          <div>Вартість доставки</div>
-          <div class="text-bold">150&#8372;</div>
-          <input type="hidden" name='deliveryPrice' value="150">
-        </div>
-        <div class="justify">
-          <div>Кількість товару</div>
-          <div class="text-bold">{{amount}}</div>
-        </div>
+      <div>
+        <span class='card-caption'>ID:</span>
+        <br>
+        <span>{{purchaseId}}</span>
       </div>
         <div class='grid col-2 gap-20'>
           <label for='userSurname' class='form__label'>Прізвище
@@ -29,15 +23,25 @@
           <div class="text-bold">{{purchaseComment}}</div>
         </label>
         <label for='purchaseComment' class='form__label'>Назва товару
-          <div class='text-bold'>{{productName}}</div>
+          <div class='text-bold'>{{purchaseName}}</div>
         </label>
         <div class='grid col-2 gap-20'>
-          <label for='writeOffBonuses' class='form__label'>Списати бонуси
-            <input type='text' name='writeOffBonuses' class='form__input'/>
-          </label>
-          <label for='purchasePromoCode' class='form__label'>Промо-код
-            <input type='text' name='purchasePromoCode' class='form__input'/>
-          </label>
+          <div>
+            Вартість доставки
+            <div class="text-bold">{{purchaseDeliveryPrice}}&#8372;</div>
+          </div>
+          <div>
+            Вартість товару
+            <div class="text-bold">{{productPrice}}</div>
+          </div>
+          <div>
+            Сума до сплати:
+            <div class="text-bold">{{purchasePrice}}&#8372;</div>
+          </div>
+          <div>
+            Нараховані бонуси:  
+            <div class="text-bold">{{bonuses}}</div>
+          </div>
         </div>
         <button class='button blue-button'>Змінити дані</button>
     </form>
