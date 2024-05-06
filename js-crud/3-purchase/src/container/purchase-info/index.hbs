@@ -1,13 +1,14 @@
     <form class='form grid' action='/purchase-edit?id={{purchaseId}}' method='get'>
       {{> heading caption=caption blue=true}}
-      <div>
-        <span class='card-caption'>ID:</span>
-        <br>
-        <span>{{purchaseId}}</span>
-      </div>
+      {{#with purchase}}
+        <div>
+          <span class='card-caption'>ID:</span>
+          <br>
+          <span>{{purchaseId}}</span>
+        </div>
         <div class='grid col-2 gap-20'>
           <label for='userSurname' class='form__label'>Прізвище
-            <div class="text-bold">{{purchaseUserSurame}}</div>
+            <div class="text-bold">{{purchaseUserSurname}}</div>
           </label>
           <label for='userName' class='form__label'>Ім'я
             <div class="text-bold">{{purchaseUserName}}</div>
@@ -32,7 +33,7 @@
           </div>
           <div>
             Вартість товару
-            <div class="text-bold">{{productPrice}}</div>
+            <div class="text-bold">{{purchaseProductPrice}}&#8372;</div>
           </div>
           <div>
             Сума до сплати:
@@ -43,5 +44,6 @@
             <div class="text-bold">{{bonuses}}</div>
           </div>
         </div>
+      {{/with}}
         <button class='button blue-button'>Змінити дані</button>
     </form>

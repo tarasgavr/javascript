@@ -45,10 +45,11 @@ class User {
 class Purchase {
   static #purchaseList = []
   static #count = 0
-  constructor(name, price, user, comment, promoCode = '', deliveryPrice, bonuses = 0) {
+  constructor(name, price, purchaseProductPrice = 0, user, comment, promoCode = '', deliveryPrice, bonuses = 0) {
     this.purchaseId = ++Purchase.#count
     this.purchaseName = name
     this.purchasePrice = price
+    this.purchaseProductPrice = purchaseProductPrice
     this.purchaseUserSurname = user.userSurname
     this.purchaseUserName = user.userName
     this.purchaseUserPhone = user.userPhone
@@ -212,15 +213,6 @@ router.post('/purchase-create', function (req, res) {
   const product = new Product(productName, productDescription, productPrice, productAmount);
   Product.addProduct(product);
   let productTotalPrice = productAmount * productPrice;
-  /* if(purchasePromoCode==='DISCOUNT10') {
-      productTotalPrice -=productTotalPrice* 0.1;
-  } else if(purchasePromoCode==='DISCOUNT25') {
-      productTotalPrice -=productTotalPrice* 0.25;
-  } else if(purchasePromoCode==='DISCOUNT50') {
-      productTotalPrice -=productTotalPrice* 0.5;
-  } else {
-      productTotalPrice *= 1;
-  } */
   res.render('purchase-create', {
     style: 'purchase-create',
     name : product.productName,
@@ -236,8 +228,7 @@ router.post('/purchase-alert', function (req, res) {
   const { productName,productPrice, deliveryPrice,userSurname,userName,userPhone,userEmail,purchaseComment, writeOffBonuses, purchasePromoCode } = req.body;
   const user = new User(userSurname,userName,userPhone,userEmail);
   User.addUser(user);
-  const purchase = new Purchase(productName, productPrice, user, purchaseComment, purchasePromoCode, deliveryPrice);
-  console.log(purchase);
+  const purchase = new Purchase(productName, productPrice, totalPrice, user, purchaseComment, purchasePromoCode, deliveryPrice);
   Purchase.addPurchase(purchase);
   let productTotalPrice = totalPrice;
    if(purchase.purchasePromoCode==='DISCOUNT10') {
@@ -258,7 +249,7 @@ router.post('/purchase-alert', function (req, res) {
   })
 })
 // ================================================================
-router.post('/purchase-list', function (req, res) {
+router.get('/purchase-list', function (req, res) {
   const list = Purchase.getPurchaseList();
   res.render('purchase-list', {
     style: 'purchase-list',
@@ -266,24 +257,41 @@ router.post('/purchase-list', function (req, res) {
   })
 })
 // ================================================================
+router.post('/purchase-list', function (req, res) {
+  const id = Number(req.query.id);
+  const { userSurname,userName,userPhone,userEmail } = req.body;
+  const user = new User(userSurname,userName,userPhone,userEmail);
+  if (Purchase.updatePurchase(id,user)) {
+    const list = Purchase.getPurchaseList();
+    res.render('purchase-list', {
+      style: 'purchase-list',
+      data: list,
+    })
+  } else {
+    res.render('purchase-alert', {
+      style: 'purchase-alert',
+      info: `Сталася помилка!`
+    })
+  }
+})
+// ================================================================
 router.get('/purchase-info', function (req, res) {
-  const { id} = req.query;
-  console.log(id);
+  const id = Number(req.query.id);
   const purchase = Purchase.getPurchaseById(id);
-  console.log(purchase);
   res.render('purchase-info', {
     style: 'purchase-info',
     caption: 'Інформація про замовлення',
+    purchase,
   })
 })
 // ================================================================
 router.get('/purchase-edit', function (req, res) {
-  const { id} = req.query;
-  let purchase = Purchase.getPurchaseById(  id);
-  console.log(purchase);
+  const id = Number(req.query.id);
+  console.log(req.query);
   res.render('purchase-edit', {
     style: 'purchase-edit',
     caption: 'Зміна данних',
+    purchaseId : id
   })
 })
 // ================================================================
