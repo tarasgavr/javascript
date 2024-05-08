@@ -282,16 +282,17 @@ router.get('/purchase-info', function (req, res) {
     style: 'purchase-info',
     caption: 'Інформація про замовлення',
     purchase,
+    purchaseId : id,
   })
 })
 // ================================================================
-router.get('/purchase-edit', function (req, res) {
+router.post('/purchase-edit', function (req, res) {
   const id = Number(req.query.id);
   console.log(req.query);
   res.render('purchase-edit', {
     style: 'purchase-edit',
     caption: 'Зміна данних',
-    purchaseId : id
+    purchaseId : id,
   })
 })
 // ================================================================
