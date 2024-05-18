@@ -1,0 +1,51 @@
+@use '../../lib/services.scss' as s;
+
+.card-container {
+  display: grid;
+  grid: repeat(3, min-content) / repeat(3, min-content);
+  gap: s.space(15) s.space(5);
+  padding-bottom: s.space(2);
+  .card {
+    display: grid;
+    gap: s.space(4);
+    padding: s.space(4);
+    border: 1px solid s.color('gray');
+  }
+  .product-name {
+    font-weight: 500;
+    font-size: s.space(5);
+  }
+  .product-description {
+    line-height: s.space(5.75);
+  }
+  .block {
+    display: flex;
+    flex-wrap: wrap;
+    gap: s.space(4);
+  }
+  .badge {
+    border-radius: s.space(5);
+    padding: s.space(2) s.space(4);
+  }
+  .blue-badge {
+    border: 1px solid s.color('blue');
+    color: s.color('blue');
+  }
+  .green-badge {
+    border: 1px solid s.color('green');
+    color: s.color('green');
+  }
+  .button {
+    border: none;
+    border-radius: s.space(2);
+    padding: s.space(4) s.space(8);
+    font-size: s.space(5);
+    span {
+      font-weight: 500;
+    }
+  }
+  .blue-button {
+    background-color: s.color('blue');
+    color: s.color('white');
+  }
+}
