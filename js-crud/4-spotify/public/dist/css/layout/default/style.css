@@ -1,0 +1,22 @@
+body {
+  background-color: rgb(17, 17, 17);
+  display: grid;
+  justify-content: center;
+  padding: 2.25rem 37.5rem;
+  font-family: Inter, serif;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.heading {
+  width: fit-content;
+  height: fit-content;
+}
+
+.caption {
+  font-weight: 500;
+  font-size: 2.5rem;
+  color: rgb(255, 255, 255);
+}
+
+/*# sourceMappingURL=style.css.map */

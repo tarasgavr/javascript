@@ -1,0 +1,24 @@
+<div class="pane">
+  <div class="justify">
+    {{> heading caption=caption }}
+    <div>
+      <a href='/spotify-search'>
+        <img src="/img/search.png" alt="searchplaylist">
+      </a>
+      <a href='/spotify-addplaylist'>
+        <img src="/img/add.png" alt="addplaylist">
+      </a>
+    </div>
+  </div>
+  <div class='card-container'>
+    {{#each playlist}}
+    <div class='card'>
+      <img src='{{playlistImg}}' alt="{{playlistName}}" />
+      <div class='playlistName'>{{playlistName}}</div>
+      <input type="hidden"  name='playlistName' value="{{playlistName}}">
+      <div class='playlistAmount'>{{playlistAmount}} <span>пісень</span></div>
+      <input type="hidden" name='playlistAmount' value="{{playlistAmount}}">
+    </div>
+    {{/each}}
+  </div>
+</div>

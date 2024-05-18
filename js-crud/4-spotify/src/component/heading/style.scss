@@ -1,0 +1,10 @@
+@use '../../lib/services.scss' as s;
+
+.heading {
+  height: fit-content;
+}
+.caption {
+  font-weight: 500;
+  font-size: s.space(10);
+  color: s.color('white');
+}
