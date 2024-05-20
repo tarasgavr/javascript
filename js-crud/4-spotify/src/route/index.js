@@ -23,6 +23,34 @@ class Track {
 
   static getTrackList = () => this.#trackList
 }
+class searchPlaylist {
+  static #searchPlaylistList = []
+  static #count = 0
+  constructor(img, name, type, amount = 0) {
+    this.searchPlaylistId = ++searchPlaylist.#count
+    this.searchPlaylistImg = img
+    this.searchPlaylistName = name
+    this.searchPlaylistType = type
+    this.searchPlaylistAmount = amount
+  }
+  static addsearchPlaylist = (searchPlaylist) =>
+    this.#searchPlaylistList.push(searchPlaylist)
+
+  static getsearchPlaylistList = () => this.#searchPlaylistList
+
+  static getsearchPlaylistById = (id) =>
+    this.#searchPlaylistList.find((element) => element.searchPlaylistId === id)
+
+  static updatesearchPlaylist = (id, data) => {
+    const searchPlaylist = this.getsearchPlaylistById(id)
+    
+    if (searchPlaylist) {        
+        return true
+      } else {
+        return false
+      }
+    }
+}
 class Playlist {
   static #playlistList = []
   static #count = 0
@@ -44,41 +72,34 @@ class Playlist {
   static updatePlaylist = (id, data) => {
     const playlist = this.getPlaylistById(id)
     
-    if (playlist) {
-      // if (data) {
-        //   playlist.playlistUserSurname = data.userSurname
-        //   playlist.playlistUserName = data.userName
-        //   playlist.playlistUserPhone = data.userPhone
-        //   playlist.playlistUserEmail = data.userEmail
-        // }
-        
+    if (playlist) {        
         return true
       } else {
         return false
       }
     }
-    static deletePlaylistDublicates = (id) => {
-    const playlist = this.getPlaylistById(id)
-    for (let i = 0; i < this.#playlistList.length; i++) {
-      if (playlist === this.#playlistList[i]) {
-        this.#playlistList.splice(id,1)
-      }
-    }
-  }
 }
 // ================================================================
-let bg='/img/fav-album-svg.svg';
+let bg='/img/fav-album.svg';
 let playlist1 = new Playlist(bg, 'Пісні, що сподобались', 50);
 Playlist.addPlaylist(playlist1);
-bg='/img/mix-album-svg.svg';
+bg='/img/mix-album.svg';
 playlist1 = new Playlist(bg, 'Спільний альбом', 20);
 Playlist.addPlaylist(playlist1);
-bg='/img/inyn-svg.svg';
+bg='/img/inyn.svg';
 playlist1 = new Playlist(bg,'Інь Ян', 10);
 Playlist.addPlaylist(playlist1);
-const pl1='/img/pl1-svg.svg';
+const pl1='/img/pl1.svg';
 playlist1 = new Playlist(pl1,'Мій плейліст №1', 36);
 Playlist.addPlaylist(playlist1);
+bg='/img/pl2.svg';
+playlist1 = new Playlist(bg,'Мій плейліст №2', 12);
+Playlist.addPlaylist(playlist1);
+
+let searchplaylist1 = new searchPlaylist(bg,'Мій плейліст №2', 'Плейліст', 12);
+searchPlaylist.addsearchPlaylist(searchplaylist1);
+searchplaylist1 = new searchPlaylist(pl1,'Мій плейліст №1', 'Плейліст', 36);
+searchPlaylist.addsearchPlaylist(searchplaylist1);
 // ================================================================
 router.get('/', function (req, res) {
   const playlist = Playlist.getPlaylistList();
@@ -91,8 +112,10 @@ router.get('/', function (req, res) {
 })
 // ================================================================
 router.get('/spotify-search', function (req, res) {
+  // const searchPlaylist = searchPlaylist.getsearchPlaylistList();
   res.render('spotify-search', {
     style: 'spotify-search',
+    // searchPlaylist,
   })
 })
 // ================================================================

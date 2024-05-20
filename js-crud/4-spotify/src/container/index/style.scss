@@ -11,6 +11,9 @@
 .justify a {
   padding: s.space(1);
 }
+.justify a svg {
+  fill: s.color('white');
+}
 .card {
   display: grid;
   gap: s.space(5);

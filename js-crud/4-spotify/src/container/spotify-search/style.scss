@@ -1,4 +1,13 @@
 @use '../../lib/services.scss' as s;
+input {
+  background-color: s.color('black2');
+  background-image: url("/img/search.svg");
+  background-position: 32 0;
+  background-repeat: no-repeat;
+  padding: 0 s.space(8);
+  height: 100%;
+  width: 100%;
+}
 .pane {
   display: flex;
   flex-direction: column;
@@ -21,11 +30,11 @@
     gap: s.space(7.5);
     border: 1px solid s.color('gray');
   }
-  .playlistName {
-    color: s.color('white');
-    font-size: s.space(5);
-  }
   .playlistAmount {
     color: s.color('gray');
   }
+}
+.searchField {
+  color: s.color('white');
+  font-size: s.space(7);
 }
