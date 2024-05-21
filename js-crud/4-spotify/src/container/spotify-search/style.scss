@@ -1,21 +1,20 @@
 @use '../../lib/services.scss' as s;
-input {
+.searchField {
   background-color: s.color('black2');
-  background-image: url("/img/search.svg");
-  background-position: 32 0;
-  background-repeat: no-repeat;
-  padding: 0 s.space(8);
-  height: 100%;
-  width: 100%;
+  padding: s.space(2.5) s.space(8);
+}
+svg {
+  fill: s.color('gray2');
 }
 .pane {
+  width: s.space(130);
   display: flex;
   flex-direction: column;
   gap: s.space(15);
-}
-.justify {
-  display: flex;
-  justify-content: space-between;
+  .justify {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 .justify a {
   padding: s.space(1);
@@ -34,7 +33,8 @@ input {
     color: s.color('gray');
   }
 }
-.searchField {
+.searchText {
   color: s.color('white');
   font-size: s.space(7);
+  padding-top: s.space(0.5);
 }

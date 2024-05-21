@@ -1,20 +1,19 @@
-input {
+.searchField {
   background-color: rgb(29, 29, 29);
-  background-image: url("/img/search.svg");
-  background-position: 32 0;
-  background-repeat: no-repeat;
-  padding: 0 2rem;
-  height: 100%;
-  width: 100%;
+  padding: 0.625rem 2rem;
+}
+
+svg {
+  fill: #a6a6a6;
 }
 
 .pane {
+  width: 32.5rem;
   display: flex;
   flex-direction: column;
   gap: 3.75rem;
 }
-
-.justify {
+.pane .justify {
   display: flex;
   justify-content: space-between;
 }
@@ -38,9 +37,10 @@ input {
   color: #bdbdbd;
 }
 
-.searchField {
+.searchText {
   color: rgb(255, 255, 255);
   font-size: 1.75rem;
+  padding-top: 0.125rem;
 }
 
 /*# sourceMappingURL=style.css.map */
