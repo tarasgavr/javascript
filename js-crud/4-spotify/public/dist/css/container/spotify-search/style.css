@@ -7,8 +7,17 @@ svg {
   fill: #a6a6a6;
 }
 
+input {
+  width: 100%;
+  outline: none;
+  background: none;
+  border: none;
+  color: rgb(0, 255, 0);
+  margin-left: 1.25rem;
+}
+
 .pane {
-  width: 32.5rem;
+  width: 45rem;
   display: flex;
   flex-direction: column;
   gap: 3.75rem;
@@ -40,7 +49,7 @@ svg {
 .searchText {
   color: rgb(255, 255, 255);
   font-size: 1.75rem;
-  padding-top: 0.125rem;
+  margin: 0.125rem 1.25rem;
 }
 
 /*# sourceMappingURL=style.css.map */
