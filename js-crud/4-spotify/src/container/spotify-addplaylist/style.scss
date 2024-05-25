@@ -1,7 +1,4 @@
 @use '../../lib/services.scss' as s;
-.caption {
-  color: s.color('white');
-}
 .pane {
   display: flex;
   flex-direction: column;

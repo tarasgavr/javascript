@@ -111,8 +111,24 @@ router.get('/', function (req, res) {
   })
 })
 // ================================================================
+router.get('/spotify-addpaylist', function (req, res) {
+  res.render('spotify-addpaylist', {
+    style: 'spotify-addpaylist',
+    caption: 'Створити',
+  })
+})
+// ================================================================
 router.get('/spotify-search', function (req, res) {
   // const searchPlaylist = searchPlaylist.getsearchPlaylistList();
+  res.render('spotify-search', {
+    style: 'spotify-search',
+    // searchPlaylist,
+  })
+})
+// ================================================================
+router.post('/spotify-search', function (req, res) {
+  // const searchPlaylist = searchPlaylist.getsearchPlaylistList();
+  console.log(req.body);
   res.render('spotify-search', {
     style: 'spotify-search',
     // searchPlaylist,

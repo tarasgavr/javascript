@@ -16,6 +16,10 @@ input {
   margin-left: 1.25rem;
 }
 
+input:focus {
+  background: none;
+}
+
 .pane {
   width: 45rem;
   display: flex;
@@ -46,7 +50,10 @@ input {
   color: #bdbdbd;
 }
 
-.searchText {
+button {
+  outline: none;
+  background: none;
+  border: none;
   color: rgb(255, 255, 255);
   font-size: 1.75rem;
   margin: 0.125rem 1.25rem;
