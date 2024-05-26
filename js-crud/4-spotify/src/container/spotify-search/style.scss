@@ -14,7 +14,9 @@ input {
   color: s.color('green');
   margin-left: s.space(5);
 }
-input:focus {
+input::-moz-focus-inner {
+  outline: none;
+  border: none;
   background: none;
 }
 .pane {

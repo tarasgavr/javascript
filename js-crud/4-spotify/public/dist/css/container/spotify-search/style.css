@@ -16,7 +16,9 @@ input {
   margin-left: 1.25rem;
 }
 
-input:focus {
+input::-moz-focus-inner {
+  outline: none;
+  border: none;
   background: none;
 }
 

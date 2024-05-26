@@ -80,28 +80,26 @@ class Playlist {
     }
 }
 // ================================================================
-let bg='/img/fav-album.svg';
-let playlist1 = new Playlist(bg, 'Пісні, що сподобались', 50);
-Playlist.addPlaylist(playlist1);
-bg='/img/mix-album.svg';
-playlist1 = new Playlist(bg, 'Спільний альбом', 20);
-Playlist.addPlaylist(playlist1);
-bg='/img/inyn.svg';
-playlist1 = new Playlist(bg,'Інь Ян', 10);
-Playlist.addPlaylist(playlist1);
-const pl1='/img/pl1.svg';
-playlist1 = new Playlist(pl1,'Мій плейліст №1', 36);
-Playlist.addPlaylist(playlist1);
-bg='/img/pl2.svg';
-playlist1 = new Playlist(bg,'Мій плейліст №2', 12);
-Playlist.addPlaylist(playlist1);
-
-let searchplaylist1 = new searchPlaylist(bg,'Мій плейліст №2', 'Плейліст', 12);
-searchPlaylist.addsearchPlaylist(searchplaylist1);
-searchplaylist1 = new searchPlaylist(pl1,'Мій плейліст №1', 'Плейліст', 36);
-searchPlaylist.addsearchPlaylist(searchplaylist1);
+function playlistsCreate() {
+  let bg='/img/fav-album.svg';
+  let playlist1 = new Playlist(bg, 'Пісні, що сподобались', 50);
+  Playlist.addPlaylist(playlist1);
+  bg='/img/mix-album.svg';
+  playlist1 = new Playlist(bg, 'Спільний альбом', 20);
+  Playlist.addPlaylist(playlist1);
+  bg='/img/inyn.svg';
+  playlist1 = new Playlist(bg,'Інь Ян', 10);
+  Playlist.addPlaylist(playlist1);
+  const pl1='/img/pl1.svg';
+  playlist1 = new Playlist(pl1,'Мій плейліст №1', 36);
+  Playlist.addPlaylist(playlist1);
+  bg='/img/pl2.svg';
+  playlist1 = new Playlist(bg,'Мій плейліст №2', 12);
+  Playlist.addPlaylist(playlist1);
+}
 // ================================================================
 router.get('/', function (req, res) {
+  playlistsCreate();
   const playlist = Playlist.getPlaylistList();
   console.log(playlist);
   res.render('index', {
@@ -119,19 +117,25 @@ router.get('/spotify-addpaylist', function (req, res) {
 })
 // ================================================================
 router.get('/spotify-search', function (req, res) {
-  // const searchPlaylist = searchPlaylist.getsearchPlaylistList();
   res.render('spotify-search', {
     style: 'spotify-search',
-    // searchPlaylist,
   })
 })
 // ================================================================
 router.post('/spotify-search', function (req, res) {
-  // const searchPlaylist = searchPlaylist.getsearchPlaylistList();
-  console.log(req.body);
+  playlistsCreate();
+  let searchItem = [];
+  let playlist = Playlist.getPlaylistList();
+  for (let i = 0; i < playlist.length; i++) {
+    playlist[i].playlistName = playlist[i].playlistName.toLowerCase();
+    if (playlist[i].playlistName.includes(req.body.search)) {
+      searchItem.push(playlist[i]);
+    }
+  }
+  console.log(searchItem);
   res.render('spotify-search', {
     style: 'spotify-search',
-    // searchPlaylist,
+    searchItem,
   })
 })
 // ================================================================
