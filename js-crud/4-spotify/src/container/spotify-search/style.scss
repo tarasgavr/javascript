@@ -9,12 +9,11 @@ svg {
 input {
   width: 100%;
   outline: none;
-  background: none;
   border: none;
   color: s.color('green');
   margin-left: s.space(5);
 }
-input::-moz-focus-inner {
+input:hover {
   outline: none;
   border: none;
   background: none;

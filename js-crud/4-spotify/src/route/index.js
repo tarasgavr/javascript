@@ -80,7 +80,6 @@ class Playlist {
     }
 }
 // ================================================================
-function playlistsCreate() {
   let bg='/img/fav-album.svg';
   let playlist1 = new Playlist(bg, 'Пісні, що сподобались', 50);
   Playlist.addPlaylist(playlist1);
@@ -96,10 +95,8 @@ function playlistsCreate() {
   bg='/img/pl2.svg';
   playlist1 = new Playlist(bg,'Мій плейліст №2', 12);
   Playlist.addPlaylist(playlist1);
-}
 // ================================================================
 router.get('/', function (req, res) {
-  playlistsCreate();
   const playlist = Playlist.getPlaylistList();
   console.log(playlist);
   res.render('index', {
@@ -123,12 +120,12 @@ router.get('/spotify-search', function (req, res) {
 })
 // ================================================================
 router.post('/spotify-search', function (req, res) {
-  playlistsCreate();
   let searchItem = [];
   let playlist = Playlist.getPlaylistList();
-  for (let i = 0; i < playlist.length; i++) {
-    playlist[i].playlistName = playlist[i].playlistName.toLowerCase();
-    if (playlist[i].playlistName.includes(req.body.search)) {
+  let list = playlist;
+  for (let i = 0; i < list.length; i++) {
+    list[i].playlistName = list[i].playlistName.toLowerCase();
+    if (list[i].playlistName.includes(req.body.search)) {
       searchItem.push(playlist[i]);
     }
   }
