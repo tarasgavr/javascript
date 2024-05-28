@@ -121,18 +121,18 @@ router.get('/spotify-search', function (req, res) {
 // ================================================================
 router.post('/spotify-search', function (req, res) {
   let searchItem = [];
-  let playlist = Playlist.getPlaylistList();
-  let list = playlist;
+  let list = Playlist.getPlaylistList();
   for (let i = 0; i < list.length; i++) {
     list[i].playlistName = list[i].playlistName.toLowerCase();
     if (list[i].playlistName.includes(req.body.search)) {
-      searchItem.push(playlist[i]);
+      searchItem.push(list[i]);
     }
   }
   console.log(searchItem);
   res.render('spotify-search', {
     style: 'spotify-search',
     searchItem,
+    search: req.body.search,
   })
 })
 // ================================================================

@@ -4,13 +4,26 @@
       <svg width="48" height="48" viewBox="0 0 48 48">
         <image href="/img/search.svg" width="48" height="48">
       </svg>      
-      <input type="text" name="search">
+      <input type="text" value='{{search}}' name="search">
       <button>Пошук</button>
     </div>
   </form>
   <div class="card-container">
-    {{#each searchitem}}
-      
+    {{#each searchItem}}
+      <div class='card'>
+        <img width="164px" height="164px" src='{{playlistImg}}' alt="{{playlistName}}" />
+        <div class="aligntext">
+          <div class='playlistName'>{{playlistName}}</div>
+            <input type="hidden"  name='playlistName' value="{{playlistName}}">
+            <div>
+              <div>Плейліст</div>
+              <span>&#9702;</span>
+              <div class='playlistAmount'>{{playlistAmount}}</div>
+              <input type="hidden" name='playlistAmount' value="{{playlistAmount}}">
+              <div>пісень</div>
+            </div>
+          </div>
+        </div>
     {{/each}}
   </div>
 </div>

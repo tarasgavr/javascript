@@ -11,14 +11,14 @@ input {
   width: 100%;
   outline: none;
   border: none;
+  background: none;
   color: rgb(0, 255, 0);
+  font-size: 1.5rem;
   margin-left: 1.25rem;
 }
 
-input:hover {
-  outline: none;
-  border: none;
-  background: none;
+input::placeholder {
+  font-size: 1.5rem;
 }
 
 .pane {
@@ -32,23 +32,33 @@ input:hover {
   justify-content: space-between;
 }
 
-.justify a {
-  padding: 0.25rem;
-}
-
 .card {
-  display: grid;
+  display: flex;
   gap: 1.25rem;
-  margin-bottom: 3.09375rem;
 }
 .card-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
   gap: 1.875rem;
-  border: 1px solid #bdbdbd;
 }
-.card .playlistAmount {
+.card .aligntext {
+  display: grid;
+  gap: 1.25rem;
+  align-self: center;
+}
+.card .aligntext .playlistName {
+  font-weight: 500;
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  color: rgb(255, 255, 255);
+}
+.card .aligntext div {
+  display: flex;
+  gap: 0.25rem;
   color: #bdbdbd;
+}
+.card .aligntext div span {
+  transform: scale(2);
+  fill: rgb(255, 255, 255);
 }
 
 button {

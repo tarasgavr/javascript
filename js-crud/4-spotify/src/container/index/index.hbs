@@ -16,13 +16,7 @@
   </div>
   <div class='card-container'>
     {{#each playlist}}
-    <div class='card'>
-      <img width="345px" height="345px" src='{{playlistImg}}' alt="{{playlistName}}" />
-      <div class='playlistName'>{{playlistName}}</div>
-      <input type="hidden"  name='playlistName' value="{{playlistName}}">
-      <div class='playlistAmount'>{{playlistAmount}} <span>пісень</span></div>
-      <input type="hidden" name='playlistAmount' value="{{playlistAmount}}">
-    </div>
+      {{< playlist-card-main }}
     {{/each}}
   </div>
 </div>

@@ -10,13 +10,13 @@ input {
   width: 100%;
   outline: none;
   border: none;
+  background: none;
   color: s.color('green');
+  font-size: s.space(6);
   margin-left: s.space(5);
 }
-input:hover {
-  outline: none;
-  border: none;
-  background: none;
+input::placeholder {
+  font-size: s.space(6);
 }
 .pane {
   width: s.space(180);
@@ -28,21 +28,32 @@ input:hover {
     justify-content: space-between;
   }
 }
-.justify a {
-  padding: s.space(1);
-}
 .card {
-  display: grid;
+  display: flex;
   gap: s.space(5);
-  margin-bottom: s.space(12.375);
   &-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
     gap: s.space(7.5);
-    border: 1px solid s.color('gray');
   }
-  .playlistAmount {
-    color: s.color('gray');
+  .aligntext {
+    display: grid;
+    gap: s.space(5);
+    align-self: center;
+    .playlistName {
+      font-weight: 500;
+      font-size: s.space(6);
+      text-transform: capitalize;
+      color: s.color('white');
+    }
+    div { 
+      display: flex;
+      gap: s.space(1);
+      color: s.color('gray');
+      span {
+        transform: scale(2);
+        fill: s.color('white');
+      }
+    }
   }
 }
 button {
