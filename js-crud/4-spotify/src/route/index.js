@@ -23,34 +23,6 @@ class Track {
 
   static getTrackList = () => this.#trackList
 }
-class searchPlaylist {
-  static #searchPlaylistList = []
-  static #count = 0
-  constructor(img, name, type, amount = 0) {
-    this.searchPlaylistId = ++searchPlaylist.#count
-    this.searchPlaylistImg = img
-    this.searchPlaylistName = name
-    this.searchPlaylistType = type
-    this.searchPlaylistAmount = amount
-  }
-  static addsearchPlaylist = (searchPlaylist) =>
-    this.#searchPlaylistList.push(searchPlaylist)
-
-  static getsearchPlaylistList = () => this.#searchPlaylistList
-
-  static getsearchPlaylistById = (id) =>
-    this.#searchPlaylistList.find((element) => element.searchPlaylistId === id)
-
-  static updatesearchPlaylist = (id, data) => {
-    const searchPlaylist = this.getsearchPlaylistById(id)
-    
-    if (searchPlaylist) {        
-        return true
-      } else {
-        return false
-      }
-    }
-}
 class Playlist {
   static #playlistList = []
   static #count = 0
@@ -95,6 +67,22 @@ class Playlist {
   bg='/img/pl2.svg';
   playlist1 = new Playlist(bg,'Мій плейліст №2', 12);
   Playlist.addPlaylist(playlist1);
+  
+  bg='/img/dakiti.svg';
+  let track1 = new Track(bg, 'Пісні, що сподобались', 50);
+  Track.addTrack(track1);
+  bg='/img/enlio.svg';
+  track1 = new Track(bg, 'Спільний альбом', 20);
+  Track.addTrack(track1);
+  bg='/img/inyn.svg';
+  track1 = new Track(bg,'Інь Ян', 10);
+  Track.addTrack(track1);
+  bg='/img/maluna.svg';
+  track1 = new Track(bg,'Мій плейліст №2', 12);
+  Track.addTrack(track1);
+  bg='/img/romance.svg';
+  track1 = new Track(bg,'Мій плейліст №2', 12);
+  Track.addTrack(track1);
 // ================================================================
 router.get('/', function (req, res) {
   const playlist = Playlist.getPlaylistList();
