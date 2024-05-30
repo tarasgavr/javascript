@@ -1,14 +1,19 @@
 <div class="pane">
     {{> heading caption=caption center=true }}
   <div class='card-container'>
-    {{#each playlist}}
     <div class='card'>
-      <img width="345px" height="345px" src='{{playlistImg}}' alt="{{playlistName}}" />
-      <div class='playlistName'>{{playlistName}}</div>
+      <img width="56px" height="56px" src='/img/vector.svg' alt="playlist" />
+      <div class='playlistType'>{{playlistName}}</div>
       <input type="hidden"  name='playlistName' value="{{playlistName}}">
-      <div class='playlistAmount'>{{playlistAmount}} <span>пісень</span></div>
+      <div class='playlistAmount'>{{playlistAmount}}</div>
       <input type="hidden" name='playlistAmount' value="{{playlistAmount}}">
     </div>
-    {{/each}}
+    <div class='card'>
+      <img width="56px" height="56px" src='/img/union.svg' alt="mix" />
+      <div class='playlistType'>{{playlistName}}</div>
+      <input type="hidden"  name='playlistName' value="{{playlistName}}">
+      <div class='playlistAmount'>{{playlistAmount}}</div>
+      <input type="hidden" name='playlistAmount' value="{{playlistAmount}}">
+    </div>
   </div>
 </div>

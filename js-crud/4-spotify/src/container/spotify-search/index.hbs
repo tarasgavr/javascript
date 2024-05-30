@@ -11,7 +11,9 @@
   <div class="card-container">
     {{#each searchItem}}
       <div class='card'>
-        <img width="164px" height="164px" src='{{playlistImg}}' alt="{{playlistName}}" />
+        <a href="/spotify-playlist">
+          <img width="164px" height="164px" src='{{playlistImg}}' alt="{{playlistName}}" />
+        </a>
         <div class="aligntext">
           <div class='playlistName'>{{playlistName}}</div>
             <input type="hidden"  name='playlistName' value="{{playlistName}}">

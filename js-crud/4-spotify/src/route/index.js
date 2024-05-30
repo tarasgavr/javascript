@@ -94,9 +94,9 @@ router.get('/', function (req, res) {
   })
 })
 // ================================================================
-router.get('/spotify-addpaylist', function (req, res) {
-  res.render('spotify-addpaylist', {
-    style: 'spotify-addpaylist',
+router.get('/spotify-addplaylist', function (req, res) {
+  res.render('spotify-addplaylist', {
+    style: 'spotify-addplaylist',
     caption: 'Створити',
   })
 })
