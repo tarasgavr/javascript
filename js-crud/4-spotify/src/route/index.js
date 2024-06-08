@@ -98,6 +98,10 @@ router.get('/spotify-addplaylist', function (req, res) {
   res.render('spotify-addplaylist', {
     style: 'spotify-addplaylist',
     caption: 'Створити',
+    caption2: 'Плейліст',
+    caption3: 'Мікс',
+    title2: 'Створіть плейліст із піснями чи епізодами',
+    title3: 'Комбінуйте смаки в спільному плейлісті з друзями',
   })
 })
 // ================================================================
@@ -109,7 +113,8 @@ router.get('/spotify-search', function (req, res) {
 // ================================================================
 router.post('/spotify-search', function (req, res) {
   let searchItem = [];
-  let list = Playlist.getPlaylistList();
+  let list = Playlist.getPlaylistList().reverse
+  ();
   for (let i = 0; i < list.length; i++) {
     list[i].playlistName = list[i].playlistName.toLowerCase();
     if (list[i].playlistName.includes(req.body.search)) {
