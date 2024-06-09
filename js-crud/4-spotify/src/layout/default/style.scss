@@ -11,11 +11,17 @@ body {
 .heading {
   width: fit-content;
   height: fit-content;
-
+}
+.grid {
+  display: grid;
+  gap: s.space(6);
+}
+.title {
+  color: s.color('white');
 }
 .caption {
   font-weight: 500;
-  font-size: s.space(10);
+  font-size: s.space(6);
   color: s.color('white');
 }
 

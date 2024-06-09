@@ -94,17 +94,6 @@ router.get('/', function (req, res) {
   })
 })
 // ================================================================
-router.get('/spotify-addplaylist', function (req, res) {
-  res.render('spotify-addplaylist', {
-    style: 'spotify-addplaylist',
-    caption: 'Створити',
-    caption2: 'Плейліст',
-    caption3: 'Мікс',
-    title2: 'Створіть плейліст із піснями чи епізодами',
-    title3: 'Комбінуйте смаки в спільному плейлісті з друзями',
-  })
-})
-// ================================================================
 router.get('/spotify-search', function (req, res) {
   res.render('spotify-search', {
     style: 'spotify-search',
@@ -130,5 +119,22 @@ router.post('/spotify-search', function (req, res) {
 })
 // ================================================================
 
+router.get('/spotify-addplaylist', function (req, res) {
+  res.render('spotify-addplaylist', {
+    style: 'spotify-addplaylist',
+    caption: 'Створити',
+    caption2: 'Плейліст',
+    caption3: 'Мікс',
+    title2: 'Створіть плейліст із піснями чи епізодами',
+    title3: 'Комбінуйте смаки в спільному плейлісті з друзями',
+  })
+})
+// ================================================================
+router.get('/spotify-playlist-cra', function (req, res) {
+  res.render('spotify-playlist-cra', {
+    style: 'spotify-playlist-cra',
+  })
+})
+// ================================================================
 // Підключаємо роутер до бек-енду
 module.exports = router
