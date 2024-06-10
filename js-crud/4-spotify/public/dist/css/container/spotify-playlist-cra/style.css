@@ -1,39 +1,17 @@
 .pane {
-  display: flex;
-  flex-direction: column;
-  gap: 17.75rem;
+  padding-top: 17.75rem;
 }
 
-.justify {
-  display: flex;
-  justify-content: space-between;
-}
-
-.justify a {
-  padding: 0.25rem;
-}
-
-.justify a svg {
-  fill: rgb(255, 255, 255);
-}
-
-.card {
+.playlist-create {
   display: grid;
-  gap: 1.25rem;
-  margin-bottom: 3.09375rem;
+  gap: 7rem;
 }
-.card-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.875rem;
-  border: 1px solid #bdbdbd;
-}
-.card .playlistName {
-  color: rgb(255, 255, 255);
+
+.playlistNameLabel {
   font-size: 1.25rem;
-}
-.card .playlistAmount {
-  color: #bdbdbd;
+  font-weight: 500;
+  color: rgb(255, 255, 255);
+  align-self: center;
 }
 
 /*# sourceMappingURL=style.css.map */

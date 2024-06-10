@@ -2,7 +2,6 @@
 body {
   background-color: s.color('black');
   display: grid;
-  justify-content: center;
   padding: s.space(9) s.space(150);
   font-family: Inter, serif;
   font-weight: 400;
@@ -24,4 +23,9 @@ body {
   font-size: s.space(6);
   color: s.color('white');
 }
-
+input {
+  width: 100%;
+  outline: none;
+  border: none;
+  background: none;
+}

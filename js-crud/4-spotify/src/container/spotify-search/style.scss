@@ -6,17 +6,10 @@
 svg {
   fill: s.color('gray2');
 }
-input {
-  width: 100%;
-  outline: none;
-  border: none;
-  background: none;
+.search {
   color: s.color('green');
   font-size: s.space(6);
   margin-left: s.space(5);
-}
-input::placeholder {
-  font-size: s.space(6);
 }
 .pane {
   width: s.space(180);

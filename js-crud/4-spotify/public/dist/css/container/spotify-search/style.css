@@ -7,18 +7,10 @@ svg {
   fill: #a6a6a6;
 }
 
-input {
-  width: 100%;
-  outline: none;
-  border: none;
-  background: none;
+.search {
   color: rgb(0, 255, 0);
   font-size: 1.5rem;
   margin-left: 1.25rem;
-}
-
-input::placeholder {
-  font-size: 1.5rem;
 }
 
 .pane {

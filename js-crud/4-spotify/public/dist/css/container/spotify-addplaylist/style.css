@@ -15,5 +15,8 @@
 .card img {
   align-self: center;
 }
+.card a {
+  display: flex;
+}
 
 /*# sourceMappingURL=style.css.map */
