@@ -1,7 +1,11 @@
 <div class="pane">
-  <form action="/spotify-playlist" class="playlist-create">
+  
+<img src="/img/close.svg" alt="close">
+<form action="/spotify-playlist?playlistName={{playlistName}}" class="playlist-create">
     <label for="playlistNameInput" class="playlistNameLabel">Назвіть плейліст</label>
-    <input type="text" name="playlistName" class="playlistNameInput">
-    <button class="button">Створити</button>
+    <div class="playlist-subcreate">
+      <input type="text" name="playlistName" class="playlistNameInput">
+      <button class="button">Створити</button>
+    </div>
   </form>
 </div>

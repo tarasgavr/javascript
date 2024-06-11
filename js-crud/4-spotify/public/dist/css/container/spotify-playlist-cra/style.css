@@ -1,5 +1,6 @@
 .pane {
-  padding-top: 17.75rem;
+  display: grid;
+  grid-gap: 17.75rem;
 }
 
 .playlist-create {
@@ -7,11 +8,38 @@
   gap: 7rem;
 }
 
+.playlist-subcreate {
+  display: grid;
+  gap: 4.25rem;
+}
+
 .playlistNameLabel {
   font-size: 1.25rem;
   font-weight: 500;
   color: rgb(255, 255, 255);
-  align-self: center;
+  justify-self: center;
+}
+
+.playlistNameInput {
+  color: rgb(0, 255, 0);
+  font-size: 4.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #bdbdbd;
+}
+
+.button {
+  outline: none;
+  font-weight: 500;
+  padding: 1.25rem 2.5rem;
+  background-color: rgb(0, 255, 0);
+  border-radius: 62.5rem;
+  font-size: 1.25rem;
+  justify-self: center;
+}
+
+img {
+  position: relative;
+  justify-self: end;
 }
 
 /*# sourceMappingURL=style.css.map */

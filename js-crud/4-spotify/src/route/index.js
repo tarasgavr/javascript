@@ -26,7 +26,7 @@ class Track {
 class Playlist {
   static #playlistList = []
   static #count = 0
-  constructor(img, name, amount = 0, tracks = {}) {
+  constructor(img, name, amount = 0, tracks = []) {
     this.playlistId = ++Playlist.#count
     this.playlistImg = img
     this.playlistName = name
@@ -35,7 +35,11 @@ class Playlist {
   }
   static addPlaylist = (playlist) =>
     this.#playlistList.push(playlist)
+  static addTrack = (track) =>{
+    const playlist = this.getPlaylistById(id)
 
+    playlist.tracks.push(track)
+  }
   static getPlaylistList = () => this.#playlistList
 
   static getPlaylistById = (id) =>
@@ -133,6 +137,16 @@ router.get('/spotify-addplaylist', function (req, res) {
 router.get('/spotify-playlist-cra', function (req, res) {
   res.render('spotify-playlist-cra', {
     style: 'spotify-playlist-cra',
+  })
+})
+// ================================================================
+router.get('/spotify-playlist', function (req, res) {
+  const playlistName = req.query.playlistName;
+  const playlist1 = new Playlist(pl1,playlistName); 
+  res.render('spotify-playlist', {
+    style: 'spotify-playlist',
+    caption: playlistName,
+    tracks: playlist1.playlistTracks,
   })
 })
 // ================================================================
