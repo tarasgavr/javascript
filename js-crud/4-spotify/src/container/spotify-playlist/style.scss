@@ -4,31 +4,29 @@
   flex-direction: column;
   gap: s.space(15);
 }
-.justify {
-  display: flex;
-  justify-content: space-between;
-}
-.justify a {
-  padding: s.space(1);
-}
-.justify a svg {
-  fill: s.color('white');
-}
 .card {
-  display: grid;
+  display: flex;
   gap: s.space(5);
-  margin-bottom: s.space(12.375);
   &-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: s.space(7.5);
-    border: 1px solid s.color('gray');
-  }
-  .playlistName {
+    gap: s.space(8);
+    a {
+      width: 92px;
+      height: 92px;
+      background-color: s.color('black2');
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  .add-toplaylist {
     color: s.color('white');
-    font-size: s.space(5);
+    font-size: s.space(6);
+    align-self: center;
+  }
   }
   .playlistAmount {
     color: s.color('gray');
   }
+}.caption {
+  font-size: s.space(7);
 }

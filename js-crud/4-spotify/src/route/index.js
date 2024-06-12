@@ -73,19 +73,19 @@ class Playlist {
   Playlist.addPlaylist(playlist1);
   
   bg='/img/dakiti.svg';
-  let track1 = new Track(bg, 'Пісні, що сподобались', 50);
+  let track1 = new Track(bg, 'DÁKITI', 'BAD BUNNY і JHAY');
   Track.addTrack(track1);
   bg='/img/enlio.svg';
-  track1 = new Track(bg, 'Спільний альбом', 20);
+  track1 = new Track(bg, 'Baila Conmigo (Remix)', 'Selena Gomez і Rauw Alejandro');
   Track.addTrack(track1);
   bg='/img/inyn.svg';
-  track1 = new Track(bg,'Інь Ян', 10);
+  track1 = new Track(bg,'Інь Ян', 'MONATIK і ROXOLANA');
   Track.addTrack(track1);
   bg='/img/maluna.svg';
-  track1 = new Track(bg,'Мій плейліст №2', 12);
+  track1 = new Track(bg,'11 PM', 'Maluna');
   Track.addTrack(track1);
   bg='/img/romance.svg';
-  track1 = new Track(bg,'Мій плейліст №2', 12);
+  track1 = new Track(bg,'Shamelesa', 'Camila Cabello');
   Track.addTrack(track1);
 // ================================================================
 router.get('/', function (req, res) {
@@ -146,6 +146,7 @@ router.get('/spotify-playlist', function (req, res) {
   res.render('spotify-playlist', {
     style: 'spotify-playlist',
     caption: playlistName,
+    text: "Додати до плейліста",
     tracks: playlist1.playlistTracks,
   })
 })
