@@ -6,27 +6,16 @@
 }
 .card {
   display: flex;
-  gap: s.space(5);
-  &-container {
-    display: grid;
-    gap: s.space(8);
+  gap: s.space(6);
+   &-container {
+     display: grid;
+     gap: s.space(8);
+     padding: s.space(6) s.space(8);
+     background-color: s.color('black2');
     .track-container {
       display: flex;
       justify-content: space-between;
    }
-    a {
-      width: 92px;
-      height: 92px;
-      background-color: s.color('black2');
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  .add-toplaylist {
-    color: s.color('white');
-    font-size: s.space(6);
-    align-self: center;
-  }
   }
   .trackName {
     font-size: s.space(6);
@@ -39,5 +28,8 @@
   img {
     width:s.space(23);
     height: s.space(23);
+  }
+  a {
+    display: flex;
   }
 }

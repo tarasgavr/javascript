@@ -10,12 +10,15 @@
       <span class='add-toplaylist'>{{text}}</span>
     </div>
     {{#each tracks}}
-      <div class="card">
-        <img src="{{trackImg}}" alt={{trackName}}>
-        <div class="grid">
-          <div class="trackName">{{trackName}}</div>
-          <div class="trackSinger">{{trackSinger}}</div>
+      <div class="track-container">
+        <div class="card">
+          <img src="{{trackImg}}" alt={{trackName}}>
+          <div class="grid">
+            <div class="trackName">{{trackName}}</div>
+            <div class="trackSinger">{{trackSinger}}</div>
+          </div>
         </div>
+        <img src="/img/delete.svg" alt="delete track">
       </div>
     {{/each}} <!-- end of tracks -->
   </div>

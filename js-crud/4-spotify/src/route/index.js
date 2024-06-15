@@ -38,7 +38,7 @@ class Playlist {
   static addTrack = (track) =>{
     const playlist = this.getPlaylistById(id)
 
-    playlist.tracks.push(track)
+    playlist.playlistTracks.push(track)
   }
   static getPlaylistList = () => this.#playlistList
 
@@ -56,6 +56,8 @@ class Playlist {
     }
 }
 // ================================================================
+const pl1='/img/pl1.svg';
+function createPlayliSt() {
   let bg='/img/fav-album.svg';
   let playlist1 = new Playlist(bg, 'Пісні, що сподобались', 50);
   Playlist.addPlaylist(playlist1);
@@ -65,17 +67,17 @@ class Playlist {
   bg='/img/inyn.svg';
   playlist1 = new Playlist(bg,'Інь Ян', 10);
   Playlist.addPlaylist(playlist1);
-  const pl1='/img/pl1.svg';
   playlist1 = new Playlist(pl1,'Мій плейліст №1', 36);
   Playlist.addPlaylist(playlist1);
   bg='/img/pl2.svg';
   playlist1 = new Playlist(bg,'Мій плейліст №2', 12);
   Playlist.addPlaylist(playlist1);
-  
+}
+function createTrack() {
   bg='/img/dakiti.svg';
   let track1 = new Track(bg, 'DÁKITI', 'BAD BUNNY і JHAY');
   Track.addTrack(track1);
-  bg='/img/enlio.svg';
+  bg='/img/selena.svg';
   track1 = new Track(bg, 'Baila Conmigo (Remix)', 'Selena Gomez і Rauw Alejandro');
   Track.addTrack(track1);
   bg='/img/inyn.svg';
@@ -85,8 +87,14 @@ class Playlist {
   track1 = new Track(bg,'11 PM', 'Maluna');
   Track.addTrack(track1);
   bg='/img/romance.svg';
-  track1 = new Track(bg,'Shamelesa', 'Camila Cabello');
+  track1 = new Track(bg,'Shameless', 'Camila Cabello');
   Track.addTrack(track1);
+  bg='/img/enlio.svg';
+  track1 = new Track(bg,'Інша любов', 'Enlio');
+  Track.addTrack(track1);
+}
+createPlayliSt();
+createTrack();
 // ================================================================
 router.get('/', function (req, res) {
   const playlist = Playlist.getPlaylistList();
@@ -137,17 +145,33 @@ router.get('/spotify-addplaylist', function (req, res) {
 router.get('/spotify-playlist-cra', function (req, res) {
   res.render('spotify-playlist-cra', {
     style: 'spotify-playlist-cra',
+    type: req.query.playlistType,
   })
 })
 // ================================================================
-router.get('/spotify-playlist', function (req, res) {
-  const playlistName = req.query.playlistName;
+router.post('/spotify-playlist', function (req, res) {
+  let tracks;
+  const playlistName = req.body.playlistName;
+  const playlistType = req.body.playlistType;
   const playlist1 = new Playlist(pl1,playlistName); 
+  if (playlistType==='Плейліст') {
+    tracks=playlist1.playlistTracks;
+  } else {
+    tracks=Track.getTrackList;
+  }
   res.render('spotify-playlist', {
     style: 'spotify-playlist',
     caption: playlistName,
     text: "Додати до плейліста",
-    tracks: playlist1.playlistTracks,
+    tracks,
+  })
+})
+// ================================================================
+router.get('/spotify-add-toplaylist', function (req, res) {
+  res.render('spotify-add-toplaylist', {
+    style: 'spotify-add-toplaylist',
+    caption: "Додати до плейліста",
+    tracks: Track.getTrackList,
   })
 })
 // ================================================================

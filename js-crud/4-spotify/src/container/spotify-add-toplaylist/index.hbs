@@ -1,0 +1,17 @@
+<div class="pane">
+    {{> heading caption=caption center=true }}
+  <div class='card-container'>
+    {{#each tracks}}
+      <div class="track-container">
+        <div class="card">
+          <img class="trackImg" src="{{trackImg}}" alt={{trackName}}>
+          <div class="grid">
+            <div class="trackName">{{trackName}}</div>
+            <div class="trackSinger">{{trackSinger}}</div>
+          </div>
+        </div>
+        <img src="/img/add-to.svg" alt="aad track">
+      </div>
+    {{/each}} <!-- end of tracks -->
+  </div>
+</div>
