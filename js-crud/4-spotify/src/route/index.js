@@ -22,6 +22,9 @@ class Track {
     this.#trackList.push(track)
 
   static getTrackList = () => this.#trackList
+
+  static getTrackById = (id) =>
+    this.#trackList.find((element) => element.trackId === id)
 }
 class Playlist {
   static #playlistList = []
@@ -35,25 +38,25 @@ class Playlist {
   }
   static addPlaylist = (playlist) =>
     this.#playlistList.push(playlist)
-  static addTrack = (track) =>{
-    const playlist = this.getPlaylistById(id)
+  static addTrack = (playlistId,trackId) =>{
+    const playlist = this.getPlaylistById(playlistId)
+    const track=Track.getTrackById(trackId)
 
     playlist.playlistTracks.push(track)
+    playlist.playlistAmount+=1
   }
   static getPlaylistList = () => this.#playlistList
 
   static getPlaylistById = (id) =>
     this.#playlistList.find((element) => element.playlistId === id)
 
-  static updatePlaylist = (id, data) => {
-    const playlist = this.getPlaylistById(id)
-    
-    if (playlist) {        
-        return true
-      } else {
-        return false
-      }
-    }
+  static updatePlaylist = (playlistId,trackId) => {
+    const playlist = this.getPlaylistById(playlistId)
+    if (playlist.playlistAmount>0) {
+      playlist.playlistTracks.splice(trackId,1)
+      playlist.playlistAmount-=1
+    } 
+  }
 }
 // ================================================================
 const pl1='/img/pl1.svg';
@@ -151,17 +154,36 @@ router.get('/spotify-playlist-cra', function (req, res) {
 // ================================================================
 router.post('/spotify-playlist', function (req, res) {
   let tracks;
-  const playlistName = req.body.playlistName;
-  const playlistType = req.body.playlistType;
-  const playlist1 = new Playlist(pl1,playlistName); 
-  if (playlistType==='Плейліст') {
+  const { playlistName, playlistType } = req.body;
+  const playlist1 = new Playlist(pl1,playlistName);
+  console.log(playlistName,playlist1.playlistId);
+  if (playlistType==='playlist') {
     tracks=playlist1.playlistTracks;
   } else {
     tracks=Track.getTrackList;
   }
   res.render('spotify-playlist', {
     style: 'spotify-playlist',
-    caption: playlistName,
+    playlistName,
+    playlistId: playlist1.playlistId,
+    text: "Додати до плейліста",
+    tracks,
+  })
+})
+// ================================================================
+router.get('/spotify-playlist', function (req, res) {
+  const { playlistId, playlistName, trackId, mode } = req.query;
+  const playlist1=Playlist.getPlaylistById(playlistId);
+  if (mode==='d') {
+    Playlist.updatePlaylist(playlistId,trackId);
+  } else if (mode==='a') {
+    Playlist.addTrack(playlistId,trackId);
+  }
+  let tracks=playlist1.playlistTracks;
+  console.log(tracks);
+  res.render('spotify-playlist', {
+    style: 'spotify-playlist',
+    playlistName,
     text: "Додати до плейліста",
     tracks,
   })
