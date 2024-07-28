@@ -1,0 +1,36 @@
+@use '../../style' as s;
+
+main {
+	display: grid;
+  justify-content: center;
+  align-items: center;
+	gap: s.space(25);
+	.section {
+		background-color: s.color('gray');
+		color: s.color(light);
+		font-size: s.space(10);
+		padding: s.space(4) s.space(10);
+		border-radius: s.space(25);
+		height: s.space(170);
+		width: s.space(170);
+		justify-content: center;
+		display: grid;
+	}
+	#scrollBtn {
+		background-color: s.color(pv);
+		border-radius: 100%;
+		height: s.space(17);
+		width: s.space(17);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: fixed;
+		bottom: s.space(10);
+		left: s.space(10);
+		display: none;
+		transition: opacity .7s;
+		&:hover {
+			opacity: 0.7;
+		}
+	}
+}

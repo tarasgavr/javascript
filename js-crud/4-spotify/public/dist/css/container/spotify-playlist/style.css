@@ -1,0 +1,45 @@
+.pane {
+  display: flex;
+  flex-direction: column;
+  gap: 3.75rem;
+}
+
+.card {
+  display: flex;
+  gap: 1.25rem;
+}
+.card-container {
+  display: grid;
+  gap: 2rem;
+}
+.card-container .track-container {
+  display: flex;
+  justify-content: space-between;
+}
+.card-container a {
+  width: 92px;
+  height: 92px;
+  background-color: rgb(29, 29, 29);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card-container .add-toplaylist {
+  color: rgb(255, 255, 255);
+  font-size: 1.5rem;
+  align-self: center;
+}
+.card .trackName {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: rgb(255, 255, 255);
+}
+.card .trackSinger {
+  color: #bdbdbd;
+}
+.card img {
+  width: 5.75rem;
+  height: 5.75rem;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,20 @@
+@use '../../lib/services.scss' as s;
+.pane {
+  display: flex;
+  flex-direction: column;
+  gap: s.space(15);
+}
+.card {
+  display: flex;
+  gap: s.space(6);
+   &-container {
+    display: grid;
+    gap: s.space(8);
+  }
+  img {
+    align-self: center;
+  }
+  a {
+    display: flex;
+  }
+}

@@ -1,0 +1,23 @@
+<main>
+  <section>
+    <form class='form grid gap-20' action='/purchase-list?id={{purchaseId}}' method="post">
+        {{> heading caption=caption blue=true}}
+        <span class='card-caption'>ID :{{purchaseId}}</span>
+        <div class='grid col-2 gap-20'>
+          <label for='userSurname' class='form__label'>Прізвище
+            <input type='text' name='userSurname' class='form__input'>
+          </label>
+          <label for='userName' class='form__label'>Ім'я
+            <input type='text' name='userName' class='form__input'>
+          </label>
+          <label for='userPhone' class='form__label'>Мобільний телефон
+            <input type='phone' name='userPhone' class='form__input'/>
+          </label>
+          <label for='userEmail' class='form__label'>Електронна пошта
+            <input type='text' name='userEmail' class='form__input'/>
+          </label>
+        </div>
+        <button class='button blue-button'>Зберегти зміни</button>
+    </form>
+  </section>
+</main>
