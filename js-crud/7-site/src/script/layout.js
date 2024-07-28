@@ -8,14 +8,13 @@ export const createElement = (tag, className, content ) => {
   }
   return elem;
 }
-
+const header = {
+  time: '9:41',
+  signal: '/svg/signal.svg',
+  wifi: '/svg/wifi.svg',
+  power: '/svg/power.svg',
+}
 export const createHeader = () => {
-  const header = {
-    time: '9:41',
-    signal: '/svg/signal.svg',
-    wifi: '/svg/wifi.svg',
-    power: '/svg/power.svg',
-  }
   const headerTag = createElement('header');
   const time = createElement('div','time',header.time);
   headerTag.appendChild(time);
@@ -31,4 +30,23 @@ export const createHeader = () => {
   power.setAttribute('src',header.power);
   container.appendChild(power);
   return headerTag;
+}
+const main = {
+  arrow: '/svg/arrow.svg',
+  logo: '/svg/logo.svg',
+  title: 'Мій блог',
+}
+export const createMain = () => {
+  const mainTag = createElement('main');
+  const panel = createElement('div','panel');
+  mainTag.appendChild(panel);
+  const arrow = createElement('img');
+  arrow.setAttribute('src',main.arrow);
+  panel.appendChild(arrow);
+  const logo = createElement('img');
+  logo.setAttribute('src',main.logo);
+  panel.appendChild(logo);
+  const title = createElement('div','title',main.title);
+  mainTag.appendChild(title);
+  return mainTag;
 }
