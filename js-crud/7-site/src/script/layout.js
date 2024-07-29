@@ -4,7 +4,7 @@ export const createElement = (tag, className, content ) => {
     elem.className = className;
   }
   if (content) {
-    elem.innerHTML = content;
+    elem.innerText = content;
   }
   return elem;
 }
@@ -14,20 +14,20 @@ const header = {
   wifi: '/svg/wifi.svg',
   power: '/svg/power.svg',
 }
-export const createHeader = () => {
+export const createHeader = (htime,hsignal,hwifi,hpower) => {
   const headerTag = createElement('header');
-  const time = createElement('div','time',header.time);
+  const time = createElement('div','time',htime);
   headerTag.appendChild(time);
   const container = createElement('div');
   headerTag.appendChild(container);
   const signal = document.createElement('img');
-  signal.setAttribute('src',header.signal);
+  signal.setAttribute('src',hsignal);
   container.appendChild(signal);
   const wifi = document.createElement('img');
-  wifi.setAttribute('src',header.wifi);
+  wifi.setAttribute('src',hwifi);
   container.appendChild(wifi);
   const power = document.createElement('img');
-  power.setAttribute('src',header.power);
+  power.setAttribute('src',hpower);
   container.appendChild(power);
   return headerTag;
 }
@@ -36,17 +36,19 @@ const main = {
   logo: '/svg/logo.svg',
   title: 'Мій блог',
 }
-export const createMain = () => {
+export const createMain = (marrow,mlogo, mtitle) => {
   const mainTag = createElement('main');
   const panel = createElement('div','panel');
   mainTag.appendChild(panel);
   const arrow = createElement('img');
-  arrow.setAttribute('src',main.arrow);
+  arrow.setAttribute('src',marrow);
+  arrow.setAttribute('width',24);
   panel.appendChild(arrow);
   const logo = createElement('img');
-  logo.setAttribute('src',main.logo);
+  logo.setAttribute('src',mlogo);
+  logo.setAttribute('width',24);
   panel.appendChild(logo);
-  const title = createElement('div','title',main.title);
+  const title = createElement('div','title',mtitle);
   mainTag.appendChild(title);
   return mainTag;
 }
