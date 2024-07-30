@@ -8,12 +8,6 @@ export const createElement = (tag, className, content ) => {
   }
   return elem;
 }
-const header = {
-  time: '9:41',
-  signal: '/svg/signal.svg',
-  wifi: '/svg/wifi.svg',
-  power: '/svg/power.svg',
-}
 export const createHeader = (htime,hsignal,hwifi,hpower) => {
   const headerTag = createElement('header');
   const time = createElement('div','time',htime);
@@ -31,15 +25,26 @@ export const createHeader = (htime,hsignal,hwifi,hpower) => {
   container.appendChild(power);
   return headerTag;
 }
-const main = {
-  arrow: '/svg/arrow.svg',
-  logo: '/svg/logo.svg',
-  title: 'Мій блог',
-}
-export const createMain = (marrow,mlogo, mtitle) => {
+export const createMain = (marrow,mlogo,mtitle) => {
   const mainTag = createElement('main');
   const panel = createElement('div','panel');
   mainTag.appendChild(panel);
+  const arrow = createElement('img');
+  arrow.setAttribute('src',marrow);
+  arrow.setAttribute('width',24);
+  panel.appendChild(arrow);
+  const logo = createElement('img');
+  logo.setAttribute('src',mlogo);
+  logo.setAttribute('width',24);
+  panel.appendChild(logo);
+  const title = createElement('div','title',mtitle);
+  mainTag.appendChild(title);
+  return mainTag;
+}
+export const createBlog = (marrow,mlogo,mtitle) => {
+  const blog = createElement('div','blog');
+  const blogTitle = createElement('div','blogTitle');
+  blog.appendChild(blogTitle);
   const arrow = createElement('img');
   arrow.setAttribute('src',marrow);
   arrow.setAttribute('width',24);

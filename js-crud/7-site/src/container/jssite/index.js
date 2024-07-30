@@ -65,7 +65,6 @@ const mobileScreen = [
 ];
 let div=createElement('div','desk');
 mobileScreen.forEach(element => {
-  console.log(element);
   let page=createElement('div','page');
   let header=createHeader(element.header.time,element.header.signal,element.header.wifi,element.header.power);
   let main=createMain(element.main.arrow,element.main.logo,element.main.title);

@@ -8,13 +8,10 @@ const router = express.Router()
 // router.get Створює нам один ентпоїнт
 
 // ↙️ тут вводимо шлях (PATH) до сторінки
-router.get('/', function (req, res) {
-  // res.render генерує нам HTML сторінку
-
-  // ↙️ cюди вводимо назву файлу з сontainer
-  res.render('site', {
+router.get('/html', function (req, res) {
+  res.render('htmlsite', {
     // вказуємо назву контейнера
-    name: 'site',
+    name: 'htmlsite',
     // вказуємо назву компонентів
     component: [],
 
@@ -87,6 +84,19 @@ router.get('/', function (req, res) {
         ],
       },
     ],
+  // ↑↑ сюди вводимо JSON дані
+  })
+})
+router.get('/js', function (req, res) { 
+  res.render('jssite', {
+    // вказуємо назву контейнера
+    name: 'jssite',
+    // вказуємо назву компонентів
+    component: [],
+
+    // вказуємо назву сторінки
+    title: 'Development',
+    // ... сюди можна далі продовжувати додавати потрібні технічні дані, які будуть використовуватися в layout
   // ↑↑ сюди вводимо JSON дані
   })
 })

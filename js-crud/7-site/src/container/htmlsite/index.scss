@@ -5,8 +5,9 @@
 	gap: s.space(22);
 	.page {
 		display: grid;
+		gap: s.space(4);
 		width: s.space(94.5);
-		height: s.space(203);
+		height: auto;
 		border-radius: s.space(5);
 		padding: s.space(3) s.space(2) s.space(5) s.space(6);
 		background-color: s.color(white);
@@ -97,6 +98,7 @@
 			align-self: end;
 			display: flex;
 			justify-content: center;
+			height: s.space(42);
 			div {
 				width: 50%;
 				border-bottom: 3px solid s.color(dark);
