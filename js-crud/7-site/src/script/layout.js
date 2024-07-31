@@ -41,19 +41,12 @@ export const createMain = (marrow,mlogo,mtitle) => {
   mainTag.appendChild(title);
   return mainTag;
 }
-export const createBlog = (marrow,mlogo,mtitle) => {
+export const createBlog = (important,new,) => {
   const blog = createElement('div','blog');
   const blogTitle = createElement('div','blogTitle');
   blog.appendChild(blogTitle);
-  const arrow = createElement('img');
-  arrow.setAttribute('src',marrow);
-  arrow.setAttribute('width',24);
-  panel.appendChild(arrow);
-  const logo = createElement('img');
-  logo.setAttribute('src',mlogo);
-  logo.setAttribute('width',24);
-  panel.appendChild(logo);
-  const title = createElement('div','title',mtitle);
-  mainTag.appendChild(title);
-  return mainTag;
+  if (important) {
+    const badge1 = createElement('div','badge',important);
+  }
+  return blog;
 }
