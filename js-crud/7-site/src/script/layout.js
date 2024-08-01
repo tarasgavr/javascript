@@ -41,12 +41,23 @@ export const createMain = (marrow,mlogo,mtitle) => {
   mainTag.appendChild(title);
   return mainTag;
 }
-export const createBlog = (important,new,) => {
+export const createBlog = (pimportant,pnew,pdate,ptext) => {
   const blog = createElement('div','blog');
   const blogTitle = createElement('div','blogTitle');
   blog.appendChild(blogTitle);
-  if (important) {
-    const badge1 = createElement('div','badge',important);
+  const div = createElement('div');
+  blogTitle.appendChild(div);
+  if (pimportant) {
+    const badge1 = createElement('div','badge',pimportant);
+    div.appendChild(badge1);
   }
+  if (pnew) {
+    const badge2 = createElement('div','badge',pnew);
+    div.appendChild(badge2);
+  }
+  const date = createElement('div','blogDate',pdate);
+  blogTitle.appendChild(date);
+  const text = createElement('div','blogText',ptext);
+  blog.appendChild(text);
   return blog;
 }

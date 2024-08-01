@@ -1,4 +1,4 @@
-import { createElement, createHeader, createMain } from "../../script/layout";
+import { createElement, createHeader, createMain,createBlog } from "../../script/layout";
 const mobileScreen = [
   {
     header: {
@@ -64,10 +64,22 @@ const mobileScreen = [
   },
 ];
 let div=createElement('div','desk');
-mobileScreen.forEach(element => {
+mobileScreen.forEach(mob => {
+  console.log(mob.blog
+    
+  );
   let page=createElement('div','page');
-  let header=createHeader(element.header.time,element.header.signal,element.header.wifi,element.header.power);
-  let main=createMain(element.main.arrow,element.main.logo,element.main.title);
+  let header=createHeader(mob.header.time,mob.header.signal,mob.header.wifi,mob.header.power);
+  let main=createMain(mob.main.arrow,mob.main.logo,mob.main.title);
+  let blg;
+  // if (mobileScreen.includes('blog')) {
+  //   console.log(typeof mob.blog);
+  //   mob.blog.forEach(post => {
+  //     // console.log(post);
+  //     blg=createBlog(post.important,post.new,post.date,post.text);
+  //   });
+  //   page.appendChild(blg);
+  // }
   page.appendChild(header);
   page.appendChild(main);
   div.appendChild(page);
