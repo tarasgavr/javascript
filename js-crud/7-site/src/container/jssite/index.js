@@ -65,23 +65,27 @@ const mobileScreen = [
 ];
 let div=createElement('div','desk');
 mobileScreen.forEach(mob => {
-  console.log(mob.blog
-    
-  );
+  console.log(mob);
   let page=createElement('div','page');
   let header=createHeader(mob.header.time,mob.header.signal,mob.header.wifi,mob.header.power);
   let main=createMain(mob.main.arrow,mob.main.logo,mob.main.title);
   let blg;
-  // if (mobileScreen.includes('blog')) {
-  //   console.log(typeof mob.blog);
-  //   mob.blog.forEach(post => {
-  //     // console.log(post);
-  //     blg=createBlog(post.important,post.new,post.date,post.text);
-  //   });
-  //   page.appendChild(blg);
-  // }
+  let tabs;
   page.appendChild(header);
   page.appendChild(main);
+  if (Object.hasOwn(mob,'blog')) {
+    mob.blog.forEach(post => {
+      blg=createBlog(post.important,post.new,post.date,post.text);
+      main.appendChild(blg);
+    });
+  }
+  if (Object.hasOwn(mob,'comunity')) {
+    console.log(mob);
+    mob.blog.forEach(post => {
+      blg=createBlog(post.important,post.new,post.date,post.text);
+      main.appendChild(blg);
+    });
+  }
   div.appendChild(page);
 });
 document.body.append(div);

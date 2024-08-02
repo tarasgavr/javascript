@@ -46,18 +46,49 @@ export const createBlog = (pimportant,pnew,pdate,ptext) => {
   const blogTitle = createElement('div','blogTitle');
   blog.appendChild(blogTitle);
   const div = createElement('div');
-  blogTitle.appendChild(div);
   if (pimportant) {
     const badge1 = createElement('div','badge',pimportant);
     div.appendChild(badge1);
+    blogTitle.appendChild(div);
   }
   if (pnew) {
     const badge2 = createElement('div','badge',pnew);
     div.appendChild(badge2);
   }
+  blogTitle.appendChild(div);
   const date = createElement('div','blogDate',pdate);
   blogTitle.appendChild(date);
   const text = createElement('div','blogText',ptext);
   blog.appendChild(text);
   return blog;
+}
+export const createCommunity = (tabsArr=[]) => {
+  const tabs = createElement('div','tabs');
+  const tabHeader = createElement('div','tabHeader');
+  tabs.appendChild(tabHeader);
+  let tabTitle;
+  tabsArr.forEach(tabEl => {
+    tabTitle = createElement('div','tabTitle',tabEl.title);
+    if (tabEl.active) {
+      tabTitle.className += 'active';
+      tabHeader.appendChild(tabTitle);
+    }
+  });
+  blog.appendChild(blogTitle);
+  const div = createElement('div');
+  if (pimportant) {
+    const badge1 = createElement('div','badge',pimportant);
+    div.appendChild(badge1);
+    blogTitle.appendChild(div);
+  }
+  if (pnew) {
+    const badge2 = createElement('div','badge',pnew);
+    div.appendChild(badge2);
+  }
+  blogTitle.appendChild(div);
+  const date = createElement('div','blogDate',pdate);
+  blogTitle.appendChild(date);
+  const text = createElement('div','blogText',ptext);
+  blog.appendChild(text);
+  return tabs;
 }
