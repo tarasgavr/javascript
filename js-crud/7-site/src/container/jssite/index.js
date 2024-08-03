@@ -1,4 +1,4 @@
-import { createElement, createHeader, createMain,createBlog } from "../../script/layout";
+import { createElement, createHeader, createMain,createBlog, createCommunity } from "../../script/layout";
 const mobileScreen = [
   {
     header: {
@@ -65,7 +65,6 @@ const mobileScreen = [
 ];
 let div=createElement('div','desk');
 mobileScreen.forEach(mob => {
-  console.log(mob);
   let page=createElement('div','page');
   let header=createHeader(mob.header.time,mob.header.signal,mob.header.wifi,mob.header.power);
   let main=createMain(mob.main.arrow,mob.main.logo,mob.main.title);
@@ -80,12 +79,15 @@ mobileScreen.forEach(mob => {
     });
   }
   if (Object.hasOwn(mob,'comunity')) {
-    console.log(mob);
-    mob.blog.forEach(post => {
-      blg=createBlog(post.important,post.new,post.date,post.text);
-      main.appendChild(blg);
+    mob.comunity.forEach(com => {
+      tabs=createCommunity(com.tabs,com.badge,com.text,com.description,com.button);
+      main.appendChild(tabs);
     });
   }
+  const footer=createElement('footer')
+  const footerDiv=createElement('div')
+  footer.appendChild(footerDiv)
+  page.appendChild(footer)
   div.appendChild(page);
 });
 document.body.append(div);
