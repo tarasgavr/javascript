@@ -1,0 +1,7 @@
+@use '../../style' as s;
+
+body {
+	font-family: 'Roboto', sans-serif;
+	padding: 100px;
+	background-color: s.color(dark);
+}
