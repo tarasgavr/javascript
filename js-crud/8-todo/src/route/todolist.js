@@ -14,6 +14,16 @@ router.get('/', function (req, res) {
     // вказуємо назву сторінки
     title: 'To-do list',
     // ... сюди можна далі продовжувати додавати потрібні технічні дані, які будуть використовуватися в layout
+    todolist: {
+      title: 'To-do list',
+      input: {
+        placeholder: '',
+        button: '',
+      },
+      listItem: {
+        
+      },
+    },
   // ↑↑ сюди вводимо JSON дані
   })
 })
