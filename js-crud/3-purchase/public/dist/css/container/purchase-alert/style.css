@@ -1,0 +1,19 @@
+.form-alert {
+  padding: 1.25rem;
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+  background-color: #ced4da;
+  box-shadow: 1rem 1.5rem 2rem #0050ff;
+}
+.form-alert__title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+.form-alert__button {
+  background-color: #0050ff;
+  color: rgb(255, 255, 255);
+  padding: 0.5rem;
+}
+
+/*# sourceMappingURL=style.css.map */

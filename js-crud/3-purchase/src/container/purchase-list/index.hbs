@@ -1,0 +1,31 @@
+<main>
+  <section>
+{{> heading caption='Мої замовлення' blue=true}}
+        <div class='card__container'>
+          {{#each data}}
+            <div class='card'>
+              <div class="cell-center">
+                <span class='card-caption'>ID :{{purchaseId}}</span>
+              </div>
+              <div class='card-block'>
+                <span class='card-caption'>Товари</span>
+                <h5>{{purchaseName}}</h5>
+              </div>
+              <div class='card-block'>
+                <span class='card-caption'>Сума замовлення</span>
+                <h5>{{purchasePrice}}&#8372;</h5>
+              </div>
+              <div class='card-block'>
+                <span class='card-caption'>Нараховані бонуси</span>
+                <h5>{{bonuses}}</h5>
+              </div>
+              <div class="cell-center">
+                <a href='/purchase-info?id={{purchaseId}}'>Детальніше</a>
+              </div>
+            </div>
+          <hr>
+          {{/each}}
+        </div>
+    </div>
+  </section>
+</main>

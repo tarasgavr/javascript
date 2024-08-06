@@ -1,0 +1,59 @@
+@use '../../lib/services.scss' as s;
+.searchField {
+  background-color: s.color('black2');
+  padding: s.space(2.5) s.space(8);
+}
+svg {
+  fill: s.color('gray2');
+}
+.search {
+  color: s.color('green');
+  font-size: s.space(6);
+  margin-left: s.space(5);
+}
+.pane {
+  width: s.space(180);
+  display: flex;
+  flex-direction: column;
+  gap: s.space(15);
+  .justify {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.card {
+  display: flex;
+  gap: s.space(5);
+  &-container {
+    display: grid;
+    gap: s.space(7.5);
+  }
+  .aligntext {
+    display: grid;
+    gap: s.space(5);
+    align-self: center;
+    .playlistName {
+      font-weight: 500;
+      font-size: s.space(6);
+      text-transform: capitalize;
+      color: s.color('white');
+    }
+    div { 
+      display: flex;
+      gap: s.space(1);
+      color: s.color('gray');
+      span {
+        transform: scale(2);
+        fill: s.color('white');
+      }
+    }
+  }
+}
+button {
+  outline: none;
+  background: none;
+  border: none;
+  color: s.color('white');
+  font-size: s.space(7);
+  margin: s.space(0.5) s.space(5);
+}

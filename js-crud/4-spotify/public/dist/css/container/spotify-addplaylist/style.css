@@ -1,0 +1,22 @@
+.pane {
+  display: flex;
+  flex-direction: column;
+  gap: 3.75rem;
+}
+
+.card {
+  display: flex;
+  gap: 1.5rem;
+}
+.card-container {
+  display: grid;
+  gap: 2rem;
+}
+.card img {
+  align-self: center;
+}
+.card a {
+  display: flex;
+}
+
+/*# sourceMappingURL=style.css.map */
