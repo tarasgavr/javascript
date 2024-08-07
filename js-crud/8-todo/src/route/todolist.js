@@ -13,16 +13,52 @@ router.get('/', function (req, res) {
 
     // вказуємо назву сторінки
     title: 'To-do list',
-    // ... сюди можна далі продовжувати додавати потрібні технічні дані, які будуть використовуватися в layout
+    // ... сюди можна далі продовжувати додавати  потрібні технічні дані, які будуть використовуватися в layout
     todolist: {
       title: 'To-do list',
       input: {
-        placeholder: '',
-        button: '',
+        placeholder: 'Введіть задачу...',
+        button: 'Додати',
       },
-      listItem: {
-        
-      },
+      listItem: [
+        {
+          number: null,
+          text: 'Some placeholder content in a paragraph below the heading and date.',
+          icons: [
+            {
+              icon: '/svg/icon-do.svg',
+            },
+            {
+              icon: '/svg/icon-cancel.svg',
+            },
+          ],
+        },
+        {
+          number: null,
+          text: 'Some placeholder content in a paragraph below the heading and date.',
+          icons: [
+            {
+              done: true,
+              icon: '/svg/icon-done.svg',
+            },
+            {
+              icon: '/svg/icon-cancel.svg',
+            },
+          ],
+        },
+        {
+          number: null,
+          text: 'Some placeholder content in a paragraph below the heading and date.',
+          icons: [
+            {
+              icon: '/svg/icon-do.svg',
+            },
+            {
+              icon: '/svg/icon-cancel.svg',
+            },
+          ],
+        }, 
+      ],
     },
   // ↑↑ сюди вводимо JSON дані
   })

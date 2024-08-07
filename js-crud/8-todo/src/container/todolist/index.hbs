@@ -5,7 +5,30 @@
 
 <div class="desk">
     <div class="page">
-			<div class="list__name">To-do list</div>
+			{{#with todolist}}
+				<div class="list__title">{{title}}</div>
+				{{#with input}}
+					<div class="input__group">
+						<input type="text" id="input" placeholder="{{placeholder}}" class="list__input">
+						<button>{{button}}</button>
+					</div>
+				{{/with}} <!-- end of input -->
+				{{#each listItem}}
+				<div class='listItem__wrapper'>
+					<div class='listItem__body'>
+						<span>{{number}}</span>
+						<span>{{text}}</span>
+					</div>
+					<div class='icons'>
+						{{#each icons}}
+							<button class='icon'>
+								<img src={{icon}} alt="">
+							</button>
+						{{/each}} <!-- end of icons -->
+					</div>
+				</div>
+				{{/each}} <!-- end of listItem -->
+			{{/with}} <!-- end of todolist -->
     </div>
 </div>
 
