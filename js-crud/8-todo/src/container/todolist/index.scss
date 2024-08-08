@@ -27,6 +27,10 @@
 			width: 100%;
 			border-radius: s.space(3);
 		}
+		button {
+			background-color: s.color(main);
+			color: s.color(white);
+		}
 		.listItem__wrapper {
 			display: flex;
 			justify-content: space-between;
@@ -44,8 +48,9 @@
 			display: flex;
 		}
 		.icon {
-			padding: s.space(1);
-			border-radius: 50%;
+			width: s.space(6);
+			height: s.space(6);
+			border-radius: 100%;
 			border: 1px solid s.color('gray');
 		}
 	}
