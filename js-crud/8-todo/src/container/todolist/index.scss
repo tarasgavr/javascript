@@ -34,12 +34,17 @@
 		.listItem__body {
 			display: flex;
 			align-self: center;
+			gap: s.space(3);
+		}
+		.item__done {
+			color: s.color('gray');
+			text-decoration: line-through;
 		}
 		.icons {
 			display: flex;
 		}
 		.icon {
-			padding: s.space(2);
+			padding: s.space(1);
 			border-radius: 50%;
 			border: 1px solid s.color('gray');
 		}

@@ -36,9 +36,9 @@ router.get('/', function (req, res) {
         {
           number: null,
           text: 'Some placeholder content in a paragraph below the heading and date.',
+          done: true,
           icons: [
             {
-              done: true,
               icon: '/svg/icon-done.svg',
             },
             {
