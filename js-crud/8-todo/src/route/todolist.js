@@ -22,7 +22,7 @@ router.get('/', function (req, res) {
       },
       listItem: [
         {
-          number: null,
+          number: 1,
           text: 'Some placeholder content in a paragraph below the heading and date.',
           icons: [
             {
@@ -34,7 +34,7 @@ router.get('/', function (req, res) {
           ],
         },
         {
-          number: null,
+          number: 2,
           text: 'Some placeholder content in a paragraph below the heading and date.',
           done: true,
           icons: [
@@ -47,7 +47,7 @@ router.get('/', function (req, res) {
           ],
         },
         {
-          number: null,
+          number: 3,
           text: 'Some placeholder content in a paragraph below the heading and date.',
           icons: [
             {

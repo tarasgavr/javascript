@@ -27,9 +27,11 @@
 			width: 100%;
 			border-radius: s.space(3);
 		}
-		button {
+		.list__button {
 			background-color: s.color(main);
 			color: s.color(white);
+			padding: s.space(1) s.space(5.5);
+			border-radius: s.space(1);
 		}
 		.listItem__wrapper {
 			display: flex;

@@ -10,10 +10,17 @@
 				{{#with input}}
 					<div class="input__group">
 						<input type="text" id="input" placeholder="{{placeholder}}" class="list__input">
-						<button>{{button}}</button>
+						<button class="list__button" id='button'>{{button}}</button>
 					</div>
 				{{/with}} <!-- end of input -->
 				{{#each listItem}}
+					<div id='task__list'></div>
+				{{/each}} <!-- end of listItem -->
+			{{/with}} <!-- end of todolist -->
+    </div>
+</div>
+
+<template id="task">
 				<div class='listItem__wrapper'>
 					<div class='listItem__body'>
 						<span class="item {{#if done}}item__done{{/if}}">{{number}}.</span>
@@ -27,11 +34,7 @@
 						{{/each}} <!-- end of icons -->
 					</div>
 				</div>
-				{{/each}} <!-- end of listItem -->
-			{{/with}} <!-- end of todolist -->
-    </div>
-</div>
-
+</template>
 
 {{!
     Цей код містить лише те, що буде виводитись в <body>
