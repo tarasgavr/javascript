@@ -1,8 +1,42 @@
 export default class Todo {
+  static #block = null
+  static #button = null
+  static #count = 0
+  static #input = null
+  static #list = []
   static #template = null
   static init = () => {
     this.#template = document.getElementById("task").content.firstElementChild
-    console.log(this.#template);
-    
+    this.#block = document.getElementById("task__list")
+    this.#button = document.getElementById("button")
+    this.#input = document.getElementById("input")
+    this.#button.onclick =  this.#handleData
+    this.#render();
+  }
+  static #createTaskData = (text) => {
+    this.#list.push({
+      id: ++this.#count,
+      text,
+      done: false,
+    })
+  }
+  static #handleData = () => {
+    const value = this.#input.value;
+    if (value.length > 1) {
+      this.#createTaskData(this.#input.value);
+      this.#input.value = "";
+      this.#render();
+    }
+  }
+  static #render = () => {
+    this.#block.innerHTML = "";
+    if (this.#list.length === 0) {
+        this.#block.innerText = "Немає задач"
+    } else {
+      this.#list.forEach(() => {
+        const task = this.#template.cloneNode(true);
+        this.#block.append(task);
+      });
+    }
   }
 }

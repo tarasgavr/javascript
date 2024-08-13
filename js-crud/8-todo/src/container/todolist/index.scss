@@ -55,5 +55,14 @@
 			border-radius: 100%;
 			border: 1px solid s.color('gray');
 		}
+		.icon-do {
+			 background-image: url('/svg/icon-do.svg');
+		}
+		.icon-done {
+			 background-image: url('/svg/icon-done.svg');
+		}
+		.icon-cancel {
+			 background-image: url('/svg/icon-cancel.svg');
+		}
 	}
 }

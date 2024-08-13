@@ -13,9 +13,9 @@
 						<button class="list__button" id='button'>{{button}}</button>
 					</div>
 				{{/with}} <!-- end of input -->
-				{{#each listItem}}
+				{{!-- {{#each listItem}} --}}
 					<div id='task__list'></div>
-				{{/each}} <!-- end of listItem -->
+				{{!-- {{/each}} <!-- end of listItem --> --}}
 			{{/with}} <!-- end of todolist -->
     </div>
 </div>
@@ -23,15 +23,16 @@
 <template id="task">
 				<div class='listItem__wrapper'>
 					<div class='listItem__body'>
-						<span class="item {{#if done}}item__done{{/if}}">{{number}}.</span>
-						<span class="item {{#if done}}0item__done{{/if}}">{{text}}</span>
+						<span class="item">1.</span>
+						<span class="item">Some placeholder content in a paragraph below the heading and date.</span>
 					</div>
 					<div class='icons'>
-						{{#each icons}}
-							<button class='icon'>
-								<img src={{icon}} alt="">
+						{{!-- {{#each icons}} --}}
+							<button class='icon icon-do'>
 							</button>
-						{{/each}} <!-- end of icons -->
+							<button class='icon icon-cancel'>
+							</button>
+						{{!-- {{/each}} <!-- end of icons --> --}}
 					</div>
 				</div>
 </template>
