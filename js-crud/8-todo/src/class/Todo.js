@@ -21,22 +21,27 @@ export default class Todo {
     })
   }
   static #handleData = () => {
-    const value = this.#input.value;
+    let value = this.#input.value;
     if (value.length > 1) {
-      this.#createTaskData(this.#input.value);
-      this.#input.value = "";
+      this.#createTaskData(value);
+      value = "";
       this.#render();
     }
   }
   static #render = () => {
     this.#block.innerHTML = "";
     if (this.#list.length === 0) {
-        this.#block.innerText = "Немає задач"
+      this.#block.innerText = "Немає задач"
     } else {
-      this.#list.forEach(() => {
-        const task = this.#template.cloneNode(true);
+      this.#list.forEach((text) => {
+        const task = this.#createTaskEl(text);
         this.#block.append(task);
       });
     }
+  }
+  static #createTaskEl = (data) => {
+    const task = this.#template.cloneNode(true);
+    const [ id, text, btnDo, btnCancel ] =task.children
+    return task
   }
 }

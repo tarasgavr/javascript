@@ -48,6 +48,7 @@
 		}
 		.icons {
 			display: flex;
+			gap: s.space(3);
 		}
 		.icon {
 			width: s.space(6);
