@@ -41,7 +41,20 @@ export default class Todo {
   }
   static #createTaskEl = (data) => {
     const task = this.#template.cloneNode(true);
-    const [ id, text, btnDo, btnCancel ] =task.children
-    return task
+    const [ id, text, btnDo, btnCancel ] = task.children;
+    id.innerText = `${data.id}.`;
+    text.innerText = data.text;
+    console.log(task.children);
+    
+    // btnCancel.onclick = this.#handleCancel(data)
+    return task;
+  }
+  static #handleCancel = (data) => () => {
+    const rss = this.#deleteById(data.id);
+     if (rss) this.#render()
+  }
+  static #deleteById = (id) => {
+    this.#list = this.#list.filter((item) => item.id !== id)
+    return true
   }
 }
