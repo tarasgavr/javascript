@@ -41,10 +41,11 @@ export default class Todo {
   }
   static #createTaskEl = (data) => {
     const task = this.#template.cloneNode(true);
-    const [ id, text, btnDo, btnCancel ] = task.children;
+    const task2 = this.#template.children;
+    const [ id, text ] = task.children;
     id.innerText = `${data.id}.`;
     text.innerText = data.text;
-    console.log(task.children);
+    console.log(task2);
     
     // btnCancel.onclick = this.#handleCancel(data)
     return task;
