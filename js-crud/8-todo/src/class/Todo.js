@@ -24,7 +24,7 @@ export default class Todo {
     let value = this.#input.value;
     if (value.length > 1) {
       this.#createTaskData(value);
-      value = "";
+      this.#input.value = "";
       this.#render();
     }
   }
@@ -36,19 +36,26 @@ export default class Todo {
       this.#list.forEach((text) => {
         const task = this.#createTaskEl(text);
         this.#block.append(task);
+        const task2 = this.#createTaskEl2(text);
+        this.#block.append(task2);
       });
     }
   }
   static #createTaskEl = (data) => {
     const task = this.#template.cloneNode(true);
-    const task2 = this.#template.children;
-    const [ id, text ] = task.children;
+    const task2 = task.firstElementChild.cloneNode(true);
+    const [ id, text ] = task2.children;
     id.innerText = `${data.id}.`;
     text.innerText = data.text;
-    console.log(task2);
-    
+    return task2;
+  }
+  static #createTaskEl2 = (data) => {
+    const task = this.#template.cloneNode(true);
+    const task3 = task.lastElementChild.cloneNode(true);
+    const [ id, text ] = task3.children;
+    console.log(task3.children);
     // btnCancel.onclick = this.#handleCancel(data)
-    return task;
+    return task3;
   }
   static #handleCancel = (data) => () => {
     const rss = this.#deleteById(data.id);
