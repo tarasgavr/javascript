@@ -36,19 +36,18 @@ export default class Todo {
       this.#list.forEach((text) => {
         const task = this.#createTaskEl(text);
         this.#block.append(task);
-        // const task2 = this.#createTaskEl2(text);
-        // this.#block.append(task2);
+        const task2 = this.#createTaskEl2(text);
+        this.#block.append(task2);
       });
     }
   }
   static #createTaskEl = (data) => {
-    let task = this.#template.firstElementChild.cloneNode(true);
-    const [ id, text ] = task.children;
+    const task = this.#template.cloneNode(true);
+    const task2 = task.firstElementChild.cloneNode(true);
+    const [ id, text ] = task2.children;
     id.innerText = `${data.id}.`;
     text.innerText = data.text;
-    console.log(task);
-    
-    return task;
+    return task2;
   }
   static #createTaskEl2 = (data) => {
     const task = this.#template.cloneNode(true);
