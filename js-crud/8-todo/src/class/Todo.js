@@ -6,12 +6,14 @@ export default class Todo {
   static #list = []
   static #template = null
   static init = () => {
-    this.#template = document.getElementById("task").content.firstElementChild
+    this.#template = document.getElementById("task").content.firstElementChild.cloneNode()
     this.#block = document.getElementById("task__list")
     this.#button = document.getElementById("button")
     this.#input = document.getElementById("input")
     this.#button.onclick =  this.#handleData
     this.#render();
+    console.log(this.#template);
+    
   }
   static #createTaskData = (text) => {
     this.#list.push({
@@ -47,7 +49,7 @@ export default class Todo {
     id.innerText = `${data.id}.`;
     text.innerText = data.text;
     console.log(task);
-    
+    this.#template.appendChild(task)
     return task;
   }
   static #createTaskEl2 = (data) => {
