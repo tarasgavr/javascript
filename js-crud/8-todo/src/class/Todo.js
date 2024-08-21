@@ -6,14 +6,12 @@ export default class Todo {
   static #list = []
   static #template = null
   static init = () => {
-    this.#template = document.getElementById("task").content.firstElementChild.cloneNode()
+    this.#template = document.getElementById("task").content.firstElementChild
     this.#block = document.getElementById("task__list")
     this.#button = document.getElementById("button")
     this.#input = document.getElementById("input")
     this.#button.onclick =  this.#handleData
     this.#render();
-    console.log(this.#template);
-    
   }
   static #createTaskData = (text) => {
     this.#list.push({
@@ -38,27 +36,32 @@ export default class Todo {
       this.#list.forEach((text) => {
         const task = this.#createTaskEl(text);
         this.#block.append(task);
-        // const task2 = this.#createTaskEl2(text);
-        // this.#block.append(task2);
       });
     }
   }
   static #createTaskEl = (data) => {
-    let task = this.#template.firstElementChild.cloneNode(true);
-    const [ id, text ] = task.children;
+    let task = this.#template.cloneNode(true);
+    const [ wrapper, buttons ] = task.children;
+    const [ id, text ] = wrapper.children;
+    const [ btnDo, btnCancel ] = buttons.children;
     id.innerText = `${data.id}.`;
     text.innerText = data.text;
-    console.log(task);
-    this.#template.appendChild(task)
+    // btnDo.onclick = this.#handleDone;\
+    console.log(btnCancel);
+    
+    btnCancel.onclick = this.#handleCancel(data);
     return task;
   }
-  static #createTaskEl2 = (data) => {
-    const task = this.#template.cloneNode(true);
-    const task3 = task.lastElementChild.cloneNode(true);
-    const [ text ] = task3.children;
-    console.log(task3.children);
-    // btnCancel.onclick = this.#handleCancel(data)
-    return task3;
+  // static #handleDone = (data) => () => {
+  //   const rss = this.#detectById(data.id);
+  //    if (rss) {
+
+  //     this.#render()
+  //   }
+  // }
+  static #detectById = (id) => {
+    this.#list = this.#list.splice(id,1)
+    return true
   }
   static #handleCancel = (data) => () => {
     const rss = this.#deleteById(data.id);
@@ -66,6 +69,6 @@ export default class Todo {
   }
   static #deleteById = (id) => {
     this.#list = this.#list.filter((item) => item.id !== id)
-    return true
+    return  true
   }
 }
