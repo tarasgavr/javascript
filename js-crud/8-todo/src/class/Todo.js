@@ -46,29 +46,34 @@ export default class Todo {
     const [ btnDo, btnCancel ] = buttons.children;
     id.innerText = `${data.id}.`;
     text.innerText = data.text;
-    // btnDo.onclick = this.#handleDone;\
-    console.log(btnCancel);
+    btnDo.onclick = this.#handleDone(data);
     
     btnCancel.onclick = this.#handleCancel(data);
     return task;
   }
-  // static #handleDone = (data) => () => {
-  //   const rss = this.#detectById(data.id);
-  //    if (rss) {
-
-  //     this.#render()
-  //   }
-  // }
+  static #handleDone = (data) => () => {
+    const task = this.#detectById(data.id);
+   console.log(task);
+   
+  }
   static #detectById = (id) => {
-    this.#list = this.#list.splice(id,1)
-    return true
+    let item;
+    this.#list.forEach(elem => {
+      if (elem.id === id) item=elem;
+      });
+    return 
   }
   static #handleCancel = (data) => () => {
-    const rss = this.#deleteById(data.id);
-     if (rss) this.#render()
+    if (confirm("Дійсно видалити?")) {
+      const rss = this.#deleteById(data.id);
+      if (rss) {
+        this.#count--
+        this.#render()
+      }
+    }
   }
   static #deleteById = (id) => {
-    this.#list = this.#list.filter((item) => item.id !== id)
-    return  true
+    this.#list = this.#list.filter((item) => item.id !== id);
+    return true;
   }
 }
