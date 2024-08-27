@@ -13,6 +13,18 @@ export default class Todo {
     this.#button.onclick =  this.#handleData
     this.#render();
   }
+  static #saveData = () => {
+    localStorage.setItem("todolist",JSON.stringify({
+      list: this.#list,
+      count: this.#count,
+    }))
+  }
+  static #loadData = () => {
+    const data = localStorage.getItem("todolist");
+    const {list,count} = JSON.parse(data);
+    this.#list = list;
+    this.#count = count;
+  }
   static #createTaskData = (text) => {
     this.#list.push({
       id: ++this.#count,
