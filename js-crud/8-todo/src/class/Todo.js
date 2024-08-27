@@ -11,6 +11,7 @@ export default class Todo {
     this.#button = document.getElementById("button")
     this.#input = document.getElementById("input")
     this.#button.onclick =  this.#handleData
+    this.#loadData();
     this.#render();
   }
   static #saveData = () => {
@@ -38,6 +39,7 @@ export default class Todo {
       this.#createTaskData(value);
       this.#input.value = "";
       this.#render();
+      this.#saveData();
     }
   }
   static #render = () => {
@@ -67,6 +69,7 @@ export default class Todo {
     if (status === true || status === false) {
       el.classList.toggle("item__done");
       btn.classList.toggle("icon-done");
+      this.#saveData();
     }
   }
   static #toggleDone = (id) => {
@@ -85,8 +88,9 @@ export default class Todo {
     if (confirm("Дійсно видалити?")) {
       const rss = this.#deleteById(data.id);
       if (rss) {
-        this.#count--
-        this.#render()
+        this.#count--;
+        this.#render();
+        this.#saveData();
       }
     }
   }
