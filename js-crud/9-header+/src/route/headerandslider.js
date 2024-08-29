@@ -14,6 +14,7 @@ router.get('/header', function (req, res) {
     // вказуємо назву сторінки
     title: 'Header',
     // ... сюди можна далі продовжувати додавати  потрібні технічні дані, які будуть використовуватися в layout
+    menu__items: ["home","about","contacts"]
   // ↑↑ сюди вводимо JSON дані
   })
 })

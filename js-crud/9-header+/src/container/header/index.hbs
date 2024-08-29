@@ -1,39 +1,10 @@
-{{!
-Це код container файлу для index сторінки,
-в якому міститься код, котрий буде віддаватися по шляху (PATH) - "/"
-}}
-
 <div class="desk">
-    <div class="page">
-			{{#with todolist}}
-				<div class="list__title">{{title}}</div>
-				{{#with input}}
-					<div class="input__group">
-						<input type="text" id="input" placeholder="{{placeholder}}" class="list__input">
-						<button class="list__button" id='button'>{{button}}</button>
-					</div>
-				{{/with}}
-					<div id='task__list'></div>
-			{{/with}}
-    </div>
+	<div class="menu__block">
+		<div class="menu__items">
+			{{#each menu__items}}
+				<div class="menu__item">{{this}}</div>
+			{{/each}} <!-- end of menu__items -->
+		</div>
+		<div class="menu__button">&#9776;</div>
+	</div>
 </div>
-
-<template id="task">
-				<div class='listItem__wrapper'>
-					<div class='listItem__body'>
-						<span class="item">1.</span>
-						<span class="item">Some placeholder content in a paragraph below the heading and date.</span>
-					</div>
-					<div class='icons'>
-							<button class='icon icon-do'>
-							</button>
-							<button class='icon icon-cancel'>
-							</button>
-					</div>
-				</div>
-</template>
-
-{{!
-    Цей код містить лише те, що буде виводитись в <body>
-    Адже наш layout/default.hbs має вже структуру HTML
-}}
