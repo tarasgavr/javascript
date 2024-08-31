@@ -1,10 +1,13 @@
 <div class="desk">
-	<div class="menu__block">
-		<div class="menu__items">
+	<div class="menu__wrapper">
 			{{#each menu__items}}
 				<div class="menu__item">{{this}}</div>
 			{{/each}} <!-- end of menu__items -->
-		</div>
 		<div class="menu__button">&#9776;</div>
+	</div>
+	<div class="menu__block display">
+			{{#each menu__items}}
+				<div class="menu__item">{{this}}</div>
+			{{/each}} <!-- end of menu__items -->
 	</div>
 </div>

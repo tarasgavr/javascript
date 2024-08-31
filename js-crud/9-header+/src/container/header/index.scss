@@ -2,25 +2,34 @@
 
 .desk {
 	width: 100%;
-  max-width: s.space(300);
   height: s.space(75);
 	background-color: s.color('gray');
 	display: grid;
 	gap: s.space(16);
 	justify-content: center;
 }
-.menu__block {
+.menu__wrapper {
+	height: s.space(16);
+	padding: s.space(6) 0;
 	display: flex;
-	justify-content: space-between;
-}
-.menu__items {
-	display: flex;
-	gap: s.space(8);
-	align-self: baseline;
+	border-bottom: 1px solid #000;	
 }
 .menu__item {
+	margin-right: s.space(8);
 	text-transform: capitalize;
 }
 .menu__button {
-	align-self: start;
+	margin-left: s.space(18);
+}
+.menu__block {
+	background-color: s.color('gray');
+	padding: s.space(4) s.space(2);
+	display: flex;
+	flex-direction: column;
+	gap: s.space(2);
+	width: max-content;
+	height: max-content;	
+}
+.display {
+	display: none;
 }

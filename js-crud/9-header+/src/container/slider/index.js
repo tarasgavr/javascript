@@ -1,2 +1,2 @@
-import Todo from "../../class/Todo.js";
-Todo.init();
+/* import Todo from "../../class/Todo.js";
+Todo.init(); */
