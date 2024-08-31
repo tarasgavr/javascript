@@ -1,0 +1,31 @@
+@use '../../lib/services.scss' as s;
+body {
+  background-color: s.color('black');
+  display: grid;
+  padding: s.space(9) s.space(150);
+  font-family: Inter, serif;
+  font-weight: 400;
+  font-size: s.space(4);
+}
+.heading {
+  width: fit-content;
+  height: fit-content;
+}
+.grid {
+  display: grid;
+  gap: s.space(6);
+}
+.title {
+  color: s.color('white');
+}
+.caption {
+  font-weight: 500;
+  font-size: s.space(6);
+  color: s.color('white');
+}
+input {
+  width: 100%;
+  outline: none;
+  border: none;
+  background: none;
+}

@@ -1,0 +1,25 @@
+@use '../../lib/services.scss' as s;
+
+.card {
+  display: flex;
+  flex-direction: row;
+  gap: s.space(4);
+  &__container {
+    display: grid;
+    gap: s.space(5);
+    width: s.space(250);
+  }
+  &-block {
+    display: flex;
+    flex-direction: column;
+    gap: s.space(5);
+  }
+  &-caption {
+    color: s.color('gray');
+  }
+  .cell-center {
+    display: flex;
+    align-items: center;
+  }
+  
+}

@@ -1,0 +1,16 @@
+$colorMap: (
+	white: #fff,
+	dark: #000,
+	light: #f7f7f7,
+	badge: rgba(247,233,225,.5),
+	badgeText: rgba(244,111,23,1),
+	badgeText2: rgba(245,93,168,1),
+	date: rgba(141,141,141,1),
+	'gray': #35363a,
+	main: blue,
+	pv: #ff0089,
+);
+
+@function color ($key) {
+	@return map-get($colorMap, $key);
+}

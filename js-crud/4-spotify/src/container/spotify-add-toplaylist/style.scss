@@ -1,0 +1,35 @@
+@use '../../lib/services.scss' as s;
+.pane {
+  display: flex;
+  flex-direction: column;
+  gap: s.space(15);
+}
+.card {
+  display: flex;
+  gap: s.space(6);
+   &-container {
+     display: grid;
+     gap: s.space(8);
+     padding: s.space(6) s.space(8);
+     background-color: s.color('black2');
+    .track-container {
+      display: flex;
+      justify-content: space-between;
+   }
+  }
+  .trackName {
+    font-size: s.space(6);
+    font-weight: 500;
+    color: s.color('white');
+ }
+  .trackSinger {
+    color: s.color('gray');
+  }  
+  img {
+    width:s.space(23);
+    height: s.space(23);
+  }
+  a {
+    display: flex;
+  }
+}

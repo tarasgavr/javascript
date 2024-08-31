@@ -1,0 +1,43 @@
+@use '../../lib/services.scss' as s;
+.pane {
+  display: flex;
+  flex-direction: column;
+  gap: s.space(15);
+}
+.card {
+  display: flex;
+  gap: s.space(5);
+  &-container {
+    display: grid;
+    gap: s.space(8);
+    .track-container {
+      display: flex;
+      justify-content: space-between;
+   }
+    a {
+      width: 92px;
+      height: 92px;
+      background-color: s.color('black2');
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  .add-toplaylist {
+    color: s.color('white');
+    font-size: s.space(6);
+    align-self: center;
+  }
+  }
+  .trackName {
+    font-size: s.space(6);
+    font-weight: 500;
+    color: s.color('white');
+ }
+  .trackSinger {
+    color: s.color('gray');
+  }  
+  img {
+    width:s.space(23);
+    height: s.space(23);
+  }
+}

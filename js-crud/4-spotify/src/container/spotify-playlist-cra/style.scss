@@ -1,0 +1,38 @@
+@use '../../lib/services.scss' as s;
+.pane {
+  display: grid;
+  grid-gap: s.space(71);
+}
+.playlist-create {
+  display: grid;
+  gap: s.space(28);
+}
+.playlist-subcreate {
+  display: grid;
+  gap: s.space(17);
+}
+.playlistNameLabel {
+  font-size: s.space(5);
+  font-weight: 500;
+  color: s.color('white');
+  justify-self: center;
+}
+.playlistNameInput {
+  color: s.color('green');
+  font-size: s.space(17);
+  padding-bottom: s.space(5);
+  border-bottom: 1px solid s.color('gray');
+}
+.button {
+  outline: none;
+  font-weight: 500;
+  padding: s.space(5) s.space(10);
+  background-color: s.color('green');
+  border-radius: s.space(250);
+  font-size: s.space(5);
+  justify-self: center;
+}
+img {
+  position: relative;
+  justify-self: end;
+}

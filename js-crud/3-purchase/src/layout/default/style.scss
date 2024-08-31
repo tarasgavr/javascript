@@ -1,0 +1,17 @@
+@use '../../lib/services.scss' as s;
+body {
+  display: grid;
+  justify-content: center;
+  margin-top: s.space(25);
+  font-family: Inter, serif;
+  font-weight: 400;
+  font-size: s.space(4);
+}
+.heading {
+  display: grid;
+  gap: s.space(5);
+  margin-bottom: s.space(15);
+}
+.caption {
+  color: s.color('blue');
+}
